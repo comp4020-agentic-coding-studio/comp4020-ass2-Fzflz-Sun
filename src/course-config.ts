@@ -40,23 +40,22 @@ export const slopCourseMetaSchema = z
 
 // The single source of truth for the course record. The generated homepage,
 // navigation label and /api/index.json all read this object.
-// Replace every placeholder value, but keep the shape: the catalogue ingests
-// this API contract when the course is published.
 //
 // The code's last three digits were assigned to this repo when it was
-// provisioned, and no other course in the cohort has them. Change the first
-// digit to your course's level (and `level` to match); keep the other three.
-// STARTER_CONTENT: replace this course record, then remove this comment.
+// provisioned, and no other course in the cohort has them. Only the leading
+// level digit was chosen for this course (4 = undergraduate capstone level).
 export const courseMeta = slopCourseMetaSchema.parse({
-  code: "SLOP1700",
-  title: "Course Title Goes Here",
+  code: "SLOP4700",
+  title: "The Meeting Before the Meeting: How Decisions Get Made",
   session: "Semester 1",
   year: 2027,
-  level: 1,
+  level: 4,
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
-    "One concise paragraph explaining what this course is, who it is for, " +
-    "and why somebody would choose to spend a semester taking it.",
-  tags: ["replace me"],
+    "Most decisions are made before the meeting that announces them. This " +
+    "course teaches you to read agendas, minutes, invitations and silences " +
+    "as evidence, and to run a fair process yourself, using a semester-long " +
+    "fictional case and a live multi-role negotiation simulation.",
+  tags: ["decision-making", "organisational behaviour", "workplace literacy"],
 }) satisfies CourseMetaInput;

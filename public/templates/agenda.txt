@@ -1,0 +1,5 @@
+AGENDA — [meeting name] — [date]
+
+Item: [title — does it name an open question or a foregone conclusion?]
+Purpose: [what the room is actually being asked to do]
+Time allocated: [minutes, and what that signals]

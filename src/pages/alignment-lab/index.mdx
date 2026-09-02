@@ -1,0 +1,154 @@
+---
+title: The Alignment Lab
+description:
+  A four-role, live-then-async decision simulation — how it runs, its
+  fairness and safety rules, and a fully worked public example.
+heroTitle: The Alignment Lab
+---
+
+import ContactSimulator from "../../components/ContactSimulator.astro";
+import { hotDeskingRoleCards } from "../../data/case-facts";
+
+The Alignment Lab is the course's central exercise: a small group is given a
+real-shaped decision to make together, each person holding one of four roles
+and a private brief the others cannot see in full. It is marked as
+[The Alignment Lab](/assessments/alignment-lab/) assessment, worth 45% of the
+course.
+
+The scenario used for the graded Lab is confidential and distributed by the
+teaching team before your group's session — publishing it here would let
+later groups prepare against roles they haven't been assigned yet, which
+defeats the exercise. This page instead runs you through the process using a
+small, fully public worked example, so you can see exactly what a role card
+and a decision record look like before you are handed the real ones.
+
+## The four roles
+
+Every Lab scenario is built around the same four functional archetypes, even
+though the fictional person and organisation change each time:
+
+- **Executive Sponsor** — owns the outcome the organisation wants, and
+  answers for it upward.
+- **Delivery Lead** — has to make whatever gets decided actually work.
+- **Finance and Risk Lead** — controls whether the decision can be funded,
+  and what it might cost if it goes wrong.
+- **Staff Representative** — speaks for the people the decision is done to,
+  not just the people making it.
+
+Each role's private brief carries the same six things: a public
+responsibility everyone can see, one piece of evidence only that role holds,
+one constraint they cannot trade away, one form of leverage or dependency
+over the others, the minimum outcome they can live with, and the specific
+condition under which they would change their position.
+
+## Ground rules, before anyone is assigned a role
+
+These apply to every run of the Lab, and are agreed before role cards are
+distributed — not introduced partway through, and not something you discover
+only in Week 11's material on the ethics of alignment.
+
+- **No real disputes.** Every scenario is fictional. You will never be asked
+  to re-litigate an actual disagreement from your workplace, household or
+  student group.
+- **Opt-out without penalty.** If a role or scenario would put you in a
+  position you are not comfortable with, you can request a swap or an
+  alternative individual task before the session, no explanation required.
+- **In-role, not in-character.** You are arguing a position, not performing a
+  persona. Personal attacks, real names, and anything outside the brief are
+  out of bounds, and the session facilitator can pause the room if the line
+  is crossed.
+- **Nothing said in-role is evidence of what you personally believe.** The
+  decision autopsy afterwards is marked on your analysis, not on the position
+  your role required you to argue.
+- **The record is the record.** Whatever the group's decision record says is
+  what gets marked as the group's outcome, even if you privately disagreed —
+  which is precisely the situation the decision autopsy asks you to examine.
+- **Absence doesn't erase information.** Every role carries a short
+  continuity memo alongside its brief, kept up to date through the
+  pre-meeting window, so that if the person holding a role is unexpectedly
+  absent, the group still has what they knew.
+- **Make-up and async participation are always available.** If you miss the
+  live meeting, you complete an equivalent asynchronous version rather than
+  losing the mark — and no one's grade depends on a groupmate showing up.
+- **Peer feedback checks contributions, not popularity.** Any peer input into
+  marking asks what a specific person actually contributed — a piece of
+  evidence surfaced, a commitment logged, a position changed — never a
+  general vote on who did well.
+- **You exit the role afterwards.** Once the reveal has happened, the group
+  explicitly closes the exercise before moving on: what a role did in the
+  simulation is discussed as the role's behaviour, not as a judgement of the
+  classmate who played it.
+
+## How a run of the Lab works
+
+0. **Rehearsal.** A small, ungraded run of this whole process — using the
+   public worked example below — before anyone sits the assessed Lab.
+1. **Public materials and initial judgment.** Before any role is assigned,
+   everyone reads the same public materials and submits an individual
+   initial judgment: what they think should happen, on the record, before
+   anyone has a stake in a role.
+2. **Role assignment and strategy memo.** Each person receives one
+   confidential role brief and, individually, submits a one-page strategy
+   memo: their responsibilities, their evidence, what they don't know, who
+   they plan to contact, and the ethical boundaries they won't cross.
+3. **Pre-meeting contact window** (48–72 hours). By default, each person may
+   make at most **two self-initiated contacts** — but can reply to as many
+   requests from others as they like. Every contact, sent or received, is
+   logged by both parties: its purpose, any new information, any commitments
+   made, and whether either person's judgment changed. The simulator below
+   shows the shape of this window using the public worked example.
+4. **The meeting.** Live or synchronous, one sitting of around 25 minutes, no
+   extensions on the clock once it starts.
+5. **Decision record.** The group produces one record — the decision or a
+   reasoned deferral, who holds final authority over it, evidence versus
+   unverified assumption, unresolved dissent, who owns the resulting actions,
+   and what would reopen it — using the
+   [decision record template](/templates/). Consensus is not required.
+6. **Reveal and consequence test.** Every role brief is shared with the whole
+   group, then a choice-based consequence test runs against the decision
+   record. Its outcomes come from explicit, traceable case rules, not from
+   chance or dramatic licence — it is a teaching model of one plausible
+   consequence, not a claim that a real decision like it would play out the
+   same way.
+7. **Individual autopsy and partial rerun.** Individually: a decision
+   autopsy naming what you now think actually decided the outcome, then a
+   short rerun of one specific juncture to test whether a named process
+   change would have produced a different one.
+
+## Worked example: should the Reading Room move to hot-desking?
+
+This is a small, entirely public scenario used only to demonstrate the
+mechanics above. It is not the graded Lab scenario.
+
+Facilities wants to convert 40 assigned desks in the Reading Room into
+unassigned hot-desks, to fit a larger cohort. Staff were not consulted before
+the proposal was drafted. Four people, one for each archetype, have to reach
+a decision.
+
+<ContactSimulator roleCards={hotDeskingRoleCards} />
+
+### The four role cards, fully revealed
+
+Because this is the public example, every field of every role card is shown
+below — which is exactly what would **not** happen before a real, graded run
+of the Lab.
+
+| Archetype | Public responsibility | Minimum acceptable outcome |
+|---|---|---|
+| Executive Sponsor | Owns the space-efficiency target the Vice-Chancellery set this year. | Any plan that raises reported utilisation above 50% within two terms. |
+| Delivery Lead | Has to implement whatever the room's new layout turns out to be. | A decision that does not commit to a go-live date before the software question is answered. |
+| Finance and Risk Lead | Signs off any spend the room change requires. | A named, costed proposal, even a small one, rather than an in-principle agreement to spend later. |
+| Staff Representative | Represents the 12 staff who have used the same desk for years. | Named, reserved desks for anyone with a documented accessibility need. |
+
+Each role also holds one piece of evidence only they have — the utilisation
+report, the booking-system export, the cost comparison, the accessibility
+equipment list — which is why the pre-meeting contact window above matters:
+whoever spends their 72 hours well walks into the meeting knowing things the
+others do not.
+
+## What you submit
+
+See [The Alignment Lab](/assessments/alignment-lab/) for the full marking
+breakdown. In short: an initial judgment, a strategy memo, a negotiation log,
+one shared decision record, an individual decision autopsy, and a partial
+rerun of one key juncture.

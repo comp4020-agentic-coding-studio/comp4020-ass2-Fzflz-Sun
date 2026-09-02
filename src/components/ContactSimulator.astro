@@ -1,0 +1,254 @@
+---
+// A teaching demo of the Alignment Lab's pre-meeting contact window: you play
+// one role, and have a limited time budget to reach out to the others before
+// the simulated meeting starts. Every contact costs time and reveals one
+// fact; the meeting starts whether or not you have spoken to everyone.
+//
+// This is illustrative only — it uses the public hot-desking example, never
+// the confidential Alignment Lab scenario. It works without JavaScript in
+// the sense that nothing here is required reading: the same role-card facts
+// are listed in full, in plain HTML, immediately below it on the page.
+import type { RoleCard } from "../data/case-facts";
+
+interface Props {
+  roleCards: RoleCard[];
+  windowHours?: number;
+  contactCostHours?: number;
+}
+
+// 72 / 36 = 2 contacts by default, matching the Lab's default cap of two
+// self-initiated contacts per person (see src/data/alignment-lab.ts).
+const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
+---
+
+<div
+  class="contact-sim"
+  data-contact-sim
+  data-window-hours={windowHours}
+  data-contact-cost={contactCostHours}
+>
+  <noscript>
+    <p>
+      This demo needs JavaScript. The same four roles and the facts each one
+      holds are listed in full further down this page.
+    </p>
+  </noscript>
+
+  <div class="contact-sim-setup" data-contact-sim-setup>
+    <p class="contact-sim-prompt">You are playing:</p>
+    <div class="contact-sim-roles" role="group" aria-label="Choose your role">
+      {
+        roleCards.map((card) => (
+          <button type="button" class="contact-sim-role-btn" data-play-role={card.archetype}>
+            {card.archetype}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="contact-sim-play" data-contact-sim-play hidden>
+    <div class="contact-sim-header">
+      <p>
+        Playing <strong data-contact-sim-you></strong>. Contact window:
+        <strong data-contact-sim-clock></strong> remaining.
+      </p>
+      <button type="button" class="contact-sim-reset" data-contact-sim-reset>Start over</button>
+    </div>
+
+    <div class="contact-sim-targets" role="group" aria-label="People you could contact">
+      {
+        roleCards.map((card) => (
+          <button type="button" class="contact-sim-target-btn" data-contact-target={card.archetype}>
+            Contact {card.archetype}
+          </button>
+        ))
+      }
+    </div>
+
+    <ul class="contact-sim-log" aria-live="polite" data-contact-sim-log></ul>
+
+    <p class="contact-sim-verdict" data-contact-sim-verdict hidden></p>
+  </div>
+
+  <script type="application/json" is:inline data-contact-sim-data set:html={JSON.stringify(roleCards)} />
+</div>
+
+<script>
+  interface RoleCard {
+    archetype: string;
+    uniqueEvidence: string;
+    constraint: string;
+    leverageOrDependency: string;
+  }
+
+  function initContactSim(root: HTMLElement) {
+    if (root.dataset.contactSimInitialized === "true") return;
+    root.dataset.contactSimInitialized = "true";
+
+    const dataEl = root.querySelector<HTMLScriptElement>("[data-contact-sim-data]");
+    const cards: RoleCard[] = JSON.parse(dataEl?.textContent ?? "[]");
+    const windowHours = Number(root.dataset.windowHours ?? "72");
+    const contactCost = Number(root.dataset.contactCost ?? "36");
+
+    const setupMaybe = root.querySelector<HTMLElement>("[data-contact-sim-setup]");
+    const playMaybe = root.querySelector<HTMLElement>("[data-contact-sim-play]");
+    const youElMaybe = root.querySelector<HTMLElement>("[data-contact-sim-you]");
+    const clockElMaybe = root.querySelector<HTMLElement>("[data-contact-sim-clock]");
+    const logMaybe = root.querySelector<HTMLElement>("[data-contact-sim-log]");
+    const verdictMaybe = root.querySelector<HTMLElement>("[data-contact-sim-verdict]");
+    const resetBtn = root.querySelector<HTMLButtonElement>("[data-contact-sim-reset]");
+    const targetBtns = [...root.querySelectorAll<HTMLButtonElement>("[data-contact-target]")];
+    if (
+      !setupMaybe ||
+      !playMaybe ||
+      !youElMaybe ||
+      !clockElMaybe ||
+      !logMaybe ||
+      !verdictMaybe ||
+      !resetBtn
+    )
+      return;
+
+    // Re-bound as non-null so the type survives into the closures below —
+    // TypeScript does not carry narrowing from an early return into nested
+    // function declarations.
+    const setup: HTMLElement = setupMaybe;
+    const play: HTMLElement = playMaybe;
+    const youEl: HTMLElement = youElMaybe;
+    const clockEl: HTMLElement = clockElMaybe;
+    const log: HTMLElement = logMaybe;
+    const verdict: HTMLElement = verdictMaybe;
+
+    let hoursLeft = windowHours;
+    let you = "";
+    const contacted = new Set<string>();
+
+    function addLogEntry(text: string) {
+      const item = document.createElement("li");
+      item.textContent = text;
+      log.append(item);
+    }
+
+    function factFor(archetype: string): string {
+      const card = cards.find((c) => c.archetype === archetype);
+      if (!card) return "";
+      const facts = [card.uniqueEvidence, card.constraint, card.leverageOrDependency];
+      return facts[contacted.size % facts.length];
+    }
+
+    function updateClock() {
+      clockEl.textContent = `${hoursLeft}h`;
+      const outOfTime = hoursLeft < contactCost;
+      for (const btn of targetBtns) {
+        const already = btn.dataset.contactTarget === you || contacted.has(btn.dataset.contactTarget ?? "");
+        btn.disabled = already || outOfTime;
+      }
+      if (outOfTime) {
+        const untouched = cards
+          .map((c) => c.archetype)
+          .filter((name) => name !== you && !contacted.has(name));
+        verdict.hidden = false;
+        verdict.textContent =
+          untouched.length === 0
+            ? "The meeting starts. You reached everyone before it did."
+            : `The meeting starts. You go in never having spoken to: ${untouched.join(", ")}.`;
+      }
+    }
+
+    function startAs(archetype: string) {
+      you = archetype;
+      hoursLeft = windowHours;
+      contacted.clear();
+      log.replaceChildren();
+      verdict.hidden = true;
+      youEl.textContent = archetype;
+      setup.hidden = true;
+      play.hidden = false;
+      addLogEntry(`You are ${archetype}. The meeting begins in ${windowHours} hours.`);
+      updateClock();
+    }
+
+    for (const btn of root.querySelectorAll<HTMLButtonElement>("[data-play-role]")) {
+      btn.addEventListener("click", () => startAs(btn.dataset.playRole ?? ""));
+    }
+
+    for (const btn of targetBtns) {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.contactTarget ?? "";
+        if (hoursLeft < contactCost) return;
+        hoursLeft -= contactCost;
+        contacted.add(target);
+        addLogEntry(`You contact ${target} (${contactCost}h). They tell you: “${factFor(target)}”`);
+        updateClock();
+      });
+    }
+
+    resetBtn.addEventListener("click", () => {
+      setup.hidden = false;
+      play.hidden = true;
+    });
+  }
+
+  function initContactSims() {
+    document.querySelectorAll<HTMLElement>("[data-contact-sim]").forEach(initContactSim);
+  }
+
+  initContactSims();
+  document.addEventListener("astro:page-load", initContactSims);
+</script>
+
+<style>
+  .contact-sim {
+    padding: 1.25rem;
+    border: 1px solid var(--at-border);
+    border-radius: 0.5rem;
+    background: var(--at-bg-alt);
+  }
+
+  .contact-sim-roles,
+  .contact-sim-targets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block: 0.75rem;
+  }
+
+  .contact-sim-role-btn,
+  .contact-sim-target-btn,
+  .contact-sim-reset {
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--at-border);
+    border-radius: 0.375rem;
+    background: var(--at-bg);
+    color: var(--at-text);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .contact-sim-target-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .contact-sim-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .contact-sim-log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-block: 0.75rem 0;
+    padding-left: 1.1rem;
+  }
+
+  .contact-sim-verdict {
+    margin-block-start: 0.75rem;
+    font-weight: 600;
+  }
+</style>

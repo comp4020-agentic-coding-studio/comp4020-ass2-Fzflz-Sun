@@ -2,36 +2,86 @@
 import Card from "astro-theme-university/components/Card.astro";
 import CardGrid from "astro-theme-university/components/CardGrid.astro";
 import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
+import { withBase } from "astro-theme-university/url";
 import heroImage from "../assets/images/hero-home.avif";
 import { courseMeta } from "../course-config";
 import { sessionLabels, siteConfig } from "../site-config";
 
-// STARTER_CONTENT: replace the hero artwork and its alt text below, then
-// remove this comment.
+const weeks = [
+  ["1", "Decisions Leave Traces", "Reading agendas, minutes and emails as evidence, not narrative."],
+  ["2", "Who Gets Invited?", "Invitation lists as the first, quietest decision in any process."],
+  ["3", "The Agenda Is an Argument", "How naming, ordering and timing argue for an outcome."],
+  ["4", "The Meeting Before the Meeting", "Where the real decision usually happens, and how to trace it."],
+  ["5", "Information Arrives on Someone's Schedule", "Timing as a lever, not an accident."],
+  ["6", "Silence Is a Position", "Reading what a record omits, and what abstention actually means."],
+  ["7", "Power in the Room", "Formal authority versus who the room actually defers to."],
+  ["8", "Dissent Without Disappearing", "Registering disagreement in a record that survives it."],
+  ["9", "Who Actually Decides", "Decision rights, sign-off chains, and who can veto quietly."],
+  ["10", "Minutes Make Memory", "How the written record becomes the decision, regardless of the room."],
+  ["11", "The Ethics of Alignment", "What a fair process owes the people it is run on."],
+  ["12", "Redesigning the Decision", "Turning a diagnosis into a process someone else could run."],
+];
 ---
 
 <ContentLayout
   title={`${courseMeta.code}: ${courseMeta.title}`}
   description={courseMeta.description}
   heroImage={heroImage}
-  heroImageAlt="A lecture theatre reduced to flat gold and black shapes, rows of seats sweeping past the frame, in a two-ink risograph print"
+  heroImageAlt="A boardroom table reduced to flat gold and black shapes, an empty chair at its head, in a two-ink risograph print"
   {...siteConfig}
 >
   <ul class="course-tags" aria-label="Course tags">
     {courseMeta.tags.map((tag) => <li>{tag}</li>)}
   </ul>
 
-  <!-- STARTER_CONTENT: replace the authored page below, then remove this comment. -->
   <h2>What you will do</h2>
   <p>
-    Say what a student spends their time on — the making, reading, arguing or
-    measuring that fills the weeks. Name the artefact they walk out with.
+    Read real, publicly documented decisions the way an investigator reads a
+    paper trail — for what an agenda's wording assumes, what an invitation
+    list omits, and what a set of minutes was written to make true. Then
+    you'll run a decision yourself: a live, four-role negotiation over a
+    fictional workplace proposal, played once and audited afterwards for what
+    actually decided the outcome. The course follows one running fictional
+    case, the Engagement Signal Pilot at Slop University, from its first
+    announcement through to the decision that follows from it.
   </p>
 
   <h2>Who it is for</h2>
   <p>
-    Say who this is aimed at and what they need to already know. Be specific
-    enough that someone can rule themselves in or out without emailing you.
+    Anyone who is about to spend a career sitting in meetings and would
+    rather understand how they actually work. No prior study of
+    organisations, ethics or politics is assumed — the course teaches its own
+    vocabulary from Week 1. What it does assume is a willingness to argue a
+    position you may not personally hold, in front of people who are marking
+    you on how well you did it.
+  </p>
+
+  <h2>The twelve weeks</h2>
+  <table class="week-table">
+    <thead>
+      <tr>
+        <th scope="col">Week</th>
+        <th scope="col">Topic</th>
+        <th scope="col">What it covers</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        weeks.map(([n, title, blurb]) => (
+          <tr>
+            <td>{n}</td>
+            <td>{title}</td>
+            <td>{blurb}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <p class="week-table-note">
+    Week 3 is built out in full as a worked example — see the{" "}
+    <a href={withBase("/sessions/03-the-agenda-is-an-argument/")}>session</a> and its{" "}
+    <a href={withBase("/lectures/week-03/")}>lecture and slides</a>. The remaining weeks
+    are being built out on the same pattern.
   </p>
 
   <h2>Where to go next</h2>
@@ -41,6 +91,12 @@ import { sessionLabels, siteConfig } from "../site-config";
     </Card>
     <Card title="Assessment" href="/assessments/">
       <p>What is marked, what it is worth, and when it is due.</p>
+    </Card>
+    <Card title="The Alignment Lab" href="/alignment-lab/">
+      <p>How the course's four-role decision simulation runs, and a worked example.</p>
+    </Card>
+    <Card title="Templates" href="/templates/">
+      <p>The strategy memo, negotiation log, agenda and decision-record formats.</p>
     </Card>
     <Card title="People" href="/people/">
       <p>Who teaches the course and how to reach them.</p>
@@ -63,6 +119,30 @@ import { sessionLabels, siteConfig } from "../site-config";
     border-radius: 999px;
     color: var(--at-text-secondary);
     background: var(--at-bg-alt);
+    font-size: 0.9rem;
+  }
+
+  .week-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 1rem;
+  }
+
+  .week-table th,
+  .week-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--at-border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .week-table td:first-child {
+    width: 3rem;
+    color: var(--at-text-secondary);
+  }
+
+  .week-table-note {
+    color: var(--at-text-secondary);
     font-size: 0.9rem;
   }
 </style>

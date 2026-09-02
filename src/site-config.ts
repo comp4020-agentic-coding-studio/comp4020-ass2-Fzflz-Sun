@@ -14,6 +14,8 @@ export const graphCollections = ["sessions", "assessments", "lectures", "people"
 export const courseApiCollections = [
   ...graphCollections.map((key) => ({ key })),
   { key: "policies", dir: "pages/policies" },
+  { key: "alignment-lab", dir: "pages/alignment-lab" },
+  { key: "templates", dir: "pages/templates" },
 ];
 
 export const siteConfig = defineSiteConfig({
@@ -24,6 +26,8 @@ export const siteConfig = defineSiteConfig({
     { text: "Lectures", href: "/lectures/" },
     { text: sessionLabels.plural, href: "/sessions/" },
     { text: "Assessment", href: "/assessments/" },
+    { text: "The Alignment Lab", href: "/alignment-lab/" },
+    { text: "Templates", href: "/templates/" },
     { text: "People", href: "/people/" },
     { text: "Policies", href: "/policies/" },
   ],
