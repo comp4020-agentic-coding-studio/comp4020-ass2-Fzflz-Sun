@@ -3,31 +3,28 @@ import Card from "astro-theme-university/components/Card.astro";
 import CardGrid from "astro-theme-university/components/CardGrid.astro";
 import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
 import { withBase } from "astro-theme-university/url";
-import heroImage from "../assets/images/hero-home.avif";
 import { courseMeta } from "../course-config";
 import { sessionLabels, siteConfig } from "../site-config";
 
 const weeks = [
-  ["1", "Decisions Leave Traces", "Reading agendas, minutes and emails as evidence, not narrative."],
-  ["2", "Who Gets Invited?", "Invitation lists as the first, quietest decision in any process."],
-  ["3", "The Agenda Is an Argument", "How naming, ordering and timing argue for an outcome."],
-  ["4", "The Meeting Before the Meeting", "Where the real decision usually happens, and how to trace it."],
-  ["5", "Information Arrives on Someone's Schedule", "Timing as a lever, not an accident."],
-  ["6", "Silence Is a Position", "Reading what a record omits, and what abstention actually means."],
-  ["7", "Power in the Room", "Formal authority versus who the room actually defers to."],
-  ["8", "Dissent Without Disappearing", "Registering disagreement in a record that survives it."],
-  ["9", "Who Actually Decides", "Decision rights, sign-off chains, and who can veto quietly."],
-  ["10", "Minutes Make Memory", "How the written record becomes the decision, regardless of the room."],
-  ["11", "The Ethics of Alignment", "What a fair process owes the people it is run on."],
-  ["12", "Redesigning the Decision", "Turning a diagnosis into a process someone else could run."],
+  ["1", "Decisions Leave Traces", "Reading agendas, minutes and emails as evidence, not narrative.", "01-getting-started", "week-01"],
+  ["2", "Who Gets Invited?", "Invitation lists as the first, quietest decision in any process.", "02-first-review", "week-02"],
+  ["3", "The Agenda Is an Argument", "How naming, ordering and timing argue for an outcome.", "03-the-agenda-is-an-argument", "week-03"],
+  ["4", "The Meeting Before the Meeting", "Where a decision may already be forming before the room, and how you'd tell — from the record, not from suspicion.", "04-the-meeting-before-the-meeting", "week-04"],
+  ["5", "Information Arrives on Someone's Schedule", "Timing as a lever some people control and others don't — not automatically a manipulation.", "05-information-arrives-on-someones-schedule", "week-05"],
+  ["6", "Silence Is a Position — Sometimes", "Reading what a record omits, and the several different things an abstention can mean.", "06-silence-is-a-position-sometimes", "week-06"],
+  ["7", "Power in the Room", "Formal authority versus who the room actually defers to, and how you'd distinguish the two from a transcript.", "07-power-in-the-room", "week-07"],
+  ["8", "Dissent Without Disappearing", "Registering disagreement in a record that survives it.", "08-dissent-without-disappearing", "week-08"],
+  ["9", "Who Actually Decides", "Decision rights, sign-off chains, and the difference between holding a veto and using one.", "09-who-actually-decides", "week-09"],
+  ["10", "Minutes Make Memory", "How the written record becomes the decision, regardless of the room.", "10-minutes-make-memory", "week-10"],
+  ["11", "The Ethics of Alignment", "What a fair process owes the people it is run on.", "11-the-ethics-of-alignment", "week-11"],
+  ["12", "Redesigning the Decision", "Turning a diagnosis into a process someone else could run.", "12-redesigning-the-decision", "week-12"],
 ];
 ---
 
 <ContentLayout
   title={`${courseMeta.code}: ${courseMeta.title}`}
   description={courseMeta.description}
-  heroImage={heroImage}
-  heroImageAlt="A boardroom table reduced to flat gold and black shapes, an empty chair at its head, in a two-ink risograph print"
   {...siteConfig}
 >
   <ul class="course-tags" aria-label="Course tags">
@@ -52,8 +49,9 @@ const weeks = [
     rather understand how they actually work. No prior study of
     organisations, ethics or politics is assumed — the course teaches its own
     vocabulary from Week 1. What it does assume is a willingness to argue a
-    position you may not personally hold, in front of people who are marking
-    you on how well you did it.
+    position you may not personally hold, and to have that argument examined
+    afterwards for the judgement and evidence behind it — never for how
+    persuasive or confident you sounded while making it.
   </p>
 
   <h2>The twelve weeks</h2>
@@ -67,21 +65,30 @@ const weeks = [
     </thead>
     <tbody>
       {
-        weeks.map(([n, title, blurb]) => (
+        weeks.map(([n, title, blurb, sessionSlug, lectureSlug]) => (
           <tr>
             <td>{n}</td>
-            <td>{title}</td>
-            <td>{blurb}</td>
+            <td>
+              <a href={withBase(`/sessions/${sessionSlug}/`)}>{title}</a>
+            </td>
+            <td>
+              {blurb}{" "}
+              <a href={withBase(`/lectures/${lectureSlug}/`)}>lecture</a>
+            </td>
           </tr>
         ))
       }
     </tbody>
   </table>
   <p class="week-table-note">
-    Week 3 is built out in full as a worked example — see the{" "}
-    <a href={withBase("/sessions/03-the-agenda-is-an-argument/")}>session</a> and its{" "}
-    <a href={withBase("/lectures/week-03/")}>lecture and slides</a>. The remaining weeks
-    are being built out on the same pattern.
+    All twelve weeks run the same way: a session page carries that week's
+    case documents and in-class exercise, and its paired lecture carries the
+    conceptual reading and links back to the session for the full text.
+    Week 3 additionally has a{" "}
+    <a href={withBase("/lectures/week-03/")}>slide deck</a>; the Alignment
+    Lab spans Weeks 9 to 11 and is assessed separately — see the{" "}
+    <a href={withBase("/alignment-lab/")}>Alignment Lab</a> page for how its
+    own schedule fits inside those three sessions.
   </p>
 
   <h2>Where to go next</h2>

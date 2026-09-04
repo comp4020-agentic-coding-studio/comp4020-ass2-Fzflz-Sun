@@ -2,5 +2,8 @@ DECISION AUTOPSY — [decision] — [your name]
 
 The decision, in one sentence, with a link to where it was announced:
 The timeline (every dated document, in order, with a one-line note):
-The seam (where the outcome looks settled before the forum that announced it):
+The seam, or why there isn't one (a specific point where the outcome looks
+settled before the forum that announced it, with an alternative explanation
+you considered and ruled out — or a reasoned case that the record shows a
+genuinely open or indeterminate process):
 What you cannot show (the gap between evidence and suspicion):

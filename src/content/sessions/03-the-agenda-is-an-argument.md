@@ -11,6 +11,7 @@ spec:
   - can name at least two ways an agenda item's wording shapes what counts as a legitimate response to it
   - has rewritten a "confirming" agenda item as an "open" one, and can say what changed
   - can point to a specific line in the pilot's Week 3 agenda drafts and say what work it is doing
+  - can state one legitimate, non-manipulative reason an agenda might reasonably move from open to settled wording, alongside the less charitable one
 related:
   - lectures/week-03
   - assessments/decision-autopsy
@@ -37,8 +38,9 @@ else's agenda for what it argues, and writing your own honestly.
 
 Wren Castellano, Slop University's Internal Communications Lead, drafted two
 versions of the agenda for the Steering Committee meeting that will discuss
-the Engagement Signal Pilot — the same pilot the semester's
-case follows. Both are real drafts that circulated; only one was sent.
+the Engagement Signal Pilot — the same pilot the semester's case follows.
+Both drafts genuinely exist in this fictional case's record; only Draft A
+was ever sent.
 
 **Draft A — sent to the distribution list on 3 March:**
 
@@ -60,16 +62,49 @@ nothing to do but logistics; its ten minutes signals that disagreement, if any
 surfaces, was not planned for. Draft B's title states an open question; its
 purpose statement includes the option to say no; its thirty-five minutes
 budgets for an actual discussion. The decision about which draft to send was
-never itself put on an agenda — which is, in this course's terms, exactly
-where you would expect to find it.
+never itself put on an agenda — which this course treats as worth
+investigating, not as proof of anything by itself.
+
+### Two readings, not one
+
+At least two explanations fit these same two documents equally well:
+
+- **The less charitable reading:** between 1 and 3 March, someone decided the
+  outcome and rewrote the agenda to match, closing a question that was still
+  genuinely open two days earlier.
+- **An equally available reading:** the open question in Draft B was
+  genuinely resolved between 1 and 3 March — in a budget conversation, a
+  vendor call, a conversation with Finance & Risk — and Draft A accurately
+  reflects that the question no longer needed thirty-five minutes, because it
+  had already been answered on its merits.
+
+The documents alone cannot tell you which of these happened. What they *can*
+tell you is that the question changed status without the change itself ever
+appearing on a record — and that absence is real regardless of which
+explanation is true. A counter-example worth sitting with: an agenda item
+legitimately moves from "open" to "confirming" all the time, whenever a
+working group resolves something before it reaches a steering committee. The
+skill this course teaches is not spotting settled-sounding agendas and calling
+them suspicious; it is noticing when a question's status changed with no
+trace of why, and being honest that "no trace" supports several different
+stories at once.
 
 ## Exercise
 
 Take an agenda item from your own work, study group, share house or club —
 something real, however small. Write it twice: once so it reads as already
-decided, once so it reads as genuinely open. Bring both. In pairs, trade
-agendas with someone else and guess, from the wording alone, which one you
-were handed.
+decided, once so it reads as genuinely open. Bring both.
+
+In pairs, trade agendas and guess, from the wording alone, which one you were
+handed. Then, individually, produce the artefact this exercise is actually
+for: two sentences, in writing.
+
+1. **Naming the mechanism**: which specific word, ordering choice or time
+   allocation gave your partner's "settled" version away?
+2. **The legitimate case**: if you were the person choosing which version to
+   send, what would have to be true for sending the "settled" one to be
+   honest rather than manipulative? Name the specific condition, not just
+   "if it was already decided."
 
 ## After the session
 

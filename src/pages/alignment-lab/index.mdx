@@ -7,6 +7,7 @@ heroTitle: The Alignment Lab
 ---
 
 import ContactSimulator from "../../components/ContactSimulator.astro";
+import RoleCardList from "../../components/RoleCardList.astro";
 import { hotDeskingRoleCards } from "../../data/case-facts";
 
 The Alignment Lab is the course's central exercise: a small group is given a
@@ -118,37 +119,273 @@ only in Week 11's material on the ethics of alignment.
 ## Worked example: should the Reading Room move to hot-desking?
 
 This is a small, entirely public scenario used only to demonstrate the
-mechanics above. It is not the graded Lab scenario.
+mechanics above — it is not the graded Lab scenario, and none of the
+documents below are marked on how convincing they sound, only on the
+evidence and reasoning inside them. It walks through every artefact a real
+run produces, end to end, with an example filled in at each step.
 
 Facilities wants to convert 40 assigned desks in the Reading Room into
 unassigned hot-desks, to fit a larger cohort. Staff were not consulted before
 the proposal was drafted. Four people, one for each archetype, have to reach
 a decision.
 
-<ContactSimulator roleCards={hotDeskingRoleCards} />
+### 1. Public materials and an example initial judgment
 
-### The four role cards, fully revealed
+Everyone reads the paragraph above — the same materials, before any role is
+assigned — and records what they think should happen. Here is one example of
+a filled-in initial judgment:
+
+> Converting to hot-desking might be defensible if utilisation really is
+> low, but a proposal drafted with no staff input is a bad way to get there
+> even if the destination is right. Before I'd support it, I would want to
+> see the actual utilisation data behind the proposal, and confirmation that
+> anyone with a documented accessibility need has been asked what they
+> require. My initial position: support investigating the change, do not
+> support committing to a date yet.
+
+This is submitted on the record before role assignment specifically so it
+can later be compared with what the same person argued once they were
+holding a role — the gap between the two is often the most interesting
+thing in the decision autopsy.
+
+### 2. The four role cards, fully revealed
 
 Because this is the public example, every field of every role card is shown
 below — which is exactly what would **not** happen before a real, graded run
-of the Lab.
+of the Lab, where each person sees only their own card until the reveal.
 
-| Archetype | Public responsibility | Minimum acceptable outcome |
-|---|---|---|
-| Executive Sponsor | Owns the space-efficiency target the Vice-Chancellery set this year. | Any plan that raises reported utilisation above 50% within two terms. |
-| Delivery Lead | Has to implement whatever the room's new layout turns out to be. | A decision that does not commit to a go-live date before the software question is answered. |
-| Finance and Risk Lead | Signs off any spend the room change requires. | A named, costed proposal, even a small one, rather than an in-principle agreement to spend later. |
-| Staff Representative | Represents the 12 staff who have used the same desk for years. | Named, reserved desks for anyone with a documented accessibility need. |
+<RoleCardList roleCards={hotDeskingRoleCards} />
 
-Each role also holds one piece of evidence only they have — the utilisation
-report, the booking-system export, the cost comparison, the accessibility
-equipment list — which is why the pre-meeting contact window above matters:
-whoever spends their 72 hours well walks into the meeting knowing things the
-others do not.
+<ContactSimulator roleCards={hotDeskingRoleCards} />
+
+### 3. A filled example strategy memo
+
+Individually, each person turns their role card into a one-page memo before
+contacting anyone. Here is the Staff Representative's:
+
+> **My responsibilities:** speak for the 12 staff who currently have an
+> assigned desk, and specifically flag anything that affects the 3 with
+> fitted accessibility equipment.
+>
+> **My evidence:** three staff have accessibility equipment permanently
+> fitted to their current desk that a hot-desk cannot accommodate without
+> notice. I don't yet have a cost estimate for reserved-desk hardware, or
+> know whether Facilities has already budgeted for it.
+>
+> **What I don't know:** whether the booking software has any bearing on
+> cost at all, whether the fit-out has been costed by anyone yet, and
+> whether Finance would treat these as one proposal or two.
+>
+> **Who I plan to contact:** the Delivery Lead first, since they own
+> whatever the room's technical side involves, to ask what it would
+> actually take to guarantee reserved desks and whether that raises a cost
+> I don't already know about; the Finance and Risk Lead only if that
+> conversation raises a number I need confirmed.
+>
+> **Ethical boundaries I won't cross:** I will not agree to any timeline
+> that has not been taken back to affected staff for comment, regardless of
+> what it would cost the group to wait.
+
+### 4. An example negotiation log
+
+The log is not capped at two entries — it is the two *self-initiated*
+contacts that are capped; replies to requests from others, and any
+follow-up on the same contact, are logged too. Purpose, new information,
+any commitment made, and whether either side's judgment changed are all
+recorded for every entry:
+
+1. **Staff Representative → Delivery Lead** (self-initiated). *Purpose:*
+   find out if the software upgrade and accessibility fit-out could be one
+   proposal. *New information:* drawing on the licence terms only they had
+   read (their stated leverage on the role card), the Delivery Lead confirms
+   the booking software already supports named, reserved desks at no extra
+   cost — only genuine unassigned hot-desking needs the paid upgrade.
+   *Commitment:* Delivery Lead agrees to draft a combined line item.
+   *Judgment change:* Staff Representative's minimum acceptable outcome now
+   looks achievable without a fight — a material change from the initial
+   judgment above.
+2. **Finance and Risk Lead → Staff Representative** (reply to a request).
+   *Purpose:* Finance asked what the accessibility fit-out would cost, to
+   fold it into the same costed proposal as the software upgrade.
+   *New information:* Staff Representative did not have a number, but named
+   the Facilities staff member who does. *Commitment:* Staff Representative
+   will chase that number before the meeting. *Judgment change:* none
+   recorded either side.
+3. **Staff Representative → Executive Sponsor** (self-initiated, second and
+   final self-initiated contact). *Purpose:* check whether a slower
+   phase-in would still count toward this year's target. *New information:*
+   Executive Sponsor confirms they would accept a slower phase-in if it
+   comes with a firm date. *Commitment:* none made either way. *Judgment
+   change:* Executive Sponsor's position moves from "any plan, fast" toward
+   "a firm date matters more than speed" — a change worth bringing into the
+   meeting.
+
+### 5. A formal decision record example
+
+The record the group actually produces does not have to be a clean
+agreement — dissent, conditional support and deferral are all legitimate
+outcomes, provided the record says so honestly:
+
+> **Decision:** proceed with a combined proposal — booking-software upgrade
+> and reserved accessibility desks — as one costed line item, phased in
+> over two terms with reserved desks guaranteed from day one.
+>
+> **Evidence relied on:** the booking-software licence terms (Delivery
+> Lead); the accessibility equipment list (Staff Representative); the
+> utilisation report (Executive Sponsor).
+>
+> **Unverified assumption:** that the accessibility fit-out cost, still
+> unconfirmed at meeting time, will not exceed the software upgrade saving
+> Finance identified.
+>
+> **Dissent:** Finance and Risk Lead supports the plan **conditionally** —
+> on record as not approving final spend until the fit-out figure is
+> confirmed in writing.
+>
+> **Action owner:** Delivery Lead drafts the combined proposal; Staff
+> Representative confirms the fit-out figure within one week.
+>
+> **Final decision authority:** Executive Sponsor signs off the *proposal
+> going forward* once the fit-out figure lands — not the group by majority.
+> That sign-off authorises drafting and costing the combined line item; it
+> does not itself authorise spending. Any actual spend still requires the
+> Finance and Risk Lead's separate sign-off under their standing authority
+> over spend above the university's threshold, which this record does not
+> and cannot override.
+>
+> **What would reopen this record:** a fit-out figure that exceeds the
+> software-upgrade saving, or Facilities confirming the "no extra cost"
+> licence claim was wrong.
+
+### 6. Consequences, from stated rules
+
+The consequence test is not a dramatised outcome — it applies explicit,
+ordered rules to whatever the decision record actually says, so the same
+record always produces the same consequence. The rules are checked in this
+order, because a record can honestly satisfy more than one trigger at
+once — "no named authority" and "defers spend pending a missing figure" are
+independent facts about a record, not opposite ends of one switch, so a
+record missing both can trip both at the same time unless something decides
+which one governs:
+
+1. **Is there a named final authority?** If no → the Space Committee sends
+   the record back for one revision before it will consider anything else
+   about it. This is checked first: without someone named to hold the
+   record's spend decisions, there is no one for a deferred figure to come
+   back to, so an authority gap always takes priority over a costing gap,
+   including when both are missing at once.
+2. If a named authority exists, **is the cost a specific, costed line item,
+   or does it defer spend pending a specific missing figure?**
+   - Fully costed → the Space Committee accepts the plan as submitted, no
+     delay.
+   - Defers spend pending a named, specific figure → a two-week delay while
+     that figure is confirmed, and any other commitment already made in the
+     record (an accessibility guarantee, for instance) still holds
+     regardless of the delay.
+3. **Independently of 1–2, for each role in turn: does the record satisfy
+   that role's stated minimum acceptable outcome from their role card?** A
+   "no" flags the record as contested for that role going into the reveal,
+   regardless of whether they spoke up in the room, and regardless of which
+   outcome 1–2 produced — a record can be accepted or delayed by rules 1–2
+   *and* still be contested under rule 3 for one or more roles. A record
+   the text genuinely doesn't confirm either way for a given role is left
+   unresolved rather than guessed at, exactly as an evidence-limited
+   autopsy would treat it — see the walkthrough below for a case where this
+   happens.
+
+Applied to the record above, rule by rule:
+
+- **Rule 1 — named authority?** Yes: "Executive Sponsor signs off the
+  proposal going forward." Proceed to rule 2.
+- **Rule 2 — cost complete or deferred?** Deferred: the fit-out figure is
+  an explicitly named, specific gap ("Unverified assumption: that the
+  accessibility fit-out cost... will not exceed the software upgrade
+  saving") with an owner and a one-week deadline. → **Two-week delay**,
+  accessibility commitment holds.
+- **Rule 3 — each role's minimum, checked against the record:**
+  - *Delivery Lead* ("a decision that does not commit to a go-live date
+    before the software question is answered") — met: the software
+    question was answered in the negotiation log before the meeting, and
+    the record's phase-in follows from that answer, not ahead of it.
+  - *Staff Representative* ("named, reserved desks for anyone with a
+    documented accessibility need") — met: the record names reserved
+    desks "guaranteed from day one."
+  - *Finance and Risk Lead* ("a named, costed proposal... rather than an
+    in-principle agreement to spend later") — **not met**: the record's
+    own Dissent field already says so directly — conditional support,
+    "not approving final spend until the fit-out figure is confirmed in
+    writing." → **contested flag** for this role, on top of the rule-2
+    delay.
+  - *Executive Sponsor* ("any plan that raises reported utilisation above
+    50% within two terms") — **undetermined from the record**: the record
+    commits to a two-term phase-in but never states a resulting
+    utilisation figure, so whether this specific minimum is met cannot be
+    read off the text either way. That is a limit of what the record says,
+    not a finding that it's unmet — the honest call here is "cannot be
+    determined from this record," not a guess in either direction.
+
+Final result: **two-week delay** (rule 2), **contested for the Finance and
+Risk Lead** (rule 3), and **no determinable rule-3 result for the Executive
+Sponsor** — three separate, individually traceable outputs from one record,
+not a single "two-week delay" headline that quietly drops the other two.
+
+### 7. An example retrospective and partial rerun
+
+After the reveal, each person writes a short individual autopsy. One
+example, from whoever played the Staff Representative:
+
+> What actually shifted my position wasn't the meeting — it was contacting
+> the Delivery Lead beforehand and learning the booking *software* was
+> already free under the existing licence. By the time we sat down, I was
+> arguing from "this is basically free," not "please don't take our
+> desks" — and looking back, that shorthand overstated what I actually
+> knew. Only the software licence was confirmed free; the accessibility
+> fit-out itself was never costed at that point, and "the software part is
+> free" is not the same claim as "the whole thing is free," even though
+> that's the version I let the room hear. It's still what changed how much
+> the Executive Sponsor was willing to concede, which is worth being honest
+> about: it worked partly because it sounded more settled than the evidence
+> actually supported. If I hadn't made that contact at all, I think the
+> meeting would have produced a straight yes/no vote instead of a combined
+> proposal — but the contact earning that outcome doesn't excuse
+> overstating what it proved.
+
+The partial rerun makes this same claim testable by labelling exactly what
+it changes and what it assumes, rather than leaving "I think" as the final
+word:
+
+> **Changed variable:** the Staff Representative's two self-initiated
+> contacts go to the Finance and Risk Lead and the Executive Sponsor
+> instead of the Delivery Lead.
+>
+> **Held constant:** every other role's private brief, the meeting length,
+> and the order in which items were raised in the room.
+>
+> **Resulting difference:** without contacting the Delivery Lead, the Staff
+> Representative never learns that the booking software is already free
+> under the existing licence, and walks into the meeting able to argue only
+> "this costs something" — rather than the narrower, accurate claim that
+> contact actually supports: "the software side of this costs nothing; the
+> fit-out is still an open figure." (The Staff Representative's real
+> account above overstated even that narrower claim as "basically free" —
+> this rerun states the accurate version instead of repeating the
+> overstatement.)
+>
+> **Unverified assumption:** that the Finance and Risk Lead or Executive
+> Sponsor would not have independently surfaced the same licence fact if
+> asked directly. Nothing in the record confirms or rules this out — the
+> rerun's conclusion holds only as strongly as this assumption does.
+
+This is the format the partial rerun expects: one named change, everything
+else pinned down explicitly, the concrete difference that follows from it,
+and the one assumption still doing unverified work — not a general
+impression of what "probably" would have happened.
 
 ## What you submit
 
 See [The Alignment Lab](/assessments/alignment-lab/) for the full marking
 breakdown. In short: an initial judgment, a strategy memo, a negotiation log,
 one shared decision record, an individual decision autopsy, and a partial
-rerun of one key juncture.
+rerun of one key juncture — each modelled above using the public example, and
+each available as a starting-point format on the [templates](/templates/)
+page.

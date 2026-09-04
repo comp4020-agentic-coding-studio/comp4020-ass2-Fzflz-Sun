@@ -7,15 +7,22 @@ affiliation: Slop University School of Invented Disciplines
 role: convenor
 email: marisol.quaye@slop.university
 contact: Email for course-level questions; use the weekly session for feedback on work.
-photo: ./marisol-quaye.avif
-photoAlt: A stylised portrait of a person in three-quarter view, flat gold and black shapes on warm cream, in a two-ink risograph print
 ---
 
-<!-- STARTER_CONTENT: replace this person entry, then remove this comment. -->
+Marisol designed the course and the Engagement Signal Pilot case, and
+teaches the odd-numbered weeks — sessions and lectures for Weeks 1, 3, 5, 7,
+9 and 11 — alternating across the semester with Idris. Because Week 9 is
+hers, she is also the one who reads first drafts of strategy memos before
+the Alignment Lab's contact window opens — not for feedback on your
+position, but to check you've understood what the role card is actually
+asking of you — and she marks the Decision System Redesign. She is the
+final point of contact for anything Idris's answer doesn't settle, and for
+any question about how the course's three assessments are weighted against
+each other.
 
-Replace this entry. A people page carries a short bio and whatever a student
-needs in order to contact the right person for the right thing --- and nothing
-that will be stale by week 3.
-
-Consultation hours, contact preferences and the escalation path (who to ask
-first, who to ask when that does not work) are the parts students actually read.
+Email for course-level questions — extensions, the assessment schedule,
+disputes about a mark after it's returned — and use the weekly session itself
+for feedback on work in progress; a five-minute conversation in the room
+usually gets further than an email thread. If you've already asked
+[Idris](/people/idris-fenn/) and still need an answer, say so when you write
+in, so the reply doesn't start from nothing.

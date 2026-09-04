@@ -24,7 +24,7 @@ spec:
   - a completed strategy memo is submitted before the pre-meeting contact window opens
   - the pre-meeting contact window is used or explicitly declined, on the record, with no more than the default number of self-initiated contacts
   - a single decision record is produced by the group, naming who agreed, who dissented, and why
-  - a decision autopsy is submitted individually, naming at least one distortion you now think shaped the outcome
+  - a decision autopsy is submitted individually, reaching an evidenced conclusion about what shaped the outcome — naming a specific distortion where the record supports one, or arguing that the process held up and no significant distortion is evident, provided either conclusion is argued from the record
   - a partial rerun of one specific juncture is submitted, testing whether a named process change would have helped
 related:
   - decision-system-redesign

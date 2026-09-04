@@ -72,18 +72,43 @@ describe("Alignment Lab contact limit, guide page vs. canonical data", () => {
     expect(MAX_SELF_INITIATED_CONTACTS).toBe(2);
   });
 
-  it("the simulator's default time budget mechanically enforces the same limit", () => {
-    const windowMatch = componentSource.match(/windowHours\s*=\s*(\d+)/);
-    const costMatch = componentSource.match(/contactCostHours\s*=\s*(\d+)/);
-    expect(windowMatch, "no default windowHours found").not.toBeNull();
-    expect(costMatch, "no default contactCostHours found").not.toBeNull();
-    const windowHours = Number(windowMatch![1]);
-    const contactCost = Number(costMatch![1]);
-    expect(Math.floor(windowHours / contactCost)).toBe(MAX_SELF_INITIATED_CONTACTS);
+  it("the simulator's default contact count is imported from canonical data, not hardcoded", () => {
+    expect(componentSource).toMatch(
+      /import\s*\{\s*MAX_SELF_INITIATED_CONTACTS\s*\}\s*from\s*["']\.\.\/data\/alignment-lab["']/,
+    );
+    expect(componentSource).toMatch(/maxContacts\s*=\s*MAX_SELF_INITIATED_CONTACTS/);
   });
 
-  it("[negative example] a looser cost-per-contact would silently allow more contacts", () => {
-    const looserCost = 20;
-    expect(Math.floor(72 / looserCost)).not.toBe(MAX_SELF_INITIATED_CONTACTS);
+  it("the simulator no longer encodes the limit as an hours-per-contact proxy", () => {
+    expect(componentSource).not.toMatch(/windowHours/);
+    expect(componentSource).not.toMatch(/contactCostHours/);
+  });
+
+  it("[negative example] a component hardcoding its own contact number would drift silently", () => {
+    const drifted = componentSource.replace(
+      "maxContacts = MAX_SELF_INITIATED_CONTACTS",
+      "maxContacts = 3",
+    );
+    expect(drifted).not.toMatch(/maxContacts\s*=\s*MAX_SELF_INITIATED_CONTACTS/);
+  });
+
+  it("revealing a contact's facts does not depend on how many contacts came before it", () => {
+    // Regression test for a fixed bug: the previous implementation indexed into
+    // [uniqueEvidence, constraint, leverageOrDependency] by `contacted.size %
+    // facts.length`, so a role's uniqueEvidence (index 0) was only ever shown
+    // on someone's *first* contact of the session, and was silently skipped
+    // whenever a different target was contacted first.
+    expect(componentSource).not.toMatch(/contacted\.size\s*%/);
+    expect(componentSource).toMatch(/card\.uniqueEvidence/);
+    expect(componentSource).toMatch(/card\.constraint/);
+  });
+
+  it("the simulator shows the player their own role card after choosing a role", () => {
+    expect(componentSource).toMatch(/renderOwnCard/);
+    expect(componentSource).toMatch(/Your role card/);
+  });
+
+  it("the simulator prompts for a judgment change after every contact", () => {
+    expect(componentSource).toMatch(/does what .* change what you'd argue/i);
   });
 });

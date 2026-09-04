@@ -1,5 +1,15 @@
 NEGOTIATION LOG — [your role]
 
-Contact 1: [who] — [when] — [what you learned or offered]
-Contact 2: [who] — [when] — [what you learned or offered]
-(If you chose not to make contact: say so, and why.)
+One entry per contact — self-initiated, or a reply to someone else's
+request. You may make at most two self-initiated contacts by default;
+replies you make to requests from others are not capped, and belong in this
+log too.
+
+Contact — [who] — [when] — [self-initiated / reply to their request]:
+Purpose:
+New information exchanged:
+Any commitment made, by either side:
+Did either person's judgment change, and how:
+
+(Copy the block above for every contact you make or receive. If you chose
+not to make a self-initiated contact at all: say so, and why.)

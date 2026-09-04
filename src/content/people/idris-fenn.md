@@ -7,11 +7,14 @@ affiliation: Slop University School of Invented Disciplines
 role: tutor
 email: idris.fenn@slop.university
 contact: Ask during sessions, or email when a question cannot wait until the next one.
-photo: ./idris-fenn.avif
-photoAlt: A stylised portrait of a person facing the viewer, flat gold and black shapes on warm cream, in a two-ink risograph print
 ---
 
-<!-- STARTER_CONTENT: replace this person entry, then remove this comment. -->
+Idris teaches the even-numbered weeks — sessions and lectures for Weeks 2,
+4, 6, 8, 10 and 12 — alternating across the semester with Marisol, who takes
+the odd-numbered weeks. He marks the Decision Autopsy.
 
-Replace this entry. A second person makes the listing, role ordering and
-teacher-reference fields visible before you replace the cast with your own.
+If a question is about what a session activity is asking you to do, or about
+how the Decision Autopsy will be marked, ask Idris first: during a session,
+or by email when it can't wait until the next one. If his answer doesn't
+settle it, or the question is about the course's overall shape or weighting,
+that goes to [Marisol](/people/marisol-quaye/) instead.

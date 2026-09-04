@@ -16,11 +16,20 @@ build.
 
 ## Course-specific design rules ("The Meeting Before the Meeting")
 
-- The running case's people, numbers and dates live only in
-  `src/data/case-facts.ts`; every page that mentions them imports the
-  constant rather than retyping it, so the case cannot drift across weeks.
-  `spec/case-consistency.test.ts` checks this, including negative examples
-  proving the check actually catches a conflicting figure.
+- The running case's people, numbers, dates and role cards should be treated
+  as canonically defined in `src/data/case-facts.ts` and `src/data/
+  alignment-lab.ts`; markdown content pages can't literally import a TS
+  constant, so keeping them aligned is a manual discipline, not an automatic
+  one. `spec/case-consistency.test.ts` checks a narrower slice
+  mechanically: it greps rendered page text for the canonical vendor name
+  and budget figure and fails on a conflicting one, and separately checks
+  that `engagementSignalTimeline` itself runs in non-decreasing date order —
+  it does not check people's names, most dates quoted in page prose, or that
+  a page's prose actually matches the data file. Each check has a negative
+  example proving it actually catches the drift it claims to catch; treat
+  everything outside that narrow slice (most dates, all names, all
+  cross-week narrative claims) as human-review territory until a test
+  exists for it.
 - The Alignment Lab has two separate weight systems that must never be
   conflated: its 45% weight in the whole-course total (`weight:` on
   `assessments/alignment-lab.md`), and its own internal 100%, five-part

@@ -1,0 +1,82 @@
+---
+// Renders every field of every role card, in full — used only on the public
+// worked example, never on a page presenting the confidential graded
+// scenario. `spec/role-card-fields.test.ts` checks the built page for all
+// six field labels below, so this component is what makes "fully revealed"
+// actually true, not just an unchecked claim in prose.
+import type { RoleCard } from "../data/case-facts";
+
+interface Props {
+  roleCards: RoleCard[];
+}
+
+const { roleCards } = Astro.props;
+
+const FIELD_LABELS: Array<[keyof RoleCard, string]> = [
+  ["publicResponsibility", "Public responsibility"],
+  ["uniqueEvidence", "Evidence only this role holds"],
+  ["constraint", "Constraint they cannot trade away"],
+  ["leverageOrDependency", "Leverage or dependency over the others"],
+  ["minimumAcceptableOutcome", "Minimum acceptable outcome"],
+  ["conditionToShiftPosition", "Condition that would shift their position"],
+];
+---
+
+<div class="role-card-list">
+  {
+    roleCards.map((card) => (
+      <article class="role-card">
+        <h4>{card.archetype}</h4>
+        <dl>
+          {FIELD_LABELS.map(([key, label]) => (
+            <>
+              <dt>{label}</dt>
+              <dd>{card[key]}</dd>
+            </>
+          ))}
+        </dl>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .role-card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+    margin-block: 1rem;
+  }
+
+  .role-card {
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--at-border);
+    border-radius: 0.5rem;
+    background: var(--at-bg-alt);
+  }
+
+  .role-card h4 {
+    margin-block-start: 0;
+  }
+
+  .role-card dl {
+    margin: 0;
+    display: grid;
+    gap: 0.15rem 0;
+  }
+
+  .role-card dt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--at-text-secondary);
+    margin-block-start: 0.6rem;
+  }
+
+  .role-card dt:first-child {
+    margin-block-start: 0;
+  }
+
+  .role-card dd {
+    margin: 0;
+  }
+</style>

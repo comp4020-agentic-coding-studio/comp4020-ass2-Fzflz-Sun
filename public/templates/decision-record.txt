@@ -1,7 +1,10 @@
 DECISION RECORD — [scenario name] — [date]
 
-The decision:
+The decision (or a reasoned deferral):
+Evidence relied on:
+Unverified assumptions:
 Who agreed:
-Who dissented, and on what grounds:
-What information arrived too late to change the outcome, if any:
-Who signs off on this record:
+Who dissented, and on what grounds (including conditional or partial support):
+Action owner(s) — who carries out what follows from this:
+Final decision authority — who actually had the authority to make this call:
+What would reopen this record:

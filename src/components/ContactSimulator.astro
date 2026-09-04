@@ -1,38 +1,50 @@
 ---
 // A teaching demo of the Alignment Lab's pre-meeting contact window: you play
-// one role, and have a limited time budget to reach out to the others before
-// the simulated meeting starts. Every contact costs time and reveals one
-// fact; the meeting starts whether or not you have spoken to everyone.
+// one role and can make a limited number of self-initiated contacts before
+// the simulated meeting starts. Each contact reveals the fact and the
+// constraint that role holds, and asks whether it changes your judgment. The
+// meeting starts whether or not you have spoken to everyone.
+//
+// The 48-72 hour window is a real duration in the graded Lab; it is not
+// modeled here as a countdown, because the limit the Lab actually enforces is
+// a *count* of self-initiated contacts, not an amount of time (see
+// MAX_SELF_INITIATED_CONTACTS in src/data/alignment-lab.ts). This demo also
+// only models contacts *you* initiate — in the real window you can also
+// receive and reply to as many requests from others as they send you, which
+// a solo demo cannot represent.
 //
 // This is illustrative only — it uses the public hot-desking example, never
 // the confidential Alignment Lab scenario. It works without JavaScript in
 // the sense that nothing here is required reading: the same role-card facts
-// are listed in full, in plain HTML, immediately below it on the page.
+// are listed in full, in plain HTML, immediately below it on the page via
+// RoleCardList.
 import type { RoleCard } from "../data/case-facts";
+import { MAX_SELF_INITIATED_CONTACTS } from "../data/alignment-lab";
 
 interface Props {
   roleCards: RoleCard[];
-  windowHours?: number;
-  contactCostHours?: number;
+  maxContacts?: number;
 }
 
-// 72 / 36 = 2 contacts by default, matching the Lab's default cap of two
-// self-initiated contacts per person (see src/data/alignment-lab.ts).
-const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
+const { roleCards, maxContacts = MAX_SELF_INITIATED_CONTACTS } = Astro.props;
 ---
 
-<div
-  class="contact-sim"
-  data-contact-sim
-  data-window-hours={windowHours}
-  data-contact-cost={contactCostHours}
->
+<div class="contact-sim" data-contact-sim data-max-contacts={maxContacts}>
   <noscript>
     <p>
       This demo needs JavaScript. The same four roles and the facts each one
       holds are listed in full further down this page.
     </p>
   </noscript>
+
+  <p class="contact-sim-note">
+    In the graded Lab this window runs for 48–72 hours. This demo compresses
+    that into a contact counter instead of a clock: what actually limits you
+    is <strong>{maxContacts} self-initiated contacts</strong>, not the number
+    of hours you spend. It also only models contacts you start — replies to
+    requests from others aren't limited in the real Lab, and aren't modeled
+    here at all.
+  </p>
 
   <div class="contact-sim-setup" data-contact-sim-setup>
     <p class="contact-sim-prompt">You are playing:</p>
@@ -50,11 +62,13 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
   <div class="contact-sim-play" data-contact-sim-play hidden>
     <div class="contact-sim-header">
       <p>
-        Playing <strong data-contact-sim-you></strong>. Contact window:
-        <strong data-contact-sim-clock></strong> remaining.
+        Playing <strong data-contact-sim-you></strong>. Self-initiated
+        contacts used: <strong data-contact-sim-count></strong>.
       </p>
       <button type="button" class="contact-sim-reset" data-contact-sim-reset>Start over</button>
     </div>
+
+    <div class="contact-sim-own-card" data-contact-sim-own-card></div>
 
     <div class="contact-sim-targets" role="group" aria-label="People you could contact">
       {
@@ -68,19 +82,48 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
 
     <ul class="contact-sim-log" aria-live="polite" data-contact-sim-log></ul>
 
-    <p class="contact-sim-verdict" data-contact-sim-verdict hidden></p>
+    <div class="contact-sim-judgment" data-contact-sim-judgment hidden>
+      <p data-contact-sim-judgment-prompt tabindex="-1"></p>
+      <button type="button" data-judgment="changed">This changes what I'd argue</button>
+      <button type="button" data-judgment="unchanged">No change to my position</button>
+    </div>
+
+    <p class="contact-sim-verdict" data-contact-sim-verdict tabindex="-1" hidden></p>
   </div>
 
   <script type="application/json" is:inline data-contact-sim-data set:html={JSON.stringify(roleCards)} />
 </div>
 
 <script>
+  import {
+    attemptContact,
+    canContactTarget,
+    initialState,
+    isDone,
+    playRole,
+    resolveJudgment,
+    untouchedArchetypes,
+    type ContactSimState,
+  } from "../lib/contact-sim";
+
   interface RoleCard {
     archetype: string;
+    publicResponsibility: string;
     uniqueEvidence: string;
     constraint: string;
     leverageOrDependency: string;
+    minimumAcceptableOutcome: string;
+    conditionToShiftPosition: string;
   }
+
+  const OWN_CARD_FIELDS: Array<[keyof RoleCard, string]> = [
+    ["publicResponsibility", "Public responsibility"],
+    ["uniqueEvidence", "Evidence only you hold"],
+    ["constraint", "Your constraint"],
+    ["leverageOrDependency", "Your leverage or dependency"],
+    ["minimumAcceptableOutcome", "Your minimum acceptable outcome"],
+    ["conditionToShiftPosition", "What would shift your position"],
+  ];
 
   function initContactSim(root: HTMLElement) {
     if (root.dataset.contactSimInitialized === "true") return;
@@ -88,24 +131,29 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
 
     const dataEl = root.querySelector<HTMLScriptElement>("[data-contact-sim-data]");
     const cards: RoleCard[] = JSON.parse(dataEl?.textContent ?? "[]");
-    const windowHours = Number(root.dataset.windowHours ?? "72");
-    const contactCost = Number(root.dataset.contactCost ?? "36");
+    const maxContacts = Number(root.dataset.maxContacts ?? "2");
 
     const setupMaybe = root.querySelector<HTMLElement>("[data-contact-sim-setup]");
     const playMaybe = root.querySelector<HTMLElement>("[data-contact-sim-play]");
     const youElMaybe = root.querySelector<HTMLElement>("[data-contact-sim-you]");
-    const clockElMaybe = root.querySelector<HTMLElement>("[data-contact-sim-clock]");
+    const countElMaybe = root.querySelector<HTMLElement>("[data-contact-sim-count]");
+    const ownCardMaybe = root.querySelector<HTMLElement>("[data-contact-sim-own-card]");
     const logMaybe = root.querySelector<HTMLElement>("[data-contact-sim-log]");
     const verdictMaybe = root.querySelector<HTMLElement>("[data-contact-sim-verdict]");
+    const judgmentMaybe = root.querySelector<HTMLElement>("[data-contact-sim-judgment]");
+    const judgmentPromptMaybe = root.querySelector<HTMLElement>("[data-contact-sim-judgment-prompt]");
     const resetBtn = root.querySelector<HTMLButtonElement>("[data-contact-sim-reset]");
     const targetBtns = [...root.querySelectorAll<HTMLButtonElement>("[data-contact-target]")];
     if (
       !setupMaybe ||
       !playMaybe ||
       !youElMaybe ||
-      !clockElMaybe ||
+      !countElMaybe ||
+      !ownCardMaybe ||
       !logMaybe ||
       !verdictMaybe ||
+      !judgmentMaybe ||
+      !judgmentPromptMaybe ||
       !resetBtn
     )
       return;
@@ -116,13 +164,15 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
     const setup: HTMLElement = setupMaybe;
     const play: HTMLElement = playMaybe;
     const youEl: HTMLElement = youElMaybe;
-    const clockEl: HTMLElement = clockElMaybe;
+    const countEl: HTMLElement = countElMaybe;
+    const ownCard: HTMLElement = ownCardMaybe;
     const log: HTMLElement = logMaybe;
     const verdict: HTMLElement = verdictMaybe;
+    const judgment: HTMLElement = judgmentMaybe;
+    const judgmentPrompt: HTMLElement = judgmentPromptMaybe;
 
-    let hoursLeft = windowHours;
-    let you = "";
-    const contacted = new Set<string>();
+    const allArchetypes = cards.map((c) => c.archetype);
+    let state: ContactSimState = initialState();
 
     function addLogEntry(text: string) {
       const item = document.createElement("li");
@@ -130,43 +180,57 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
       log.append(item);
     }
 
-    function factFor(archetype: string): string {
-      const card = cards.find((c) => c.archetype === archetype);
-      if (!card) return "";
-      const facts = [card.uniqueEvidence, card.constraint, card.leverageOrDependency];
-      return facts[contacted.size % facts.length];
+    function cardFor(archetype: string): RoleCard | undefined {
+      return cards.find((c) => c.archetype === archetype);
     }
 
-    function updateClock() {
-      clockEl.textContent = `${hoursLeft}h`;
-      const outOfTime = hoursLeft < contactCost;
+    function renderOwnCard(archetype: string) {
+      const card = cardFor(archetype);
+      ownCard.replaceChildren();
+      if (!card) return;
+      const heading = document.createElement("p");
+      heading.innerHTML = "<strong>Your role card:</strong>";
+      ownCard.append(heading);
+      const dl = document.createElement("dl");
+      for (const [key, label] of OWN_CARD_FIELDS) {
+        const dt = document.createElement("dt");
+        dt.textContent = label;
+        const dd = document.createElement("dd");
+        dd.textContent = card[key];
+        dl.append(dt, dd);
+      }
+      ownCard.append(dl);
+    }
+
+    // Reflects `state` onto the DOM. Called after every state transition so
+    // the rendered buttons, counts and hidden panels can never drift from
+    // what the pure state machine actually decided.
+    function render() {
+      countEl.textContent = `${state.contacted.length} of ${maxContacts}`;
       for (const btn of targetBtns) {
-        const already = btn.dataset.contactTarget === you || contacted.has(btn.dataset.contactTarget ?? "");
-        btn.disabled = already || outOfTime;
+        const target = btn.dataset.contactTarget ?? "";
+        btn.disabled = !canContactTarget(state, target, maxContacts);
       }
-      if (outOfTime) {
-        const untouched = cards
-          .map((c) => c.archetype)
-          .filter((name) => name !== you && !contacted.has(name));
-        verdict.hidden = false;
-        verdict.textContent =
-          untouched.length === 0
-            ? "The meeting starts. You reached everyone before it did."
-            : `The meeting starts. You go in never having spoken to: ${untouched.join(", ")}.`;
-      }
+      judgment.hidden = !state.judgmentPending;
+    }
+
+    function firstEnabledTargetBtn(): HTMLButtonElement | undefined {
+      return targetBtns.find((btn) => !btn.disabled);
     }
 
     function startAs(archetype: string) {
-      you = archetype;
-      hoursLeft = windowHours;
-      contacted.clear();
+      state = playRole(archetype);
       log.replaceChildren();
       verdict.hidden = true;
       youEl.textContent = archetype;
+      renderOwnCard(archetype);
       setup.hidden = true;
       play.hidden = false;
-      addLogEntry(`You are ${archetype}. The meeting begins in ${windowHours} hours.`);
-      updateClock();
+      addLogEntry(
+        `You are ${archetype}. You may make ${maxContacts} self-initiated contacts before the meeting.`,
+      );
+      render();
+      firstEnabledTargetBtn()?.focus();
     }
 
     for (const btn of root.querySelectorAll<HTMLButtonElement>("[data-play-role]")) {
@@ -176,17 +240,55 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
     for (const btn of targetBtns) {
       btn.addEventListener("click", () => {
         const target = btn.dataset.contactTarget ?? "";
-        if (hoursLeft < contactCost) return;
-        hoursLeft -= contactCost;
-        contacted.add(target);
-        addLogEntry(`You contact ${target} (${contactCost}h). They tell you: “${factFor(target)}”`);
-        updateClock();
+        const attempt = attemptContact(state, target, maxContacts);
+        if (!attempt.ok) return;
+        state = attempt.state;
+        const card = cardFor(target);
+        if (card) {
+          addLogEntry(
+            `You contact ${target}. Evidence they share: "${card.uniqueEvidence}" Constraint they name: "${card.constraint}"`,
+          );
+        }
+        judgmentPrompt.textContent = `Does what ${target} just told you change what you'd argue for in the meeting?`;
+        render();
+        judgmentPrompt.focus();
+      });
+    }
+
+    for (const btn of judgment.querySelectorAll<HTMLButtonElement>("button[data-judgment]")) {
+      btn.addEventListener("click", () => {
+        const resolution = resolveJudgment(state, btn.dataset.judgment === "changed");
+        if (!resolution.ok) return;
+        state = resolution.state;
+        addLogEntry(
+          btn.dataset.judgment === "changed"
+            ? `Judgment change: contacting ${resolution.target} changed what you'd argue for.`
+            : `Judgment change: contacting ${resolution.target} did not change your position.`,
+        );
+        render();
+        if (isDone(state, maxContacts)) {
+          const untouched = untouchedArchetypes(state, allArchetypes);
+          verdict.hidden = false;
+          verdict.textContent =
+            untouched.length === 0
+              ? "You have used every self-initiated contact you're allowed. The meeting starts — you reached everyone before it did."
+              : `You have used every self-initiated contact you're allowed. The meeting starts and you go in never having spoken to: ${untouched.join(", ")}.`;
+          verdict.focus();
+        } else {
+          firstEnabledTargetBtn()?.focus();
+        }
       });
     }
 
     resetBtn.addEventListener("click", () => {
+      state = initialState();
+      log.replaceChildren();
+      verdict.hidden = true;
+      judgment.hidden = true;
+      ownCard.replaceChildren();
       setup.hidden = false;
       play.hidden = true;
+      root.querySelector<HTMLButtonElement>("[data-play-role]")?.focus();
     });
   }
 
@@ -206,6 +308,12 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
     background: var(--at-bg-alt);
   }
 
+  .contact-sim-note {
+    margin-block-start: 0;
+    font-size: 0.9rem;
+    color: var(--at-text-secondary);
+  }
+
   .contact-sim-roles,
   .contact-sim-targets {
     display: flex;
@@ -216,7 +324,8 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
 
   .contact-sim-role-btn,
   .contact-sim-target-btn,
-  .contact-sim-reset {
+  .contact-sim-reset,
+  .contact-sim-judgment button {
     padding: 0.5rem 0.85rem;
     border: 1px solid var(--at-border);
     border-radius: 0.375rem;
@@ -239,12 +348,42 @@ const { roleCards, windowHours = 72, contactCostHours = 36 } = Astro.props;
     gap: 0.75rem;
   }
 
+  .contact-sim-own-card {
+    margin-block: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px dashed var(--at-border);
+    border-radius: 0.375rem;
+  }
+
+  .contact-sim-own-card dl {
+    margin: 0;
+  }
+
+  .contact-sim-own-card dt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--at-text-secondary);
+    margin-block-start: 0.5rem;
+  }
+
+  .contact-sim-own-card dd {
+    margin: 0;
+  }
+
   .contact-sim-log {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
     margin-block: 0.75rem 0;
     padding-left: 1.1rem;
+  }
+
+  .contact-sim-judgment:not([hidden]) {
+    margin-block-start: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .contact-sim-verdict {
