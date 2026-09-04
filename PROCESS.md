@@ -110,17 +110,17 @@ templates omit fields required by the Lab guide. Fiction framing and reading
 attribution also need review. These are remaining review findings, not fixes
 performed by this documentation change.
 
-## Round 4 working evidence (uncommitted, 3 September 2026)
+## Round 4 working evidence (3 September 2026)
 
 This section documents a further agent-assisted pass made after the snapshot
 above, at the student's request, to make the existing site's weeks and
-Alignment Lab materials cohere rather than to add new pages. **Nothing in
-this section is committed** — `git status` at the time of writing shows the
-working tree modified against `559e3d9` (the commit the previous snapshot
-above was written into), with no new commit made. Do not read any of the
-following as commit-backed unless a SHA is actually cited, and do not carry
-these claims into the student narrative as if they were verified history —
-they are this agent's own report of its own uncommitted work.
+Alignment Lab materials cohere rather than to add new pages. This section was
+written while the round's changes were still uncommitted against `559e3d9`;
+they were committed later, together with Rounds 5 and 6, as
+[de71113](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/de71113a11a7e91495b84ba11e0a4a3c1444eafb)
+— see the Round 6 section below for that commit's full scope. Some items this
+round reported as still-failing (see "Verification performed" below) were
+fixed in a later round, not by this one.
 
 **What changed:**
 
@@ -204,19 +204,17 @@ they are this agent's own report of its own uncommitted work.
   rendered pages, particularly the new `ContactSimulator` interaction and
   the two slide decks, before treating this as classroom-ready.
 
-## Round 5 working evidence (uncommitted, 3 September 2026)
+## Round 5 working evidence (3 September 2026)
 
 This section documents a further agent-assisted pass made after the "Round 4"
 section above, at the student's request, to take the site from "weeks 1–3
 built out, weeks 4–12 outline-level" to all twelve weeks complete, and to
 close out the remaining `pnpm check:evidence` gaps that Round 4 explicitly
-left open. **Nothing in this section is committed** — `git status` at the
-time of writing still shows the working tree modified against `559e3d9`
-(the same commit the Round 4 section above was written against), with no
-new commit made since. As with that section: do not read any of the
-following as commit-backed unless a SHA is actually cited, and do not carry
-these claims into the student narrative as if they were verified history —
-they are this agent's own report of its own uncommitted work.
+left open. This section was written while the round's changes were still
+uncommitted against `559e3d9`; they were committed later, together with
+Rounds 4 and 6, as
+[de71113](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/de71113a11a7e91495b84ba11e0a4a3c1444eafb)
+— see the Round 6 section below for that commit's full scope.
 
 **What changed:**
 
@@ -316,19 +314,21 @@ they are this agent's own report of its own uncommitted work.
   week 4–12 lecture and session pages, and the homepage's week table — before
   treating any of this as classroom-ready.
 
-## Round 6 working evidence (uncommitted, 3 September 2026)
+## Round 6 working evidence (4 September 2026)
 
 This section documents a further agent-assisted pass made after the "Round 5"
 section above, at the student's request, to fix a specific list of
 correctness and consistency problems across the already-complete twelve-week
 site — not to add new pages or change the platform, theme, or assessment
-weights. **Nothing in this section is committed** — `git status` at the time
-of writing still shows the working tree modified against `559e3d9` (the same
-commit the Round 4 and Round 5 sections above were written against), with no
-new commit made since. As with those sections: do not read any of the
-following as commit-backed unless a SHA is actually cited, and do not carry
-these claims into the student narrative as if they were verified history —
-they are this agent's own report of its own uncommitted work.
+weights. Everything below, and everything in the Round 4 and Round 5 sections
+above (which were still uncommitted when written), was committed together as
+[de71113](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/de71113a11a7e91495b84ba11e0a4a3c1444eafb)
+and pushed to `origin/main` at the student's explicit request. That single
+commit is large — it bundles three separate working sessions' worth of
+change (Rounds 4, 5 and 6) because none of them had been committed
+individually as the work happened. Read the diff at that commit for what
+actually changed; do not assume a description below is proof of a matching,
+separately-reviewable commit.
 
 **What changed:**
 
