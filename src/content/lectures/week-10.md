@@ -11,6 +11,9 @@ teachers:
 related:
   - sessions/10-minutes-make-memory
   - assessments/alignment-lab
+links:
+  - label: "Walsh & Ungson, \"Organizational Memory\" (Academy of Management Review, 1991)"
+    url: https://journals.aom.org/doi/10.5465/amr.1991.4278992
 ---
 
 ## The record outlives the room
@@ -41,21 +44,39 @@ actually did across the negotiation and the meeting — including anything
 that happened informally, off the record, or in a contact you didn't fully
 document — only the decision record you produce together will exist for
 anyone reading it afterwards, including your own future self writing the
-individual autopsy next week. If something mattered and it isn't in the
-record, it will be exactly as invisible to you-in-Week-11 as Okoro's
-unanswered question is to a new hire in June.
+individual autopsy. If something mattered and it isn't in the record, it
+will be exactly as invisible to that later reading as Okoro's unanswered
+question is to a new hire in June.
 
 ## What "reveal and consequence test" means
 
 Today's session runs the reveal: each group's decision record is read
 against what the record does not show, and against the private information
-your role card held that never became public. The four consequence rules on
-the [Alignment Lab](/alignment-lab/) page determine what changes for your
+your role card held that never became public. The three consequence rule
+families on the [Alignment Lab](/alignment-lab/) page determine what changes for your
 group as a result — not a mark, at this stage, but a concrete change to the
 scenario you carry into your individual autopsy.
 
+## A little further reading
+
+Walsh and Ungson's paper is broader than this week's lecture — it names
+six different places organisational memory can be stored ("retention
+bins"): individuals, culture, transformations, structures, an ecology of
+physical settings, and external archives. This week's minutes are only one
+of those six, the "external archives" bin, and the paper's own point is
+that memory scattered across the other five can matter just as much, and
+often contradicts what the archive says. Read it for one purpose: the
+paper's distinction between information being *retained* somewhere and
+being *retrievable* by someone who later needs it — minutes that
+technically contain Okoro's question, but that nobody downstream ever
+reads closely enough to notice, are a retention/retrieval gap in exactly
+the paper's sense, not a case the paper discusses directly.
+
 ## Before Week 11
 
-Bring your group's finished decision record and your own negotiation log.
-Week 11 asks you to read both against the ethical weight of what actually
-happened, before you write your autopsy alone.
+Bring your group's finished decision record and your own negotiation log —
+what you need to write your individual autopsy is already in front of you
+from this week's material and your own group's process; the autopsy is due
+before Week 11's session begins, so nothing in that session's reading is a
+prerequisite for it. Week 11 revisits this same record and log through a
+new, ethical lens, once your autopsy is already submitted, not before.

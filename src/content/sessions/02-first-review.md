@@ -9,7 +9,9 @@ date: 2027-03-01
 teachers:
   - idris-fenn
 spec:
-  - can distinguish an invitation from a decision right, using the case's own invite list
+  - can distinguish participation status, decision right, and information
+    timing as three separate axes, using the case's own invite list, and
+    can name a seat where they don't all line up the same way
   - for at least two excluded or limited-right people, names both a plausible legitimate reason and a plausible cost of the exclusion
   - can say what document or fact would help decide between those two readings, rather than picking one on instinct
 related:
@@ -23,23 +25,38 @@ Bring your classified timeline from Week 1. It ends at a meeting: the
 2027-03-08 Steering Committee that confirmed the ClarityPulse rollout
 timeline. This week's document is that meeting's invitation list.
 
-An invitation and a decision right are not the same thing. Being in the room
-is not the same as having a vote, and having a vote is not the same as being
-the person the decision is actually done to. The list below states, for each
-person, whether they were invited, what kind of decision right the invitation
-carried, and whatever reason the record gives — which is often none at all.
+An invitation, a decision right, and when someone actually learns the
+outcome are three separate facts, not one. Being in the room is not the
+same as having a vote; having no vote is not the same as being told only
+after the fact. The list below states, for each person, three independent
+things: their **participation status** (invited and attended, or not
+invited at all), their **decision right** (vote, advise, or none — nobody
+on this particular list is invited-but-absent, so that participation value
+doesn't appear here, though the taxonomy allows it), and their
+**information timing** (during — including simply being present in the
+room — or after) — plus whatever reason the record gives, which is often
+none at all.
 
 ### Case file: the 2027-03-08 Steering Committee invite list
 
-| Name | Title | Invited? | Decision right | Reason given |
-|---|---|---|---|---|
-| Priya Nandakumar | Deputy Vice-Chancellor (Operations) | Yes | Vote | Chairs the committee |
-| Tomas Herrera | Director of Digital Delivery | Yes | Vote | Owns the implementation |
-| Beatrix Oyelaran | Head of Finance & Risk | Yes | Vote | Budget holder |
-| Sanjay Okoro | Staff Association Rep (Professional Staff) | Yes | Advise | Represents affected professional staff |
-| Wren Castellano | Internal Communications Lead | Yes | Informed after | Drafts the announcement once decided |
-| Dr Femi Adisa | University Librarian | **No** | Informed after | *(none given)* |
-| LSS frontline staff | The pilot's first cohort | **No** | Informed after | *(none given)* |
+| Name | Title | Participation | Decision right | Informed | Reason given |
+|---|---|---|---|---|---|
+| Priya Nandakumar | Deputy Vice-Chancellor (Operations) | Invited, attended | Vote | During | Chairs the committee |
+| Tomas Herrera | Director of Digital Delivery | Invited, attended | Vote | During | Owns the implementation |
+| Beatrix Oyelaran | Head of Finance & Risk | Invited, attended | Vote | During | Budget holder |
+| Sanjay Okoro | Staff Association Rep (Professional Staff) | Invited, attended | Advise | During | Represents affected professional staff |
+| Wren Castellano | Internal Communications Lead | Invited, attended | **None** | **During** | Drafts the announcement once decided |
+| Dr Femi Adisa | University Librarian | **Not invited** | None | After | *(none given)* |
+| LSS frontline staff | The pilot's first cohort | **Not invited** | None | After | *(none given)* |
+
+Castellano is the row worth pausing on: she is invited and attends, holds
+no decision right at all, and is still informed **during** the decision —
+not after — for the simple reason that she is physically present while it
+happens. A taxonomy that only had "invited" and one mixed "decision right"
+column (with "informed after" as one of its values) would have nowhere
+accurate to put her: she isn't informed after anything, and folding
+"present, no vote" and "absent, told later" into the same label would
+erase a distinction this case actually turns on.
 
 This is the same teaching fiction as Week 1 — a case built for this course,
 not a real institution's records.
@@ -57,8 +74,8 @@ For **Dr Femi Adisa** and **LSS frontline staff**, each pair produces:
 
 ### What good analysis of one row looks like
 
-**Dr Femi Adisa, University Librarian — not invited, informed after, no
-reason given.**
+**Dr Femi Adisa, University Librarian — not invited, no decision right,
+informed after, no reason given.**
 
 A legitimate reading: the committee's terms of reference name only
 directorate-level roles as members. That is a structural rule applied

@@ -165,6 +165,25 @@ describe("Twelve-week coverage: dates run one Monday per week, in order", () => 
     }
   });
 
+  // 7-day spacing alone would pass for a course that starts on a Tuesday and
+  // stays a Tuesday every week after — it never checks that the day itself is
+  // the Monday the describe block's title claims. Parse each date as a plain
+  // UTC calendar date (not `new Date(dateOnlyString)`, which is already UTC
+  // midnight, but stated explicitly here so a future refactor to a
+  // timezone-aware parse can't silently shift the weekday by one).
+  it("every week's session date actually falls on a Monday", () => {
+    for (const week of WEEKS) {
+      const dateStr = weeklyDates(sessionsByWeek)[week - 1];
+      const day = new Date(`${dateStr}T00:00:00Z`).getUTCDay();
+      expect(day, `week ${week} (${dateStr}) is not a Monday`).toBe(1);
+    }
+  });
+
+  it("[negative example] a Tuesday-start course would be caught", () => {
+    const day = new Date("2027-02-23T00:00:00Z").getUTCDay();
+    expect(day).not.toBe(1);
+  });
+
   it("lecture dates match their paired session's date exactly", () => {
     for (const week of WEEKS) {
       const sessionDate = String(sessionsByWeek.get(week)?.meta?.date).slice(0, 10);

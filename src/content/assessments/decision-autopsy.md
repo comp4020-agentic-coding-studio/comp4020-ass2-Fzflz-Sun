@@ -5,7 +5,7 @@ description:
   what its paper trail can and cannot show about where the decision actually
   formed, argued with evidence rather than assumed.
 week: 6
-due: 2027-03-29T12:00:00+10:00
+due: 2027-03-29T12:00:00+11:00
 weight: 20
 marking:
   mode: weighted
@@ -56,13 +56,22 @@ A written autopsy, 1,200–1,600 words, structured as:
    announced.
 2. **The timeline**, every document you can date, in order, each with a
    one-line note on what it shows.
-3. **The seam, or why there isn't one**: either the specific point in the
-   timeline where the outcome looks settled before the forum that supposedly
-   settled it, with the evidence that supports it and at least one
-   alternative explanation you considered and ruled out — or a reasoned case
-   that the record shows a genuinely open process, or that it is currently
-   indeterminate. All three are acceptable conclusions if the argument is
-   evidenced.
+3. **The seam, or why there isn't one** — one of three conclusions, each
+   acceptable if the argument is evidenced:
+   - **A seam**: the specific point in the timeline where the outcome looks
+     settled before the forum that supposedly settled it, the evidence that
+     supports it, and at least one alternative explanation you considered
+     and could rule out, with the reason why.
+   - **A genuinely open process**: a reasoned case, from the timeline, that
+     no such point exists.
+   - **Indeterminate**: a reasoned case that the record cannot currently
+     decide between a seam and an open process — naming the specific
+     evidence that is missing (the thing that, if it existed, would settle
+     it), a specific alternative explanation you could not rule out with
+     what the record actually contains, and what would change your
+     judgement if that missing evidence turned up. Being unable to rule an
+     alternative out is what makes a conclusion indeterminate; ruling one
+     out belongs to the first conclusion above, not this one.
 4. **What you cannot show**, the gap between what the documents prove and
    what you suspect. Naming this gap honestly is part of the mark.
 

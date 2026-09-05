@@ -11,3 +11,91 @@
  * slide class you reach for (`_class: quote`), a code-heavy layout, a
  * background. */
 @import url("astro-theme-university/styles/deck.css");
+
+/* `_class: banner` is used in this course's own decks (week 01, week 03) for
+   a slide that quotes a single real-world document verbatim --- a sent or
+   unsent agenda item --- rather than making a talking point. The vendor
+   stylesheet imported above defines `.hero`/`.impact`/`.quote`/`.centered`/
+   `.logo-slide` but has nothing to say about a class this repo invented, so
+   without a rule here `_class: banner` renders identically to a plain
+   slide: no visual signal that what follows is a document extract, not the
+   presenter's own words. */
+:where(.reveal .slides) section.banner {
+  background-color: var(--at-primary-tint);
+  border-inline-start: 0.5rem solid var(--at-accent);
+  padding-inline-start: 5.5rem;
+}
+
+/* Reveal.js's default rendering model authors one fixed canvas (this site's
+   deck route initialises Reveal with `width: 1280, height: 720`) and scales
+   the whole thing down with a CSS transform to fit whatever viewport it's
+   shown in --- on a 390px-wide phone that scale factor is roughly 0.3, so a
+   28px paragraph renders at under 9px. Reveal 6 ships a native alternative
+   for this, a "scroll view" that reflows slides as a normal scrollable
+   document below a configurable width, but that width
+   (`scrollActivationWidth`) is set to `null` --- disabled --- in the Reveal
+   init call, and that call lives in the astromotion package's own deck route
+   (`astromotion/pages/[...slug].astro`), not in this repo, so it can't be
+   turned on from here.
+
+   This is the reachable substitute: below the phone breakpoint, cancel the
+   inline `transform: scale(...)` and `left/top: 50%` centering Reveal applies
+   to `.slides` (plain inline styles, so an `!important` rule always beats
+   them) and let the one currently-visible slide lay out at full width, at
+   its own authored --- not shrunk --- type sizes, scrolling internally if a
+   slide's content runs taller than the viewport. Reveal's slide-by-slide
+   navigation (arrow keys, swipe, the .present/.past/.future classes) reads
+   `display` and is untouched here; only the canvas-scaling geometry and
+   type/spacing scale are overridden. */
+@media (width <= 768px) {
+  :root {
+    --at-slide-padding: 1.25rem 1.5rem;
+    --r-heading1-size: 2rem;
+    --r-heading2-size: 1.5rem;
+  }
+
+  .reveal .slides {
+    transform: none !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  :where(.reveal .slides) section {
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    :is(p, li) {
+      font-size: 1.05rem;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    .columns {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .qr-code svg {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  :where(.reveal .slides) section.impact :is(p, li) {
+    font-size: 1.4rem;
+  }
+
+  :where(.reveal .slides) section.banner {
+    padding-inline-start: 2rem;
+  }
+}

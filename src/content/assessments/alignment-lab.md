@@ -46,8 +46,10 @@ one; this page marks the work, that page runs it.
 - **Initial judgment** (individual, before role cards are distributed): a
   short, dated statement of what you think should happen, based only on the
   public materials.
-- **Strategy memo** (individual, before contact opens): what you want, what
-  you can concede, what you will not.
+- **Strategy memo** (individual, before contact opens): my responsibilities,
+  my evidence, what I don't know, who I plan to contact, and my ethical
+  boundaries — the same five fields as the [strategy memo
+  template](/templates/).
 - **Negotiation log** (individual): a record of every contact you made or
   received — its purpose, any new information, any commitments, and whether
   your judgment changed — or a note that you chose not to make contact, and

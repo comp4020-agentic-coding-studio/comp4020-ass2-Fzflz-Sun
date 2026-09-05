@@ -38,8 +38,8 @@ and unverified assumptions separately, not just a verdict.
 
 The rest of the session runs the Lab's reveal and consequence test: each
 group's decision record is read against the private information every
-role card held that never made it into the record, and against the four
-consequence rules on the [Alignment Lab](/alignment-lab/) page. This
+role card held that never made it into the record, and against the three
+consequence rule families on the [Alignment Lab](/alignment-lab/) page. This
 produces a concrete change to the scenario each group carries forward —
 not a mark at this stage, but new information or a new constraint your
 Week 11 retrospective will have to account for.

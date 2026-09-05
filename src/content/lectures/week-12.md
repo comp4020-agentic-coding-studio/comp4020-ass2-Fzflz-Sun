@@ -10,6 +10,9 @@ teachers:
 related:
   - sessions/12-redesigning-the-decision
   - assessments/decision-system-redesign
+links:
+  - label: "Garvin & Roberto, \"What You Don't Know About Making Decisions\" (Harvard Business Review, 2001)"
+    url: https://hbr.org/2001/09/what-you-dont-know-about-making-decisions
 ---
 
 ## What the semester actually built up
@@ -61,6 +64,19 @@ of yourself, with a role card, real leverage, and a record you helped
 write. The strongest redesigns in past years have used the second data set
 to catch something the first one alone could not show — what a process
 actually feels like to operate inside of, not just to read afterwards.
+
+## A little further reading
+
+Garvin and Roberto draw their own version of this week's opening claim —
+that decisions are made by a process, not a moment — around a contrast
+between an "advocacy" model (participants argue for a preferred position
+from the start) and an "inquiry" model (participants test multiple views
+before anyone commits to one). Read it for one purpose: decide which model
+the 13 March Working Group's phase-order discussion actually resembles,
+using only what you've read across the semester, and check whether your
+own Alignment Lab group's meeting resembled the same model or its
+opposite. That comparison, not the article's own case studies, is what
+your redesign should be built from.
 
 ## After this session
 

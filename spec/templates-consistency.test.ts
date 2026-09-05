@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
-// The six templates exist in two places: the downloadable file under
+// The ten templates exist in two places: the downloadable file under
 // public/templates/, and a copy embedded in a code fence on
 // src/pages/templates/index.mdx. Nothing keeps these in sync automatically,
 // so this file checks both that they agree with each other and that each one
@@ -10,9 +10,13 @@ import { describe, expect, it } from "vitest";
 
 const TEMPLATE_NAMES = [
   "agenda",
+  "continuity-memo",
   "decision-autopsy",
   "decision-record",
+  "initial-judgment",
+  "lab-decision-autopsy",
   "negotiation-log",
+  "partial-rerun",
   "redesign",
   "strategy-memo",
 ] as const;
@@ -135,22 +139,110 @@ describe("Strategy memo template matches what the Lab guide says a memo contains
   });
 });
 
-describe("Decision autopsy template allows an indeterminate or open-process conclusion", () => {
+describe("Decision autopsy template allows all three seam conclusions the assessment brief allows", () => {
   const decisionAutopsy = readTemplate("decision-autopsy");
   const assessmentBrief = readFileSync(
     resolve("src/content/assessments/decision-autopsy.md"),
     "utf8",
   );
 
-  it("the template's 'seam' field and the assessment brief agree that no seam is a valid finding", () => {
+  it("the template's 'seam' field and the assessment brief both name all three conclusions", () => {
     expect(assessmentBrief).toMatch(/seam, or why there isn't one/i);
     expect(decisionAutopsy).toMatch(/seam, or why there isn't one/i);
-    expect(decisionAutopsy).toMatch(/genuinely open or indeterminate/i);
+    // (a) a seam, (b) a genuinely open process, (c) indeterminate — the same
+    // three-way split the assessment brief itself argues for, not the looser
+    // two-option "genuinely open or indeterminate" phrasing an earlier draft
+    // of this template used.
+    expect(assessmentBrief).toMatch(/a genuinely open process/i);
+    expect(decisionAutopsy).toMatch(/a genuinely open process/i);
+    expect(assessmentBrief).toMatch(/indeterminate/i);
+    expect(decisionAutopsy).toMatch(/\(c\) indeterminate/i);
+  });
+
+  it("indeterminate is not a bare fallback: it requires missing evidence, an alternative, and what would change the judgement", () => {
+    expect(decisionAutopsy).toMatch(/alternative explanation you could not rule out/i);
+    expect(decisionAutopsy).toMatch(/what would change your judgement/i);
   });
 
   it("[negative example] a template that only asks for a seam disagrees with the brief", () => {
     const old = "The seam (where the outcome looks settled before the forum that announced it):";
     expect(old).not.toMatch(/or why there isn't one/i);
+  });
+
+  it("[negative example] the old two-option 'genuinely open or indeterminate' phrasing no longer appears", () => {
+    // Regression guard: an earlier draft of this template collapsed (b) and
+    // (c) into one loose phrase instead of two distinct, separately-argued
+    // conclusions. If that phrasing ever comes back, it has lost the
+    // three-way structure this test otherwise checks for.
+    expect(decisionAutopsy).not.toMatch(/genuinely open or indeterminate/i);
+  });
+});
+
+describe("Initial judgment template records a position before role assignment", () => {
+  const initialJudgment = readTemplate("initial-judgment");
+
+  it("asks what should happen based only on public materials, before a role exists", () => {
+    expect(initialJudgment).toMatch(/public materials/i);
+    expect(initialJudgment).toMatch(/before any role/i);
+  });
+
+  it("[negative example] a template with no reference to timing would not match", () => {
+    const old = "What I think should happen:\nWhy:";
+    expect(old).not.toMatch(/before any role/i);
+  });
+});
+
+describe("Continuity memo template covers what the Lab guide's ground rules promise it does", () => {
+  const continuityMemo = readTemplate("continuity-memo");
+  const labGuide = readFileSync(resolve("src/pages/alignment-lab/index.mdx"), "utf8");
+
+  it("the guide's ground rules and the template both describe keeping this updated for absence", () => {
+    expect(labGuide).toMatch(/continuity memo/i);
+    expect(continuityMemo).toMatch(/current position/i);
+    expect(continuityMemo).toMatch(/commitments made or received/i);
+    expect(continuityMemo).toMatch(/if i am absent/i);
+  });
+
+  it("[negative example] a memo with no absence-handoff field would not match", () => {
+    const old = "CONTINUITY MEMO\n\nMy position:\nWhat I know:";
+    expect(old).not.toMatch(/if i am absent/i);
+  });
+});
+
+describe("Alignment Lab individual autopsy template is distinct from the standalone Decision Autopsy template", () => {
+  const labAutopsy = readTemplate("lab-decision-autopsy");
+  const decisionAutopsy = readTemplate("decision-autopsy");
+
+  it("allows arguing the process held up with no significant distortion, not just naming one", () => {
+    expect(labAutopsy).toMatch(/no significant distortion/i);
+  });
+
+  it("is not the same document as the standalone decision autopsy template", () => {
+    expect(labAutopsy).not.toBe(decisionAutopsy);
+    expect(labAutopsy).toMatch(/group's decision record/i);
+    expect(decisionAutopsy).not.toMatch(/group's decision record/i);
+  });
+
+  it("[negative example] a template that only allows naming a distortion would not match", () => {
+    const old = "What actually decided the outcome, and the distortion that caused it:";
+    expect(old).not.toMatch(/no significant distortion/i);
+  });
+});
+
+describe("Partial rerun template names a changed variable, held constants, and a remaining assumption", () => {
+  const partialRerun = readTemplate("partial-rerun");
+
+  it("carries all four fields the worked example and assessment spec describe", () => {
+    expect(partialRerun).toMatch(/changed variable/i);
+    expect(partialRerun).toMatch(/held constant/i);
+    expect(partialRerun).toMatch(/resulting difference/i);
+    expect(partialRerun).toMatch(/unverified assumption/i);
+  });
+
+  it("[negative example] a vague 'what might have happened' template would not match", () => {
+    const old = "What might have gone differently:\nWhy:";
+    expect(old).not.toMatch(/changed variable/i);
+    expect(old).not.toMatch(/held constant/i);
   });
 });
 

@@ -45,9 +45,11 @@ write one.
 
 The [session page](/sessions/03-the-agenda-is-an-argument/) carries the full
 text of both drafts of Item 4 on the Engagement Signal Pilot's Steering
-Committee agenda. Read side by side, three differences do all the
-argumentative work, and each maps directly onto one of the three levers
-above:
+Committee agenda. Read side by side, two differences do all the
+argumentative work this particular pair of drafts can show, and each maps
+directly onto one of the three levers above — the third lever, ordering,
+this pair can't demonstrate at all, for reasons the close reading below
+explains:
 
 | Lever | Draft B (03-01, never sent) | Draft A (03-03, actually sent) |
 |---|---|---|

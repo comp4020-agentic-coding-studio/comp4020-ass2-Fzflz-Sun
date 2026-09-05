@@ -87,11 +87,11 @@ export const engagementSignalTimeline: TimelineEntry[] = [
     note: "The document directly names LSS — that part is a fact. Why LSS was chosen over another unit is a separate question the document does not answer; reasoning toward an answer would be a step of inference, not this entry itself.",
   },
   {
-    date: "2027-02-03",
+    date: "2027-02-01 to 2027-02-28",
     label: "Dr Femi Adisa's staff first hear the word 'ClarityPulse' at all",
     kind: "unknown",
     source: "No dated document exists confirming when LSS staff were first told",
-    note: "Staff say informally it was 'sometime in February'; nothing in the public record fixes a date.",
+    note: "Staff say informally it was 'sometime in February'; nothing in the public record fixes a date, so this entry takes the month as a range rather than inventing a single day no document supports.",
   },
   {
     date: "2027-02-10",
@@ -138,16 +138,41 @@ export const engagementSignalTimeline: TimelineEntry[] = [
 ];
 
 // The Steering Committee invitation list for the 2027-03-08 meeting above.
-// Week 2 asks students to read what "invited" and "decision right" actually
-// mean here, and to notice that most people affected by the pilot hold
-// neither.
-export type DecisionRight = "vote" | "advise" | "informed-after" | "not-invited";
+// Week 2 asks students to read this list along three *independent* axes,
+// not one mixed classification:
+//
+//   1. `participationStatus` — was this seat invited, and did it attend?
+//   2. `decisionRight` — what formal right over the outcome, if any, does
+//      the seat carry, independent of whether it was even in the room?
+//   3. `informationTiming` — when, relative to the decision, does this
+//      person actually learn the outcome: before, during (e.g. present in
+//      the room as it happens), or only after?
+//
+// These three answers can combine in any way. Wren Castellano is the clearest
+// case: she is invited and attends (participationStatus), holds no vote or
+// advisory say over the outcome (decisionRight: "observe"), and yet learns the
+// outcome "during" — in real time, in the room — rather than "after," simply
+// because she is physically present while it happens. A decision-right
+// taxonomy that used a single "informed after" value for both her and
+// someone who is genuinely told the outcome later, having never attended
+// anything, would erase exactly that distinction — which is why
+// "informed after" is an `informationTiming` value only, never a
+// `decisionRight` one.
+export type ParticipationStatus =
+  | "invited-and-attended"
+  | "invited-but-absent"
+  | "not-invited";
+
+export type DecisionRight = "decide" | "approve" | "vote" | "advise" | "observe" | "none";
+
+export type InformationTiming = "before" | "during" | "after";
 
 export interface InviteEntry {
   name: string;
   title: string;
-  invited: boolean;
+  participationStatus: ParticipationStatus;
   decisionRight: DecisionRight;
+  informationTiming: InformationTiming;
   reasonGiven: string | null;
   note: string;
 }
@@ -156,56 +181,63 @@ export const engagementSignalInviteList: InviteEntry[] = [
   {
     name: "Priya Nandakumar",
     title: "Deputy Vice-Chancellor (Operations)",
-    invited: true,
+    participationStatus: "invited-and-attended",
     decisionRight: "vote",
+    informationTiming: "during",
     reasonGiven: "Chairs the Steering Committee",
     note: "Also the pilot's sponsor — the person who owns the go-live date is also the person chairing the meeting that confirms it.",
   },
   {
     name: "Tomas Herrera",
     title: "Director of Digital Delivery",
-    invited: true,
+    participationStatus: "invited-and-attended",
     decisionRight: "vote",
+    informationTiming: "during",
     reasonGiven: "Owns the implementation",
     note: "No stated conflict-of-interest process applies to a delivery lead voting on their own project's timeline.",
   },
   {
     name: "Beatrix Oyelaran",
     title: "Head of Finance & Risk",
-    invited: true,
+    participationStatus: "invited-and-attended",
     decisionRight: "vote",
+    informationTiming: "during",
     reasonGiven: "Budget holder",
     note: "",
   },
   {
     name: "Sanjay Okoro",
     title: "Staff Association Representative (Professional Staff)",
-    invited: true,
+    participationStatus: "invited-and-attended",
     decisionRight: "advise",
+    informationTiming: "during",
     reasonGiven: "Represents affected professional staff",
     note: "Attends and can speak, but the invitation records no vote for this seat — a distinction the agenda itself does not mention.",
   },
   {
     name: "Dr Femi Adisa",
     title: "University Librarian",
-    invited: false,
-    decisionRight: "informed-after",
+    participationStatus: "not-invited",
+    decisionRight: "none",
+    informationTiming: "after",
     reasonGiven: null,
     note: "Leads the unit the pilot is rolled out to first. No document states why the Librarian was not invited; the committee's terms of reference name only directorate-level roles as members, which would exclude this seat by default rather than by a specific decision about this pilot.",
   },
   {
     name: "Wren Castellano",
     title: "Internal Communications Lead",
-    invited: true,
-    decisionRight: "informed-after",
+    participationStatus: "invited-and-attended",
+    decisionRight: "observe",
+    informationTiming: "during",
     reasonGiven: "Drafts the announcement once a decision is made",
-    note: "Attends to take notes and prepare comms, not named as holding a vote — present in the room without decision rights.",
+    note: "Attends to take notes and prepare comms, not named as holding a vote — present in the room, and so informed *during* the decision rather than after it, without any decision right over its outcome.",
   },
   {
     name: "LSS frontline staff (as a group)",
     title: "The pilot's first cohort",
-    invited: false,
-    decisionRight: "informed-after",
+    participationStatus: "not-invited",
+    decisionRight: "none",
+    informationTiming: "after",
     reasonGiven: null,
     note: "No individual staff member and no elected staff seat for this specific unit was invited. Sanjay Okoro's seat represents professional staff university-wide, not LSS specifically — whether that counts as representation for this decision is exactly the kind of judgement call this course asks you to make, not assume.",
   },

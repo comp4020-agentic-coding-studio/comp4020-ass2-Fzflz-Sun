@@ -488,6 +488,225 @@ separately-reviewable commit.
   this round — say so plainly rather than claiming coverage a unit test
   cannot provide.
 
+## Round 7 working evidence (uncommitted, 5 September 2026)
+
+This section records the next agent-assisted repair pass and the audit that
+followed it. At the time of writing, `HEAD` and `origin/main` are both
+[`988745a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/988745ab1b81cb8bb98cb7a825f06f11a91c4f3e),
+and, before this documentation edit, the implementation pass occupied 33
+modified or untracked paths. Including this `PROCESS.md` update, the working
+tree now contains 34 changed paths. None of the claims below is commit-backed
+yet. They describe the working tree inspected on 5 September, and must be
+updated after the work is corrected, committed and pushed.
+
+**What the current working pass changed:**
+
+- Brought the Alignment Lab strategy-memo wording in the assessment brief into
+  line with the guide and template; added the four formats the Lab page
+  previously claimed existed but did not — initial judgment, continuity memo,
+  Lab-specific autopsy and partial rerun — and expanded the template parity
+  check to include all ten downloadable files.
+- Expanded the Lab's alternative-participation, continuity and asynchronous
+  instructions; added `Who agreed` and the Staff Representative's consultation
+  condition to the worked decision record; and rewrote the consequence section
+  as three ordered rule families covering authority, cost status, and both the
+  minimum outcome and non-tradeable constraint for every role.
+- Corrected several items found in the previous audit: Week 1 no longer gives
+  an unsupported event an exact date; Week 5 says the memo arrived the day
+  before rather than inventing a sixteen-hour interval; Week 6's title no
+  longer presumes that omissions are intentional; and Week 7 now labels the
+  reading of Castellano's suggestion as an inference with an alternative
+  explanation.
+- Added a visible `h1` to the five student-facing hub/Lab pages and the 404
+  page; corrected the Decision Autopsy's March offset so local noon renders as
+  noon AEDT; added a rendered-time regression test; made the twelve-week check
+  actually assert Monday rather than only seven-day gaps; removed the unused
+  `courseMeta` import; and added external reading links to the lecture pages.
+
+**Verification and human-review findings:**
+
+- An agent-run `pnpm check` on 5 September reported **0 errors, 0 warnings and
+  0 hints**. The production build generated **40 pages**, found no broken
+  internal links, passed both deck-structure checks, and ran **106 passing
+  tests across 10 files**. `git diff --check` also passed.
+- `pnpm check:evidence` still fails on this file's `TEMPLATE` marker. This is
+  intentional while the document remains an agent evidence index; removing the
+  marker without replacing the index with the student's own connected account
+  would make the check greener without satisfying the brief.
+- A real-browser audit at 390×844 found no document-wide horizontal overflow
+  on the homepage, Alignment Lab, Week 9 session, Templates or Lectures pages.
+  The Week 9 table is wider than the viewport but contained within its own
+  scrolling region. The Week 3 deck, however, scales its 1120-pixel slide down
+  to the phone width, leaving body text at an effective size of roughly 8.5
+  pixels; it displays, but it is not comfortably readable in the required phone
+  marking viewport. An earlier follow-up browser audit exercised the complete
+  ContactSimulator path — role selection, contact, pending judgment, second
+  contact and final verdict — after its state-machine repair. These are agent
+  observations, not claims that the student personally performed the checks.
+- The audit found that some repairs did not propagate through the whole course.
+  Week 8 still shortens the Week 6 minutes before claiming the phase-order
+  concern disappeared, even though the supplied excerpt records that concern;
+  the honest omission is its rationale and the lack of an answer. Week 9's new
+  sign-off table calls a signature a vote and derives formal implementation
+  authority from a calendar invitation that establishes only purpose and
+  attendees. Both errors cut against the course's central distinction between
+  fact, inference and unknown.
+- The Lab's operational detail also remains incomplete. The alternative and
+  asynchronous paths do not yet map the shared 15% decision-record criterion to
+  an equivalent individual artefact; the async list omits part of the reveal
+  pack and partial rerun; one cost-rule input still falls outside the supposedly
+  exhaustive branches; and the walkthrough calls the Delivery Lead's upgrade
+  funded even though the record expressly defers spend approval. The Lab
+  autopsy template and Week 7 wording also need to admit a rigorously argued
+  indeterminate conclusion consistently.
+- Several requested regression protections are still absent. The template
+  test does not read the assessment brief or the rendered Lab guide, the
+  decision-record test checks only the blank template rather than the worked
+  example, and no check currently exercises the consequence branches or the
+  minimum-plus-constraint evaluation. `CLAUDE.md` also says the case test reads
+  rendered text when it actually reads source Markdown/MDX.
+- The added readings exist as links, but their teaching fit still needs human
+  review. In particular, Week 5 links a paper about parole decisions, case order
+  and meal breaks without explaining how that mechanism relates to late-arriving
+  information, while Week 7 labels a link as French and Raven (1959) but sends
+  students to a Wikipedia summary.
+
+The GitHub repository was still private during this audit, so its workflow was
+skipped and no Pages site existed yet. That is normal while work remains in
+progress, but the public deploy, clean working tree and green CI are still
+required before the 21 September deadline.
+
+## Round 8 working evidence (uncommitted, 5 September 2026)
+
+This section records the pass that resolved the open findings the "Round 7"
+section above listed, plus further review it turned up along the way. At the
+time of writing, `HEAD` and `origin/main` are both
+[`988745a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/988745ab1b81cb8bb98cb7a825f06f11a91c4f3e)
+— the same commit Round 7 recorded — and the working tree now contains 43
+modified or untracked paths, including this edit. None of the claims below is
+commit-backed yet; they describe the working tree inspected on 5 September and
+must be updated once this pass is reviewed, committed and pushed.
+
+**What this pass changed, matching each open Round 7 finding:**
+
+- Week 8's phase-order comparison table now separates what the Week 6 minutes
+  document from what they don't, and reports Castellano's suggestion as an
+  inference (not settled fact) with a named alternative reading, rather than
+  claiming the concern disappeared.
+- Week 9's sign-off table no longer calls the Finance and Risk Lead's signature
+  a vote, and no longer treats the 10 March calendar invite as establishing
+  implementation authority by itself — each step is labelled documented fact,
+  inference, or explicitly unknown.
+- The Lab guide's live/async/alternative table now maps the 15% group decision
+  record and the 35% individual autopsy across all three pathways; the async
+  path's material list now includes the full reveal pack and the partial
+  rerun.
+- The consequence section's cost-status rule now names all three branches as
+  exhaustive, including the branch that previously fell outside them: a record
+  that names a missing figure and its owner but still authorises the dependent
+  spend anyway is treated the same as a record that never named the figure at
+  all — naming a gap no longer excuses spending through it. The worked
+  example's own record is described as "authorises drafting and costing... not
+  a licence to start building it" rather than as already funded.
+- The Decision Autopsy assessment brief, its standalone template
+  (`public/templates/decision-autopsy.txt`), and the Lab's own autopsy template
+  now consistently allow three arguable conclusions — a specific distortion, a
+  genuinely open process, or an honestly argued indeterminate finding — instead
+  of the looser two-option phrasing found before, and Week 6/7's lecture
+  content states indeterminate is not a weaker fallback provided it names the
+  missing evidence, a specific alternative, and what would change the
+  judgement.
+- `CLAUDE.md` no longer claims `spec/case-consistency.test.ts` checks rendered
+  page text; it now describes, accurately, that the test reads source
+  Markdown/MDX from disk and checks a narrow slice (vendor name, budget
+  figure, timeline ordering), leaving the rest as human-review territory.
+- The Week 3 mobile deck fix (cancelling Reveal's inline canvas-scaling
+  transform below 768px so slide text renders at its authored size rather than
+  shrunk to roughly 9px) was extended to style the `_class: banner` slides
+  (used in Week 1 and Week 3 for verbatim document quotes) that had no visual
+  treatment of their own, on both the desktop and phone breakpoint.
+- Every lecture's `links:` citation was checked against a further-reading
+  passage explaining what to extract from it and how far the analogy to this
+  course's fictional case goes: Week 5's previously-flagged parole-fatigue
+  study was replaced with a verified real citation, DellaVigna & Pollet (2009,
+  *Journal of Finance*, confirmed via search to exist, be correctly dated, and
+  support the claimed finding) bounded to the one mechanism it actually
+  supports; Week 7's link is labelled honestly as a Wikipedia summary of
+  French & Raven rather than the primary 1959 chapter; and Weeks 1, 2, 4, 6, 8,
+  9, 10, 11 and 12 each gained a similar passage naming one specific claim to
+  take from their citation and one boundary on over-applying it.
+- Added two new regression-test files. `spec/consequence-rules.test.ts` checks
+  the cost-status rule's three branches (including the previously-untested
+  "names the figure but spends anyway" branch) and the per-role rule's joint
+  minimum-outcome-and-constraint check, each with a negative example.
+  `spec/evidentiary-discipline.test.ts` checks that Week 2's three taxonomy
+  axes vary independently in the actual invite-list data (not just that the
+  fields exist), that Week 8 and Week 9 use more than one evidentiary status
+  rather than labelling everything a documented fact, and that the eight
+  student-facing hub pages each render exactly one `<h1>` in the built HTML —
+  each with a negative example. A stale assertion in the existing
+  `spec/templates-consistency.test.ts`, left over from before the autopsy
+  template's three-way restructuring, was also corrected; it would otherwise
+  have failed the next time `pnpm test` ran, for a reason unrelated to any new
+  bug.
+- Fixed one further drift found while writing the new tests but not previously
+  flagged: a comment above `engagementSignalInviteList` in
+  `src/data/case-facts.ts` described Wren Castellano's `decisionRight` as
+  `"none"`, but her actual entry uses `"observe"` — the comment was stale
+  relative to the data it explains. The comment now matches the field.
+
+**Verification performed:**
+
+- `pnpm typecheck` (`astro check`): 0 errors, 0 warnings, 0 hints across 41
+  files.
+- `pnpm check` (typecheck, then build, then the full spec suite): the
+  production build generated 40 pages, reported no accessibility violations,
+  no internal links that ignore the base path, no broken links, and both deck
+  structural checks passed. `vitest run spec` reported **127 passing tests
+  across 12 files** (up from 106 passed / 10 files at the end of Round 7: two
+  new files, plus the templates-consistency fix and existing files unchanged
+  in count).
+- `pnpm check:evidence`: still fails on exactly the item Rounds 4–7 all
+  documented — this file's own `TEMPLATE` marker — because the student's
+  connected first-person narrative has not replaced this evidence index yet.
+  That is the intended state, not an oversight; removing the marker here would
+  make the check pass without the brief actually being satisfied.
+- `git diff --check` reported no whitespace errors. `git status --short
+  --branch` shows `main...origin/main` even (no unpushed or unpulled commits)
+  with 43 modified/untracked paths, none staged or committed, consistent with
+  the instruction not to commit, push, or make the repository public during
+  this pass.
+- No browser-automation tool was available in this session, so the required
+  1920×1080 and 390×844 viewport check could not be performed as a live visual
+  inspection here — unlike the real-browser audit Round 7 recorded from a
+  session that did have one. This pass instead verified viewport behaviour
+  indirectly: by reading the mobile CSS override directly (the transform-reset
+  and type-scale rules quoted above, now covering `.banner` slides too), and by
+  the build's own automated accessibility checker, which reported zero
+  violations across all 40 pages including heading structure. Neither
+  substitutes for someone actually loading the site at those two viewport
+  widths and looking at it before submission; that check is still owed and
+  should be performed with a real browser or its devtools before the 21
+  September deadline.
+
+**What remains open, stated plainly:**
+
+- The student-authored narrative below is still required and has not been
+  touched by any agent, consistent with `CLAUDE.md`'s rule that this file's
+  closing account is written by the student, not generated.
+- A live 1920×1080 / 390×844 visual pass with an actual browser has not been
+  performed this round; Round 7's browser audit predates several content
+  changes made since (the cost-rule rewrite, the added further-reading
+  sections, the `.banner` styling), so it should not be treated as still
+  current for those areas.
+- Coherence, whether the fictional case reads as believable, the ethical
+  judgement embedded in the Lab's role cards, and the distinctiveness of the
+  site's voice remain human-review items, as `CLAUDE.md` states — no check in
+  this pass, or any previous one, claims to verify them.
+- The repository remains private with no GitHub Pages deployment, as
+  instructed; the public deploy, a clean committed working tree, and green CI
+  are still required before the 21 September deadline.
+
 ## Student-authored account still needed
 
 Use the evidence above to write one connected narrative, rather than submitting

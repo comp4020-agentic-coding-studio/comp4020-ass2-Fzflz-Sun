@@ -1,0 +1,8 @@
+PARTIAL RERUN — [the juncture being tested] — [your name]
+
+Changed variable — the one thing done differently, named precisely:
+Held constant — everything else, named explicitly, not just implied:
+Resulting difference — the concrete outcome that follows from the change,
+reasoned step by step:
+Unverified assumption — the one thing this rerun's conclusion still
+depends on, that the record does not confirm either way:

@@ -64,11 +64,12 @@ that a consistent pattern across documents is still not the same thing as a
 confession — it raises the burden the "genuinely open" reading has to meet,
 it does not retire that reading outright.
 
-The session also names the honest counter-case directly: a working group is
-allowed to resolve something before it reaches a steering committee, and a
-committee that rubber-stamps a well-prepared recommendation is not
-automatically evidence of a meeting-before-the-meeting. The skill is telling
-apart legitimate preparation from a decision relocated out of the record.
+The session also names the honest counter-case directly: a small
+delivery-level group is allowed to resolve a technical detail before it
+reaches the full, 40-person Working Group, and a working group that
+confirms a well-prepared recommendation is not automatically evidence of a
+meeting-before-the-meeting. The skill is telling apart legitimate
+preparation from a decision relocated out of the record.
 The [Week 4 lecture](/lectures/week-04/) works through this same pair of
 documents in more depth if you want the fuller argument before the session.
 

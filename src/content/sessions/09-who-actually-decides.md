@@ -30,7 +30,41 @@ a decision can look fully consensual on paper while one person's unspoken
 capacity to block it shaped every option that was ever seriously put
 forward. This week's short lecture segment separates "who signs the
 document" from "who could have stopped this and didn't," using the
-Engagement Signal Pilot's own sign-off chain as the worked case.
+Engagement Signal Pilot's own sign-off chain, traced below rather than only
+promised for later.
+
+| Step | Who | What the document actually supports | Category | Status | Document |
+|---|---|---|---|---|---|
+| 1 | Beatrix Oyelaran, Head of Finance & Risk | Signs off the AUD $420,000 ClarityPulse budget line, alone | **Approval — spending authority**, not a vote: one named signatory, no other participant, no ballot | Documented fact | Finance & Risk sign-off memo, 18 Jan, dated and initialled |
+| 2 | Steering Committee — votes: Nandakumar (chair), Herrera, Oyelaran; advises: Okoro | Confirms the implementation timeline, with a named "no" available to three voting members | **Approval — vote**: a multi-party decision meeting with recorded attendance and decision rights | Documented fact | Steering Committee meeting minutes, 8 March, attendance list attached |
+| 3 | Tomas Herrera and Priya Nandakumar, with ClarityPulse's delivery team | A 30-minute session whose stated purpose was to "align on phased rollout sequence... so we're not designing it live" | **Proposal development / recommendation preparation** — the invite documents that this meeting happened and its stated agenda; it does not document what, if anything, was agreed or settled in the room | Documented fact (the meeting and its stated purpose); **unknown** what authority, if any, this session actually exercised | Calendar invite, 10 March |
+| 4 | LSS Rollout Working Group | Confirms the phased sequence "as presented," five minutes allocated, no vote recorded | **Acknowledgement / sign-off** — the sequence becomes official on paper here | Documented fact that the confirmation happened this way; **inference**, not fact, that step 3 had already settled the outcome step 4 merely ratified | 13 March agenda and minutes |
+
+Reading down that chain, resist two shortcuts the raw documents invite but
+don't support. First, step 1 is not a vote just because it decided
+something — Oyelaran's sign-off is an individual act of spending
+authority, with no other participant and no ballot; calling it a "vote"
+the way step 2 genuinely is one would erase a real difference between
+"one person with delegated authority signed" and "several named people
+each had a recorded say." Second, a calendar invite is a record that a
+meeting was scheduled and what its agenda said — it is not, by itself, a
+record of what authority the attendees held or exercised once they were in
+the room. Reading step 3 as having "authorised implementation" would be an
+inference the invite alone cannot carry; the honestly documented fact is
+narrower — the meeting happened, for the stated purpose, and nothing
+public records what was actually settled in it. Step 4 is where the
+sequence became official on paper, and Weeks 6 and 7 show a question on
+that same record going unanswered — but whether step 4 was a fresh
+decision or a ratification of something step 3 had already fixed is Week
+4's "stacking" inference, not a proven fact: a working group genuinely
+free to reconsider the sequence is an equally available reading of the
+same two documents. Naming which step in your own Alignment Lab decision
+record is a genuine approval, which is spending or implementation
+authority, and which is only an acknowledgement or a sign-off — and
+being explicit about which of your claims are documented fact versus your
+own reasonable inference versus still unknown — is exactly the distinction
+this week's lecture segment asks you to carry into the role you're about
+to be assigned.
 
 The bulk of the session hands out the four Alignment Lab role cards and
 opens the strategy-memo and pre-meeting-contact stage of the assessment,

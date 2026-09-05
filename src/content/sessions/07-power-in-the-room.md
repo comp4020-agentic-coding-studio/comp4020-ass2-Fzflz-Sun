@@ -52,11 +52,13 @@ rather than a suggestion. This week separates formal authority (what a
 title or a governance document assigns) from deferred authority (what a
 room's behaviour actually grants), using the transcript above as evidence
 rather than assuming either kind of power from role alone. Working in
-pairs, identify exactly where Castellano's suggestion gets folded into the
-plan without ever being addressed by name, and exactly where Okoro's
-question gets no response of any kind, not even an unnamed one — then name
-what, if anything, in either speaker's job title would have predicted that
-outcome in advance.
+pairs, identify exactly where the chair's response to Castellano's
+suggestion could be read as taking it up without ever addressing her by
+name, name the alternative reading that it was never registered as a
+distinct suggestion at all, and identify exactly where Okoro's question
+gets no response of any kind, not even an unnamed one — then name what, if
+anything, in either speaker's job title would have predicted that outcome
+in advance.
 
 The distinction matters for the Alignment Lab: a role card's stated
 authority and a player's actual influence over the outcome are not

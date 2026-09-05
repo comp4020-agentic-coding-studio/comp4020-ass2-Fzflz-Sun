@@ -11,6 +11,9 @@ teachers:
 related:
   - sessions/04-the-meeting-before-the-meeting
   - assessments/decision-autopsy
+links:
+  - label: "Cornell Law School, \"Circumstantial Evidence\" (Wex Legal Dictionary)"
+    url: https://www.law.cornell.edu/wex/circumstantial_evidence
 ---
 
 ## One document is rarely enough
@@ -64,8 +67,24 @@ not settled by these two documents alone; Week 6's Decision Autopsy is where
 you'll be asked to make and defend a call like this on a real decision of
 your own choosing.
 
+## A little further reading
+
+The linked entry is a general legal-dictionary definition, not a source
+about this pilot or about meetings at all. Read it for the one distinction
+it states plainly: circumstantial evidence can support a conclusion beyond
+reasonable doubt, but no single piece of it is expected to carry that
+weight alone — the same shape as this week's "stacking" argument. Read it
+for one purpose: the entry's own warning against treating a *larger* stack
+of circumstantial evidence as automatically stronger than a smaller one —
+quantity isn't the test; whether each piece independently narrows out the
+innocent explanation is. Bring that standard, not just the word
+"circumstantial," to how you weigh the calendar invite and the agenda
+above.
+
 ## Before Week 5
 
-Nothing new to bring. Week 5 stays with this same 13 March meeting and asks
-a different question of it: not who met beforehand, but who controlled when
-the rest of the paperwork around it actually arrived.
+Nothing new to bring. Week 5 moves forward to a later Working Group meeting,
+on 22 March, and a new document — a risk-register addendum, not the 13
+March agenda above — and asks a different question of it: not who met
+beforehand, but who controlled when the paperwork around a decision actually
+arrived.

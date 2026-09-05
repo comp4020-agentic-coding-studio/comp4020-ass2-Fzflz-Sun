@@ -32,9 +32,9 @@ exact and countable:
 
 | In the transcript (Week 7) | In the excerpted minutes (Week 6) |
 |---|---|
-| Okoro asks whether frontline staff were consulted on the order, and questions why Circulation goes first | "Sanjay Okoro asked whether frontline staff would have a chance to raise concerns" — the specific challenge is not recorded, only that a question occurred |
-| Castellano's comms suggestion is folded in, though never by name | Not mentioned in the excerpt |
-| Nandakumar moves on without answering Okoro | "The sequence was confirmed as presented" — reads as a neutral outcome |
+| Okoro asks whether frontline staff were consulted on the order, and gives a specific reason: Circulation has the most public-facing hours, which makes it a strange team to pilot first rather than last | "Sanjay Okoro asked whether frontline staff would have a chance to raise concerns about phase order before it was finalised" — **documented**: a phase-order question, tied to frontline consultation, was raised before the sequence was finalised. **Not documented**: Okoro's actual reason for objecting to Circulation specifically |
+| Castellano's comms suggestion reads, on balance, as folded in — though (per Week 7) that reading is an *inference* from one unaddressed "good," not something either record states outright; whether it was formally accepted, or affected the outcome, is **unknown** | Not mentioned in the excerpt |
+| Nandakumar moves on without directly answering Okoro's reasoning, then confirms the sequence | "The sequence was confirmed as presented" — the confirmation itself is documented; whether it engaged with Okoro's reasoning is not |
 
 **Dissent scenarios for the exercise below** — two further, shorter
 moments from the same pilot, for you to classify and rewrite:

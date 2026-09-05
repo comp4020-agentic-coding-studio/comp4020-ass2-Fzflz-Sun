@@ -21,11 +21,13 @@ build.
   alignment-lab.ts`; markdown content pages can't literally import a TS
   constant, so keeping them aligned is a manual discipline, not an automatic
   one. `spec/case-consistency.test.ts` checks a narrower slice
-  mechanically: it greps rendered page text for the canonical vendor name
-  and budget figure and fails on a conflicting one, and separately checks
-  that `engagementSignalTimeline` itself runs in non-decreasing date order —
-  it does not check people's names, most dates quoted in page prose, or that
-  a page's prose actually matches the data file. Each check has a negative
+  mechanically: it reads the *source* Markdown/MDX of each case page
+  directly from disk (not the built or rendered HTML) and greps that
+  source text for the canonical vendor name and budget figure, failing on
+  a conflicting one, and separately checks that `engagementSignalTimeline`
+  itself runs in non-decreasing date order — it does not check people's
+  names, most dates quoted in page prose, or that a page's prose actually
+  matches the data file. Each check has a negative
   example proving it actually catches the drift it claims to catch; treat
   everything outside that narrow slice (most dates, all names, all
   cross-week narrative claims) as human-review territory until a test

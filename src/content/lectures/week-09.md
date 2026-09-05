@@ -11,15 +11,24 @@ teachers:
 related:
   - sessions/09-who-actually-decides
   - assessments/alignment-lab
+links:
+  - label: "Rogers & Blenko, \"Who Has the D?\" (Harvard Business Review, 2006)"
+    url: https://hbr.org/2006/01/who-has-the-d-how-clear-decision-roles-enhance-organizational-performance
 ---
 
-## Four kinds of standing, not two
+## A third axis: leverage
 
-Week 2 sorted the Engagement Signal Pilot's Steering Committee into four
-decision rights: **vote**, **advise**, **informed-after**, and
-**not-invited**. That sort was about who is even present and what their
-seat formally entitles them to. This week adds a second axis on top of it,
-because formal standing and practical leverage are not the same thing.
+Week 2 sorted the Engagement Signal Pilot's Steering Committee along three
+independent axes: **participation status** (invited and attended, or not
+invited at all), **decision right** (**vote**, **advise**, **observe**, or
+**none**), and **information timing** (**during** or **after**) — with
+Wren Castellano showing that "present, no decision right" and "informed
+after" are not the same fact: she is in the room, holds no vote, and is
+still informed *during* rather than after. That sort was about who is even
+present, what their seat formally entitles them to, and when they actually
+learn an outcome. This week adds a fourth idea on top of all of those,
+because formal standing and practical leverage are not the same thing
+either.
 Someone can hold a vote and still have no real ability to block an outcome
 they dislike, if nothing they control makes disagreement costly to the
 other side. Someone else can hold no vote at all and still shape the
@@ -57,6 +66,20 @@ window described in full on the [Alignment Lab](/alignment-lab/) page.
 Everything from here to the decision record is timed in days, not weeks —
 read that page's process section closely before you make your first
 contact.
+
+## A little further reading
+
+Rogers and Blenko's RAPID model — Recommend, Agree, Perform, Input, Decide
+— is a widely used way of naming formal decision rights inside an
+organisation, close in spirit to Week 2's decide/approve/vote/advise/observe
+axis. Read it for one purpose: notice that RAPID, like Week 2's taxonomy,
+names *rights*, not leverage — nothing in the model has a category for
+"holds no formal role in this decision but can still make disagreement
+expensive," which is exactly this week's point about a Staff
+Representative's informal leverage. A role card's `leverageOrDependency`
+field answers a question RAPID doesn't ask; use the article for the
+vocabulary of rights, and this week's lecture for what that vocabulary
+leaves out.
 
 ## Before Week 10
 
