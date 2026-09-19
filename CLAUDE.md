@@ -16,21 +16,25 @@ build.
 
 ## Course-specific design rules ("The Meeting Before the Meeting")
 
-- The running case's people, numbers, dates and role cards should be treated
-  as canonically defined in `src/data/case-facts.ts` and `src/data/
-  alignment-lab.ts`; markdown content pages can't literally import a TS
-  constant, so keeping them aligned is a manual discipline, not an automatic
-  one. `spec/case-consistency.test.ts` checks a narrower slice
-  mechanically: it reads the *source* Markdown/MDX of each case page
-  directly from disk (not the built or rendered HTML) and greps that
-  source text for the canonical vendor name and budget figure, failing on
-  a conflicting one, and separately checks that `engagementSignalTimeline`
-  itself runs in non-decreasing date order — it does not check people's
-  names, most dates quoted in page prose, or that a page's prose actually
-  matches the data file. Each check has a negative
-  example proving it actually catches the drift it claims to catch; treat
-  everything outside that narrow slice (most dates, all names, all
-  cross-week narrative claims) as human-review territory until a test
+- The running case's people, numbers, dates and role cards are canonically
+  defined in `src/data/case-facts.ts` and `src/data/alignment-lab.ts`;
+  markdown pages can't import a TS constant, so keeping them aligned is a
+  manual discipline, not an automatic one. `spec/case-consistency.test.ts`
+  checks more than the vendor name, budget figure and timeline ordering it
+  started with: it now also holds the 2021-01-18 Finance & Risk memo to a
+  narrow, load-bearing claim (records the figure, carries a signature)
+  rather than letting it drift back into "signs off the budget", and pins
+  Week 3's "real agenda item" to the student's own exercise, not the
+  fictional case — reading the source Markdown/MDX and `case-facts.ts`
+  directly, each with a negative example proving the check catches the old
+  wording. `spec/pathway-rubric-consistency.test.ts` and
+  `spec/consequence-rules.test.ts` protect similarly specific,
+  previously-drifted claims (the decision record's pathway-qualified
+  wording; a role card's prose constraint agreeing with its typed
+  `constraintMet` input and the Lab page's computed-outcome justification).
+  These are targeted fixes for claims that actually drifted once, not a
+  general guarantee that every name, date or cross-week narrative statement
+  stays in sync — most prose is still human-review territory until a test
   exists for it.
 - The Alignment Lab has two separate weight systems that must never be
   conflated: its 45% weight in the whole-course total (`weight:` on
@@ -49,8 +53,19 @@ build.
   not generated. An agent may supply an evidence index and check commit
   citations resolve, but never fabricates the narrative's experience,
   trade-offs, or commits.
-- Automated checks protect only what's mechanically checkable (dates in
-  order, weights summing to 100, required fields present, links resolving).
-  Coherence, whether the fictional case is believable, ethical judgement,
-  and distinctive voice are human-review items — say so plainly rather than
-  writing a check that only pattern-matches for keywords.
+- Automated checks fall into three tiers; conflating them is the mistake to
+  avoid:
+  - **Structural invariants**, enforced by the build and `spec/` without
+    reading any prose: dates in order and inside the teaching period, all
+    twelve weeks present, assessment weights summing to 100%, required
+    role-card fields present, links resolving.
+  - **Selected semantic invariants**: a small set of specific prose claims
+    (see above) that drifted once, were deliberately corrected, and are now
+    pinned with source-level tests and negative examples. This is not a
+    general verification that all content is internally consistent — it's
+    coverage for the particular claims that mattered enough to fix and test.
+  - **Human judgement**: overall twelve-week coherence, whether the role
+    constraints create believable pressure, whether the alternative
+    pathways are ethically fair, and whether the writing has a distinctive
+    voice. No check exists for these, and none should — say so plainly
+    rather than writing a check that only pattern-matches keywords.
