@@ -70,15 +70,23 @@ your own choosing.
 ## A little further reading
 
 The linked entry is a general legal-dictionary definition, not a source
-about this pilot or about meetings at all. Read it for the one distinction
-it states plainly: circumstantial evidence can support a conclusion beyond
-reasonable doubt, but no single piece of it is expected to carry that
-weight alone — the same shape as this week's "stacking" argument. Read it
-for one purpose: the entry's own warning against treating a *larger* stack
-of circumstantial evidence as automatically stronger than a smaller one —
-quantity isn't the test; whether each piece independently narrows out the
-innocent explanation is. Bring that standard, not just the word
-"circumstantial," to how you weigh the calendar invite and the agenda
+about this pilot or about meetings at all, and it states less than it
+might seem to promise: it defines circumstantial evidence as indirect
+evidence — evidence that requires an additional reasonable inference to
+reach the fact in question — and illustrates that with one example. It
+does not itself say that circumstantial evidence can support a conclusion
+beyond reasonable doubt, that a larger stack of it is not automatically
+stronger than a smaller one, or that each piece must independently
+exclude the innocent explanation; none of those three claims appear on the
+page, however natural they might sound next to the word "circumstantial."
+Read it for the one distinction it does state plainly — direct evidence
+versus evidence that needs an inference to connect it to the conclusion —
+and treat everything else here as this course's own extension, not the
+source's: "stacking," and the standard that a pattern of documents raises
+the burden of proof without retiring the "genuinely open" reading, are
+this week's own argument, built on top of that one definition, not a claim
+the Wex entry itself makes. Bring the course's own standard, not a
+borrowed authority, to how you weigh the calendar invite and the agenda
 above.
 
 ## Before Week 5

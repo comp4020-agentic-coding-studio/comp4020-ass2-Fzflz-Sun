@@ -165,7 +165,13 @@ export type ParticipationStatus =
 
 export type DecisionRight = "decide" | "approve" | "vote" | "advise" | "observe" | "none";
 
-export type InformationTiming = "before" | "during" | "after";
+// "not-informed" is included so the taxonomy can express a seat that never
+// learns the outcome through any documented channel at all — distinct from
+// "after", which still means the outcome eventually reaches them, just later
+// than the decision itself. The current case does not use "not-informed" for
+// anyone in engagementSignalInviteList; it exists so the type does not
+// silently under-represent what a real seat's timing could be.
+export type InformationTiming = "before" | "during" | "after" | "not-informed";
 
 export interface InviteEntry {
   name: string;

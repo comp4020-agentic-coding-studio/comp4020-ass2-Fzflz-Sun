@@ -30,9 +30,9 @@ outcome are three separate facts, not one. Being in the room is not the
 same as having a vote; having no vote is not the same as being told only
 after the fact. The list below states, for each person, three independent
 things: their **participation status** (invited and attended, or not
-invited at all), their **decision right** (vote, advise, or none — nobody
-on this particular list is invited-but-absent, so that participation value
-doesn't appear here, though the taxonomy allows it), and their
+invited at all), their **decision right** (vote, advise, observe, or none —
+nobody on this particular list is invited-but-absent, so that participation
+value doesn't appear here, though the taxonomy allows it), and their
 **information timing** (during — including simply being present in the
 room — or after) — plus whatever reason the record gives, which is often
 none at all.
@@ -45,18 +45,20 @@ none at all.
 | Tomas Herrera | Director of Digital Delivery | Invited, attended | Vote | During | Owns the implementation |
 | Beatrix Oyelaran | Head of Finance & Risk | Invited, attended | Vote | During | Budget holder |
 | Sanjay Okoro | Staff Association Rep (Professional Staff) | Invited, attended | Advise | During | Represents affected professional staff |
-| Wren Castellano | Internal Communications Lead | Invited, attended | **None** | **During** | Drafts the announcement once decided |
+| Wren Castellano | Internal Communications Lead | Invited, attended | **Observe** | **During** | Drafts the announcement once decided |
 | Dr Femi Adisa | University Librarian | **Not invited** | None | After | *(none given)* |
 | LSS frontline staff | The pilot's first cohort | **Not invited** | None | After | *(none given)* |
 
 Castellano is the row worth pausing on: she is invited and attends, holds
-no decision right at all, and is still informed **during** the decision —
-not after — for the simple reason that she is physically present while it
-happens. A taxonomy that only had "invited" and one mixed "decision right"
-column (with "informed after" as one of its values) would have nowhere
-accurate to put her: she isn't informed after anything, and folding
-"present, no vote" and "absent, told later" into the same label would
-erase a distinction this case actually turns on.
+**observe** — she can be present to observe, but cannot decide, approve,
+vote, or advise, which is a distinct decision-right value from having none
+at all in the sense of "not even in the room" — and is still informed
+**during** the decision — not after — for the simple reason that she is
+physically present while it happens. A taxonomy that only had "invited" and
+one mixed "decision right" column (with "informed after" as one of its
+values) would have nowhere accurate to put her: she isn't informed after
+anything, and folding "present, no vote" and "absent, told later" into the
+same label would erase a distinction this case actually turns on.
 
 This is the same teaching fiction as Week 1 — a case built for this course,
 not a real institution's records.

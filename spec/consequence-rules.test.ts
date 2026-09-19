@@ -1,93 +1,239 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  type CostAuthorityInput,
+  evaluateCostAndAuthority,
+  evaluateRoleRule,
+  hotDeskingCostAuthorityInput,
+  hotDeskingCostAuthorityOutcome,
+  hotDeskingRoleRuleOutcomes,
+} from "../src/data/consequence-rules";
 
 // The Alignment Lab worked example's "Consequences, from stated rules"
-// section (src/pages/alignment-lab/index.mdx) is the only place the cost
-// rule and the per-role rule are written out in full. Nothing type-checks
-// this prose against a real implementation — it's argued in Markdown, not
-// executed — so these checks grep the page source directly, the same
-// approach spec/case-consistency.test.ts and spec/templates-consistency.test.ts
-// already use for prose that has to stay internally consistent.
+// section used to be argued only in Markdown prose, checked here by
+// grepping the page for keywords — which proved the right words were
+// nearby, not that a rule was exhaustive, exclusive, or correctly executed.
+// evaluateCostAndAuthority and evaluateRoleRule (src/data/consequence-rules.ts)
+// are the rule itself; these tests throw synthetic records at the function,
+// the same way a real regression (a rule that quietly let a mistaken
+// authority claim through, or rounded an undetermined role call up to
+// "clear") would actually be caught.
 
-const labGuide = readFileSync(resolve("src/pages/alignment-lab/index.mdx"), "utf8");
+function baseCostInput(overrides: Partial<CostAuthorityInput> = {}): CostAuthorityInput {
+  return {
+    finalAuthorityNamed: true,
+    finalAuthorityTreatedAsSpendingAuthority: false,
+    costFullyKnown: false,
+    dependentSpendWithheldUntilConfirmed: false,
+    spendingAuthorityGranted: false,
+    ...overrides,
+  };
+}
 
-describe("Consequence rule 2 (cost status) is exhaustive across all three branches", () => {
-  it("states the branch is exhaustive: every record lands in exactly one of three buckets", () => {
-    expect(labGuide).toMatch(/exactly one of three buckets/i);
-  });
-
-  it("names the fully-costed branch: accepted as submitted, no delay", () => {
-    expect(labGuide).toMatch(/\*\*fully costed\*\*/i);
-    expect(labGuide).toMatch(/accepts the plan as submitted/i);
-  });
-
-  it("names the genuine-deferral branch: a named, specific figure with spend actually withheld", () => {
-    expect(labGuide).toMatch(
-      /genuinely defers spend pending a named, specific figure/i,
+describe("evaluateCostAndAuthority covers every authority/cost combination", () => {
+  it("fully costed + valid spending authority granted -> accepted", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({ costFullyKnown: true, spendingAuthorityGranted: true }),
     );
-    expect(labGuide).toMatch(/two-week delay/i);
+    expect(outcome.consequence).toBe("accepted");
   });
 
-  it("names the third branch, and that third branch explicitly covers naming the gap while still spending through it", () => {
-    expect(labGuide).toMatch(/uncosted and spent through anyway/i);
-    // The bug this guards: an earlier draft of this rule only covered a
-    // record that never names a missing figure at all. The rule as written
-    // now also catches a record that *does* name the figure and its owner
-    // but still authorises the dependent spend as if it had already landed
-    // — naming the gap alone must not be enough to escape into the milder,
-    // two-week-delay branch.
-    expect(labGuide).toMatch(
-      /does name the missing figure\s+and its owner but still authorises the dependent spend/i,
+  it("named figure + owner + deadline + spend genuinely deferred -> delayed", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        costFullyKnown: false,
+        missingFigure: { name: "fit-out cost", owner: "Staff Representative", deadline: "one week" },
+        dependentSpendWithheldUntilConfirmed: true,
+      }),
     );
-    expect(labGuide).toMatch(/naming the gap does not move a record out of this branch/i);
+    expect(outcome.consequence).toBe("delayed");
+    if (outcome.bucket === "deferred") {
+      expect(outcome.missingFigure.owner).toBe("Staff Representative");
+    }
   });
 
-  it("[negative example] a rule that only asks 'does the record name a missing figure' would miss the new branch", () => {
-    const oldRule =
-      "If the record names a missing figure, treat it as a genuine deferral; " +
-      "otherwise send it back for revision.";
-    expect(oldRule).not.toMatch(
-      /does name the missing figure\s+and its owner but still authorises the dependent spend/i,
+  it("vague missing cost, no figure/owner/deadline named -> revision", () => {
+    const outcome = evaluateCostAndAuthority(baseCostInput({ costFullyKnown: false }));
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("vague-cost");
+    }
+  });
+
+  it("named missing figure but dependent spend immediately authorised anyway -> revision", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        costFullyKnown: false,
+        missingFigure: { name: "fit-out cost", owner: "Staff Representative", deadline: "one week" },
+        dependentSpendWithheldUntilConfirmed: false,
+      }),
     );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("named-gap-but-spent-through");
+    }
+  });
+
+  it("fully costed but no valid spending authority granted -> revision, not accepted", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({ costFullyKnown: true, spendingAuthorityGranted: false }),
+    );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("fully-costed-but-no-valid-spending-authority");
+    }
+  });
+
+  it("final decision authority exists but is not itself spending authority -> must not pass as accepted", () => {
+    // A record naming a final decision authority and nothing else about
+    // spending must never be treated as though spending authority follows
+    // automatically from that. Fully costed with no spending authority
+    // granted covers exactly this case.
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        finalAuthorityNamed: true,
+        costFullyKnown: true,
+        spendingAuthorityGranted: false,
+      }),
+    );
+    expect(outcome.consequence).not.toBe("accepted");
+  });
+
+  it("record treats the final decision authority's sign-off as spending authority -> revision, regardless of costing", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        finalAuthorityTreatedAsSpendingAuthority: true,
+        costFullyKnown: true,
+        spendingAuthorityGranted: true,
+      }),
+    );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("final-authority-mistaken-for-spending-authority");
+    }
+  });
+
+  it("no named final decision authority -> revision, before anything else is considered", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({ finalAuthorityNamed: false, costFullyKnown: true, spendingAuthorityGranted: true }),
+    );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("no-final-authority");
+    }
+  });
+
+  it("[negative example] a rule that only asked 'does the record name a missing figure' would wrongly accept a named-but-spent-through record", () => {
+    const oldRuleAccepts = (hasNamedFigure: boolean) => hasNamedFigure;
+    // The real rule rejects this record (spends through a named gap); the
+    // old, weaker rule would have waved it through on the figure alone.
+    expect(oldRuleAccepts(true)).toBe(true);
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        costFullyKnown: false,
+        missingFigure: { name: "fit-out cost", owner: "Staff Representative", deadline: "one week" },
+        dependentSpendWithheldUntilConfirmed: false,
+      }),
+    );
+    expect(outcome.consequence).not.toBe("accepted");
+    expect(outcome.consequence).not.toBe("delayed");
   });
 });
 
-describe("Consequence rule 3 (role rule) checks minimum outcome and constraint jointly, not as alternatives", () => {
-  it("states both fields are checked together, not as alternatives", () => {
-    expect(labGuide).toMatch(
-      /does the record satisfy\s+\*both\* that role's stated minimum acceptable outcome \*and\* their\s+non-tradeable constraint/i,
-    );
-    expect(labGuide).toMatch(/checked together rather\s+than as alternatives/i);
+describe("evaluateRoleRule checks minimum outcome and constraint jointly", () => {
+  it("role minimum met but constraint violated -> contested", () => {
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: true, constraintMet: false });
+    expect(outcome.status).toBe("contested");
   });
 
-  it("neither field excuses a gap in the other", () => {
+  it("constraint met but minimum unmet -> contested", () => {
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: false, constraintMet: true });
+    expect(outcome.status).toBe("contested");
+  });
+
+  it("both met -> clear", () => {
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: true, constraintMet: true });
+    expect(outcome.status).toBe("clear");
+  });
+
+  it("evidence insufficient (both undetermined) -> undetermined, not guessed", () => {
+    const outcome = evaluateRoleRule({
+      role: "Test Role",
+      minimumOutcomeMet: "undetermined",
+      constraintMet: "undetermined",
+    });
+    expect(outcome.status).toBe("undetermined");
+  });
+
+  it("one field undetermined and the other true -> undetermined, not rounded up to clear", () => {
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: true, constraintMet: "undetermined" });
+    expect(outcome.status).toBe("undetermined");
+  });
+
+  it("one field false and the other undetermined -> contested, not softened to undetermined", () => {
+    // A known failure is not made uncertain by an unrelated unknown field —
+    // contested still wins over undetermined when either field is actually false.
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: false, constraintMet: "undetermined" });
+    expect(outcome.status).toBe("contested");
+  });
+
+  it("[negative example] a rule phrased as 'either the outcome or the constraint' would not catch a role that fails only one", () => {
+    const oldRuleClear = (outcomeMet: boolean, constraintMet: boolean) => outcomeMet || constraintMet;
+    // Old, wrong rule: meeting either field alone was enough.
+    expect(oldRuleClear(true, false)).toBe(true);
+    // Real rule: meeting only one is not enough — the record is contested.
+    const outcome = evaluateRoleRule({ role: "Test Role", minimumOutcomeMet: true, constraintMet: false });
+    expect(outcome.status).not.toBe("clear");
+  });
+});
+
+describe("The worked hot-desking example's exported outcome is what the function actually computed", () => {
+  it("re-running evaluateCostAndAuthority on the exported input reproduces the exported outcome", () => {
+    expect(evaluateCostAndAuthority(hotDeskingCostAuthorityInput)).toEqual(hotDeskingCostAuthorityOutcome);
+  });
+
+  it("the worked example is a genuine deferral, not an acceptance or a revision", () => {
+    expect(hotDeskingCostAuthorityOutcome.consequence).toBe("delayed");
+  });
+
+  it("the worked example's four roles resolve to clear, clear, contested, undetermined in that order", () => {
+    expect(hotDeskingRoleRuleOutcomes.map((o) => o.status)).toEqual([
+      "clear",
+      "clear",
+      "contested",
+      "undetermined",
+    ]);
+  });
+});
+
+describe("The Alignment Lab guide's prose stays consistent with the evaluator's vocabulary", () => {
+  const labGuide = readFileSync(resolve("src/pages/alignment-lab/index.mdx"), "utf8");
+
+  it("names all three kinds of authority: final decision, spending, and implementation", () => {
+    expect(labGuide).toMatch(/\*\*final decision authority\*\*/i);
+    expect(labGuide).toMatch(/\*\*spending authority\*\*/i);
+    expect(labGuide).toMatch(/\*\*implementation authority\*\*/i);
+  });
+
+  it("states that naming a final decision authority does not establish spending authority", () => {
+    expect(labGuide).toMatch(/does\s+\*\*not\*\*, on its own,\s+mean you hold spending authority/i);
+  });
+
+  it("states the exhaustive three-branch cost-and-authority outcome, including the corrected 'fully costed and validly authorised' branch", () => {
+    expect(labGuide).toMatch(/fully costed and validly authorised/i);
+    expect(labGuide).toMatch(/specific cost explicitly deferred/i);
     expect(labGuide).toMatch(
-      /meeting the minimum outcome does not excuse\s+silently overriding the constraint/i,
-    );
-    expect(labGuide).toMatch(
-      /honouring the constraint does\s+not excuse falling short of the minimum outcome/i,
+      /uncosted, prematurely authorised, or authorised by the wrong\s+authority/i,
     );
   });
 
-  it("allows a role's outcome-or-constraint call to be left undetermined, not guessed at, when the record doesn't say", () => {
-    // The worked example's Executive Sponsor row is the concrete instance:
-    // both halves are reported as undetermined, distinct from "clear" or
-    // "contested", because the record doesn't state a resulting utilisation
-    // figure or the sponsor's reporting-window start date.
-    expect(labGuide).toMatch(/both fields undetermined from the record/i);
-    expect(labGuide).toMatch(/cannot be determined from this\s+record/i);
-    // The rule explicitly forbids forcing an undetermined call into either
-    // resolved bucket — this must appear as something the rule warns
-    // against, not something the rule does.
-    expect(labGuide).toMatch(/not rounded up to "clear" or down to\s+"contested"/i);
+  it("imports the evaluator from src/data/consequence-rules rather than re-deriving the result by hand", () => {
+    expect(labGuide).toMatch(/from ["']\.\.\/\.\.\/data\/consequence-rules["']/);
   });
 
-  it("[negative example] a rule phrased as 'either the outcome or the constraint' would not require both", () => {
-    const oldRule =
-      "A role is clear if the record satisfies either its stated minimum " +
-      "acceptable outcome or its non-tradeable constraint.";
-    expect(oldRule).not.toMatch(/\*both\*/i);
-    expect(oldRule).toMatch(/either/i);
+  it("[negative example] prose that only names 'a named final authority' without distinguishing spending authority reproduces the old conflation bug", () => {
+    const oldRule = "Is there a named final authority? If no, send the record back for revision.";
+    expect(oldRule).not.toMatch(/spending authority/i);
   });
 });

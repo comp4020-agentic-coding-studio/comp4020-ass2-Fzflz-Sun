@@ -102,7 +102,14 @@ unremarked gap, not necessarily someone actively shielding the room from
 it. Groupthink is a strong, specific diagnosis with its own named
 symptoms; this week's compression from transcript to minutes doesn't, on
 its own, establish that Janis's dynamic was in play — only that a real
-question went unanswered and got minuted as though it hadn't been asked.
+question, real reasoning, and an unanswered response were unevenly
+compressed: the excerpt still shows *that* Okoro raised a phase-order
+question tied to frontline consultation, so a later reader is not left
+with no trace of it at all — what's lost is *why* he raised it and
+whether the confirmation that followed actually engaged with that
+reasoning, which is enough for a later reader to underestimate the
+content and handling of the dissent without the record ever denying it
+happened.
 
 ## Before Week 9
 

@@ -9,6 +9,11 @@ heroTitle: The Alignment Lab
 import ContactSimulator from "../../components/ContactSimulator.astro";
 import RoleCardList from "../../components/RoleCardList.astro";
 import { hotDeskingRoleCards } from "../../data/case-facts";
+import {
+  hotDeskingCostAuthorityInput,
+  hotDeskingCostAuthorityOutcome,
+  hotDeskingRoleRuleOutcomes,
+} from "../../data/consequence-rules";
 
 # The Alignment Lab
 
@@ -54,32 +59,45 @@ only in Week 11's material on the ethics of alignment.
   to re-litigate an actual disagreement from your workplace, household or
   student group.
 - **Opt-out without penalty.** If a role or scenario would put you in a
-  position you are not comfortable with, you can request a swap, or an
-  alternative individual task, by messaging your facilitator any time before
-  role cards are distributed — no explanation required.
-  - **The alternative task, concretely:** you work from this page's public
-    worked example instead of the group's live, confidential scenario.
-    Individually, you produce the same six artefacts the assessment
-    requires — initial judgment, strategy memo (written for whichever role
-    card you choose from the worked example), a negotiation log you
-    construct by analysing the example log above rather than living it,
-    a written analysis of the example decision record in Section 5, an
-    individual autopsy of that record, and a partial rerun of one of its
-    junctures.
+  position you are not comfortable with, you can request a swap, or the
+  alternative pathway below, by messaging your facilitator any time before
+  role cards are distributed — no explanation required. The same pathway is
+  also where a student who missed role assignment and the contact window
+  entirely is routed — see "Make-up and async participation" below for why
+  that case cannot use the ordinary async make-up.
+  - **The alternative / structured-async pathway, concretely:** you work
+    from this page's public worked example instead of the group's live,
+    confidential scenario, but you do not simply read and comment on the
+    example materials already on this page. Playing one role through the
+    Contact Simulator in Section 2 above (or, as a written equivalent, the
+    same role cards' frozen contact transcripts your facilitator can
+    provide), you choose whom to contact within the same self-initiated
+    contact limit everyone else has, and at every contact log its purpose,
+    the new information it surfaced, any commitment made, and whether your
+    judgment changed — the same four things a live contact log records.
+    That produces your own structured negotiation log, not a summary of the
+    page's example one in Section 4. From your own negotiation log and the
+    fully revealed role cards, you then independently produce your own
+    decision record, in the same format as Section 5's, and write your own
+    individual autopsy and partial rerun of it. Every artefact you submit is
+    one you produced, not an analysis of one the page already gives you a
+    finished answer for.
   - It is marked against the same five criteria as the group-based
     submission (see [the assessment](/assessments/alignment-lab/)), with
     one adjustment. Four of the five — initial judgment and strategy memo
     (20%), pre-meeting negotiation (20%), individual decision autopsy
-    (35%), partial rerun (10%) — already mark individual analysis of a
-    record, so nothing about them requires you to have argued live. The
-    fifth, formal decision record (15%), is normally the one artefact a
-    live group produces **together** and is marked once, identically, for
-    everyone named in it — with no group to produce one, this pathway
-    marks it instead on your own written analysis of the worked example's
-    decision record in Section 5, treated as an individual submission
-    standing in for the shared artefact. See the criterion table under
-    "What you submit" near the bottom of this page for exactly which
-    pathway each criterion draws its evidence from.
+    (35%), partial rerun (10%) — already mark individual work on a record
+    each person produces or works through themselves, so nothing about them
+    requires a live group. The fifth, formal decision record (15%), is
+    normally the one artefact a live group produces **together** and is
+    marked once, identically, for everyone named in it — with no group to
+    produce one, this pathway marks it instead on the decision record you
+    independently produce from your own negotiation log, treated as an
+    individual submission standing in for the shared artefact, not on a
+    commentary about the page's example record. See the criterion table
+    under "What you submit" near the bottom of this page for exactly which
+    pathway each criterion draws its evidence from, and why each is held to
+    the same evidentiary standard.
 - **In-role, not in-character.** You are arguing a position, not performing a
   persona. Personal attacks, real names, and anything outside the brief are
   out of bounds, and the session facilitator can pause the room if the line
@@ -111,20 +129,43 @@ only in Week 11's material on the ethics of alignment.
     absence, and it protects your own "Individual decision autopsy" mark
     (35%) by giving you, the absent person, a documented position of your
     own to autopsy from even though you were not in the room.
-- **Make-up and async participation are always available.** If you miss the
-  live meeting itself, but were assigned a role and your group did meet and
-  produce a decision record, you complete an asynchronous equivalent within
-  one week of receiving that record. You are given everything the group
-  itself had at the reveal, not a summary of it: the full reveal pack (every
-  role's brief, not only your own), the group's own negotiation log and
-  contact records, the decision record itself, and the continuity memo of
-  the role you're standing in for. From those written materials you submit
-  the same negotiation log, decision-record analysis and individual autopsy
-  everyone else submits — reasoned from what's in front of you instead of
-  from being in the room. Where no group meeting happened at all for you to
-  join late (you opted out before role cards were distributed, per the
-  alternative task above), the async path doesn't apply — use the
-  alternative task's materials instead.
+- **Make-up and async participation are always available, and split into two
+  genuinely different cases depending on what you actually missed.**
+  - **(a) You were assigned a role and had the contact window, but missed
+    only the live meeting itself.** Your initial judgment, strategy memo and
+    negotiation log are already your own genuine work from before and during
+    the real contact window — you submit exactly those, on the same clock as
+    everyone else, and do not reconstruct or rewrite them from the group's
+    materials after the fact; the point of this case is that you were
+    present for everything except the meeting, so nothing about your own
+    artefacts up to that point needs redoing. What you didn't get to do is
+    help the group produce its decision record live, so once your group does
+    meet and produce one, you are given everything it had at the reveal, not
+    a summary of it: the full reveal pack (every role's brief, not only your
+    own), the group's own negotiation log and contact records, the decision
+    record itself, and the continuity memo of the role you're standing in
+    for. Using those materials, within one week of receiving them, you audit
+    the group's actual decision record against the full reveal pack and
+    submit your own corrected or reconstructed decision record: where you
+    agree with a field, say so and cite what in the reveal pack supports it;
+    where a field is incomplete or wrong against the full pack, name the
+    specific correction and the evidence for it. This is scored against the
+    same eight fields and the same quality standard as a live record — not
+    against whether it matches the group's original, since a well-evidenced
+    disagreement with the original record is not itself a mark against you.
+    From your own negotiation log, the group's decision record and your
+    corrected version of it, you then submit the same individual autopsy and
+    partial rerun everyone else does.
+  - **(b) You missed role assignment or the contact window itself, not only
+    the meeting.** This is not folded into case (a) above — there is no
+    genuine negotiation log or strategy memo of your own to submit if you
+    were never in the window that would have produced them, and pretending
+    to reconstruct one after the fact from the group's record would mean
+    submitting someone else's evidence as your own. Instead you are routed
+    to the **alternative / structured-async pathway** described under
+    "Opt-out without penalty" above, which is built from the start to
+    produce every artefact independently rather than assuming a real contact
+    window happened for you.
   - **Why no one's grade depends on a groupmate's attendance or
     timeliness:** the negotiation log, strategy memo and individual autopsy
     are all marked as individual work regardless of who else was present or
@@ -183,9 +224,12 @@ only in Week 11's material on the ethics of alignment.
    consequence, not a claim that a real decision like it would play out the
    same way.
 7. **Individual autopsy and partial rerun.** Individually: a decision
-   autopsy naming what you now think actually decided the outcome, then a
-   short rerun of one specific juncture to test whether a named process
-   change would have produced a different one.
+   autopsy reaching one of three conclusions about what actually decided the
+   outcome — a specific distortion, no significant distortion, or
+   indeterminate on the available record (naming the missing evidence, the
+   alternative you could not rule out, and what would change your
+   judgment) — then a short rerun of one specific juncture to test whether a
+   named process change would have produced a different one.
 
 ## Worked example: should the Reading Room move to hot-desking?
 
@@ -355,58 +399,99 @@ outcomes, provided the record says so honestly:
 **What this record does not yet authorise, in concrete terms:** purchasing
 or installing the accessibility fit-out equipment, physically reassigning
 or relabelling any of the 40 desks, and telling the 12 affected staff a
-fixed go-live date are all implementation actions that depend on money not
-yet confirmed — none of them may happen before the fit-out figure lands
-and the Finance and Risk Lead's own sign-off is given. What the Executive
-Sponsor's sign-off above does authorise now is drafting the combined
-proposal and costing it further; it is a licence to keep working on the
-plan, not a licence to start building it.
+fixed go-live date are all **implementation authority** actions that depend
+on money not yet confirmed — none of them may happen before the fit-out
+figure lands and the Finance and Risk Lead's own sign-off is given. What the
+Executive Sponsor's sign-off above does authorise now is drafting the
+combined proposal and costing it further under their **final decision
+authority**; it is a licence to keep working on the plan, not a licence to
+spend against it (**spending authority**, which the Executive Sponsor does
+not hold here) or to start building it (**implementation authority**,
+which no one has yet).
 
 ### 6. Consequences, from stated rules
 
 The consequence test is not a dramatised outcome — it applies explicit,
 ordered rules to whatever the decision record actually says, so the same
-record always produces the same consequence. The rules are checked in this
-order, because a record can honestly satisfy more than one trigger at
-once — "no named authority" and "defers spend pending a missing figure" are
-independent facts about a record, not opposite ends of one switch, so a
-record missing both can trip both at the same time unless something decides
-which one governs:
+record always produces the same consequence. As of this page, those rules
+are not only argued in prose: they are a small, typed, pure function —
+`evaluateCostAndAuthority` and `evaluateRoleRule`, defined in
+`src/data/consequence-rules.ts` — and the worked result below is that
+function's actual output on the record above, not a hand-written paraphrase
+of what it should say.
 
-1. **Is there a named final authority?** If no → the Space Committee sends
-   the record back for one revision before it will consider anything else
-   about it. This is checked first: without someone named to hold the
-   record's spend decisions, there is no one for a deferred figure to come
-   back to, so an authority gap always takes priority over a costing gap,
-   including when both are missing at once.
-2. If a named authority exists, **what is the cost status?** This branch is
-   exhaustive — every record lands in exactly one of three buckets, and the
-   test for which one is not just "does the record name a missing figure"
-   but "does the record actually withhold spend until that figure lands":
-   - **Fully costed** → the Space Committee accepts the plan as submitted,
-     no delay.
-   - **Genuinely defers spend pending a named, specific figure** (the
-     record says exactly which number is missing, who is getting it,
-     **and does not authorise the dependent spend until that figure is
-     confirmed**) → a two-week delay while that figure is confirmed, and
-     any other commitment already made in the record (an accessibility
-     guarantee, for instance) still holds regardless of the delay.
-   - **Uncosted and spent through anyway** — this covers both the record
-     that gestures at "cost to be confirmed" without saying what number, by
-     whom, or by when, *and* the record that does name the missing figure
-     and its owner but still authorises the dependent spend as if the
-     figure were already confirmed → the whole record is sent back for
-     revision before any of its commitments take effect, not just the spend
-     line. Naming the gap does not move a record out of this branch; only
-     actually withholding spend until the gap is closed does. This is a
-     harder stop than the middle branch: a genuine deferral has a concrete
-     number to wait for and nothing spend-related moves until it lands, so
-     the rest of the record can proceed around it; a record that authorises
-     spend regardless — whether it named the gap or not — has nothing left
-     to wait for by the time the Committee sees it, so nothing in it is
-     treated as settled until it is re-drafted around an actual, honoured
-     deferral.
-3. **Independently of 1–2, for each role in turn: does the record satisfy
+The rules turn on three kinds of authority a record can name, which are not
+the same thing and a record naming one does not establish the others:
+
+- **Final decision authority** — who signs off on the decision going
+  forward.
+- **Spending authority** — who can actually authorise the money moving.
+  Holding final decision authority over a record does **not**, on its own,
+  mean you hold spending authority over what it costs.
+- **Implementation authority** — who can act on the decision in the world
+  (buy the equipment, move the desks, announce the date). Nothing
+  implementation-shaped may proceed until spending authority has actually
+  been obtained, however clearly the decision itself has been signed off.
+
+The rules are checked in this order, because a record can honestly satisfy
+more than one trigger at once — "no named final decision authority" and
+"defers spend pending a missing figure" are independent facts about a
+record, not opposite ends of one switch, so a record missing both can trip
+both at the same time unless something decides which one governs:
+
+1. **Is there a named final decision authority?** If no → the Space
+   Committee sends the record back for one revision before it will
+   consider anything else about it. This is checked first: without someone
+   named to hold the record's decisions, there is no one for a deferred
+   figure to come back to, so an authority gap always takes priority over a
+   costing gap, including when both are missing at once.
+2. **Does the record treat that final decision authority's sign-off as
+   spending authority?** If yes → sent back for revision regardless of how
+   complete the costing is. This is the mistake the worked example's own
+   record is careful to avoid: naming a final decision authority is not the
+   same fact as that person, or anyone else, having spending authority —
+   a record that quietly conflates the two has made an authority error, not
+   a costing one, and rule 3 below never gets to evaluate a record that
+   makes it.
+3. If a final decision authority is named and not mistaken for spending
+   authority, **is the cost fully costed and validly authorised?** This
+   branch is exhaustive — every remaining record lands in exactly one of
+   three buckets, and the test for which one is not just "does the record
+   name a missing figure" but "does the record actually withhold spend
+   until that figure lands, and has spending authority actually been
+   obtained":
+   - **Fully costed and validly authorised** → the figure is complete
+     *and* the spend has been approved by someone who actually holds
+     spending authority → the Space Committee accepts the plan as
+     submitted, no delay.
+   - **Specific cost explicitly deferred** — the record says exactly which
+     number is missing, who owns getting it, and the deadline, **and
+     explicitly prohibits any dependent spend until that figure is
+     confirmed and validly approved** → a two-week delay while that figure
+     is confirmed, and any other commitment already made in the record (an
+     accessibility guarantee, for instance) still holds regardless of the
+     delay.
+   - **Uncosted, prematurely authorised, or authorised by the wrong
+     authority** — this branch covers four distinct ways a record can fail
+     to earn acceptance or a genuine deferral: a vague "cost to be
+     confirmed" that names no figure, owner or deadline; a record that
+     *does* name the missing figure and its owner but still authorises the
+     dependent spend as if the figure were already confirmed; a record
+     where the cost is fully known but no one who actually holds spending
+     authority has approved it; and (caught earlier, at rule 2) a record
+     where final decision authority is wrongly treated as spending
+     authority. Naming the gap does not move a record out of this branch;
+     only actually withholding spend until the gap is closed, *and*
+     getting the spend approved by someone with real spending authority,
+     does. This is a harder stop than the middle branch: a genuine
+     deferral has a concrete number to wait for and nothing spend-related
+     moves until it lands, so the rest of the record can proceed around
+     it; a record that authorises spend regardless — or that was never
+     going to be approved by anyone with the authority to approve it — has
+     nothing left to wait for by the time the Committee sees it, so
+     nothing in it is treated as settled until it is re-drafted around an
+     actual, honoured deferral and a valid approval.
+4. **Independently of 1–3, for each role in turn: does the record satisfy
    *both* that role's stated minimum acceptable outcome *and* their
    non-tradeable constraint from their role card, checked together rather
    than as alternatives?** Meeting the minimum outcome does not excuse
@@ -414,32 +499,39 @@ which one governs:
    not excuse falling short of the minimum outcome — either gap on its own
    flags the record as contested for that role going into the reveal,
    regardless of whether they spoke up in the room, and regardless of which
-   outcome 1–2 produced. A record can be accepted or delayed by rules 1–2
-   *and* still be contested under rule 3 for one or more roles. A record
+   outcome 1–3 produced. A record can be accepted or delayed by rules 1–3
+   *and* still be contested under rule 4 for one or more roles. A record
    the text genuinely doesn't confirm either way for a given role — on the
    outcome, the constraint, or both — is left unresolved rather than
    guessed at, exactly as an evidence-limited autopsy would treat it — see
    the walkthrough below for a case where this happens.
 
-Applied to the record above, rule by rule:
+Applied to the record above, rule by rule — each bullet names what the
+function actually returned, computed live from
+`hotDeskingCostAuthorityInput` and `hotDeskingRoleRuleInputs`:
 
-- **Rule 1 — named authority?** Yes: "Executive Sponsor signs off the
-  proposal going forward." Proceed to rule 2.
-- **Rule 2 — which of the three cost branches?** Genuinely
-  deferred-with-a-named-figure, the middle branch, not the third one: the
-  fit-out figure is an explicitly named, specific gap ("Unverified
-  assumption: that the accessibility fit-out cost... will not exceed the
-  software upgrade saving") with an owner and a one-week deadline, so there
-  is a concrete number and date to wait for rather than an open-ended "cost
-  to be confirmed." Just as important, the record actually withholds spend
-  on it: "Final decision authority" says the sponsor's sign-off "authorises
-  drafting and costing the combined line item; it does not itself authorise
-  spending," with any real spend requiring the Finance and Risk Lead's own
-  sign-off first. Naming the gap alone would not be enough to land here —
-  it is the combination of naming it *and* not spending through it that
-  keeps this record out of the third branch. → **Two-week delay**,
-  accessibility commitment holds.
-- **Rule 3 — each role's minimum outcome *and* constraint, checked
+- **Rule 1 — named final decision authority?** Yes: "Executive Sponsor
+  signs off the proposal going forward." Proceed to rule 2.
+- **Rule 2 — final authority mistaken for spending authority?** No: the
+  record is explicit that the sponsor's sign-off "authorises drafting and
+  costing the combined line item; it does not itself authorise spending."
+  Proceed to rule 3.
+- **Rule 3 — which of the three cost branches?** The function's computed
+  result: consequence **{hotDeskingCostAuthorityOutcome.consequence}**
+  ({hotDeskingCostAuthorityOutcome.reason}). This is the middle branch, not
+  the third one: the fit-out figure is an explicitly named, specific gap
+  ("Unverified assumption: that the accessibility fit-out cost... will not
+  exceed the software upgrade saving") with an owner
+  ({hotDeskingCostAuthorityInput.missingFigure?.owner}) and a
+  ({hotDeskingCostAuthorityInput.missingFigure?.deadline}) deadline, so
+  there is a concrete number and date to wait for rather than an
+  open-ended "cost to be confirmed." Just as important, the record
+  actually withholds spend on it, with any real spend requiring the
+  Finance and Risk Lead's own sign-off first — naming the gap alone would
+  not be enough to land here; it is the combination of naming it *and* not
+  spending through it that keeps this record out of the third branch. →
+  **Two-week delay**, accessibility commitment holds.
+- **Rule 4 — each role's minimum outcome *and* constraint, checked
   together:**
   - *Delivery Lead* — minimum outcome ("a decision that does not commit to
     a go-live date before the software question is answered") met: the
@@ -472,7 +564,7 @@ Applied to the record above, rule by rule:
     without a proposal that names a specific line item, not a category")
     met: the proposal is one named, combined line item, not a category. →
     **contested flag** for this role (from the unmet minimum outcome, not
-    the constraint), on top of the rule-2 delay.
+    the constraint), on top of the rule-3 delay.
   - *Executive Sponsor* — minimum outcome ("any plan that raises reported
     utilisation above 50% within two terms") **undetermined from the
     record**: the record commits to a two-term phase-in but never states a
@@ -492,13 +584,15 @@ Applied to the record above, rule by rule:
     honest call for both halves is "cannot be determined from this
     record," not a guess in either direction.
 
-Final result: **two-week delay** (rule 2); **rule 3 clear** for the Delivery
-Lead and the Staff Representative (including her non-tradeable constraint,
-honoured rather than bypassed); **contested for the Finance and Risk Lead**
-on the minimum-outcome half of rule 3; and **both halves undetermined** for
-the Executive Sponsor — five separate, individually traceable rule-3
-outputs plus the rule-2 delay, not a single "two-week delay" headline that
-quietly drops the rest.
+Final result, computed: cost-and-authority consequence
+**{hotDeskingCostAuthorityOutcome.consequence}** (rule 3 — two-week delay);
+role rule (rule 4) **clear** for the Delivery Lead and the Staff
+Representative (including her non-tradeable constraint, honoured rather
+than bypassed); **contested for the Finance and Risk Lead**
+({hotDeskingRoleRuleOutcomes[2].reason}); and **undetermined** for the
+Executive Sponsor ({hotDeskingRoleRuleOutcomes[3].reason}) — five separate,
+individually traceable rule-4 outputs plus the rule-3 delay, not a single
+"two-week delay" headline that quietly drops the rest.
 
 ### 7. An example retrospective and partial rerun
 
@@ -562,20 +656,66 @@ each available as a starting-point format on the [templates](/templates/)
 page.
 
 Each criterion's evidence comes from a different place depending on which of
-the three pathways above you're on — live, async make-up, or the alternative
-opt-out task. The weights and total (100% of the Lab's own mark) are the same
-across all three; only where the evidence for each one comes from changes:
+the three pathways you're on — live, async make-up (you had a role and a
+contact window, but missed only the live meeting — case (a) above), or the
+alternative / structured-async pathway (an opt-out, or case (b) above: you
+missed role assignment or the contact window itself). The weights and total
+(100% of the Lab's own mark) are the same across all three; only where the
+evidence for each one comes from, and what counts as meeting the standard,
+changes:
 
-| Criterion (weight, level) | Live | Async make-up | Alternative (opt-out) |
+| Criterion (weight, level) | Live | Async make-up | Alternative / structured-async |
 |---|---|---|---|
-| Initial judgment & strategy memo (20%, individual) | Written before role cards / before contact opens | Same — written on the same clock as everyone else, before you knew you'd miss the meeting | Written from this page's public worked example |
-| Pre-meeting negotiation (20%, individual) | Your own logged contacts during the live window | Same window and contact limit, logged from the group's written contact records if you join late | Reasoned from the example negotiation log in Section 4, not lived |
-| Formal decision record (15%, **group**) | One record your live group produces together; marked once for everyone named in it | The same group record, received in full at the reveal, analysed rather than co-produced | No group exists to produce one — marked instead on your own written analysis of the example record in Section 5 |
-| Individual decision autopsy (35%, individual) | Individually, after your group's own reveal | Individually, from the received record, reveal pack and your continuity memo | Individually, of the example record |
-| Partial rerun (10%, individual) | One juncture from your live meeting | Same, reasoned from the written materials you received | One juncture from the example negotiation log |
+| Initial judgment & strategy memo (20%, individual) | Written before role cards / before contact opens | Same artefact, written on the same clock as everyone else, before you knew you'd miss the meeting — not rewritten afterwards | Written from this page's public worked example, before you touch the Contact Simulator or any frozen transcript |
+| Pre-meeting negotiation (20%, individual) | Your own logged contacts during the live window | Your own logged contacts from that same real window — you were present for it — not reconstructed afterwards from the group's shared materials | Your own contacts logged while playing the worked example through the Contact Simulator (or its frozen transcripts), under the same self-initiated-contact limit |
+| Formal decision record (15%, **group** in the live case; an individually-produced equivalent otherwise) | One record your live group produces together; marked once for everyone named in it | No group record to co-produce live — you audit the group's actual record against the full reveal pack and submit your own corrected or reconstructed record, scored against the same eight fields and standard as a live one | No group exists — you independently produce your own decision record from your own negotiation log and the worked example's fully revealed role cards |
+| Individual decision autopsy (35%, individual) | Individually, after your group's own reveal | Individually, from the received record, full reveal pack and your own logged contacts | Individually, of the decision record you produced above |
+| Partial rerun (10%, individual) | One juncture from your live meeting | Same, reasoned from the written materials you received | One juncture from your own Contact Simulator run or frozen transcript |
 
-Four of the five rows are individual work under every pathway. Only the
-decision record is genuinely shared evidence — produced once, by a group, and
-marked the same for everyone named in it — which is exactly why the
-alternative pathway needs its own substitute for that one row rather than
-simply reusing the other four unchanged.
+### Why each row is equivalent, not merely parallel
+
+Four of the five rows are individual work under every pathway; only the
+decision record briefly reads as "shared" in the live case, which is exactly
+why it gets its own, longer reasoning below rather than the others' shorter
+one.
+
+- **Initial judgment & strategy memo.** What's marked is reasoning produced
+  before any negotiated information existed — every pathway enforces that
+  same ordering (before role cards / contact for the live and async make-up
+  cases, before touching the simulator for the alternative pathway), so the
+  task tests the same skill regardless of which materials supplied it.
+- **Pre-meeting negotiation.** What's marked is whether each logged contact
+  records its purpose, the new information it surfaced, any commitment made,
+  and whether judgment changed — not whether the contact happened inside a
+  real-time group. The Contact Simulator enforces the same self-initiated
+  contact cap and reveals the same shape of fact-plus-constraint a live
+  contact would, so a log built by playing it through is evidence of the same
+  skill — using a limited number of contact opportunities to gather and act
+  on evidence — under a worked rather than live counterpart, not a smaller
+  version of the task.
+- **Formal decision record.** In every pathway this is marked against the
+  same eight fields on the [decision record template](/templates/) (the
+  decision, evidence relied on, unverified assumptions, who agreed, who
+  dissented, action owners, final decision authority, and what would reopen
+  the record) to the same standard of evidence-use. What differs is only who
+  supplies the underlying
+  negotiation the record is built from — a live group, an audited correction
+  of one, or a record you produce yourself — never whether you personally sat
+  in a room. A defensible, well-evidenced correction to the group's own
+  record (async make-up) is treated exactly as favourably as a defensible
+  original one (alternative), because the criterion asks whether the record
+  meets the standard, not whether it agrees with someone else's draft.
+- **Individual decision autopsy.** The autopsy is marked on the reasoning
+  applied to a decision record and the role briefs behind it, not on whether
+  the record was produced live in front of the writer. A record read
+  carefully in full, alongside the complete reveal pack, offers the same
+  evidentiary base as one watched being produced — the task was never
+  "recall what you personally witnessed," it was always "reason from a
+  documented record together with the evidence behind it," which every
+  pathway supplies.
+- **Partial rerun.** A rerun only ever needs one concrete juncture, one named
+  process change, and a defended prediction of the concrete difference that
+  follows. A documented juncture — from written make-up materials or a
+  logged Contact Simulator run — supplies exactly those same three things a
+  live juncture would; nothing about the task requires having lived the
+  juncture rather than read it precisely.

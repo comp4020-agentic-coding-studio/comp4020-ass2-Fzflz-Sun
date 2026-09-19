@@ -29,13 +29,20 @@ lasts far longer than the meeting did.
 
 Look again at "the sequence was confirmed as presented." Week 6 asked what
 this line leaves out. This week asks a different question: what does
-someone joining the project in June, with only this sentence to go on,
-believe about how the decision was made? They believe it was uncontested.
-They have no way to know Sanjay Okoro asked a question that never got
-answered, unless they go looking for a transcript that, in a real
-organisation, would not exist to find. The minutes are not a compressed
-copy of the meeting. For everyone who wasn't there, the minutes *are* the
-meeting.
+someone joining the project in June, with only the excerpted minutes to go
+on, believe about how the decision was made? They can see that Sanjay
+Okoro raised a phase-order question tied to frontline consultation before
+the sequence was locked in — the earlier item's own line names him and
+names the topic. What they cannot see is his specific reasoning (the
+public-facing-hours argument), or the discussion that followed, or
+whether "confirmed as presented" means his reasoning was actually
+addressed or simply restated the original plan. So they are likely to
+underestimate the substance and handling of his objection, not to miss its
+existence entirely — that finer distinction disappears only if they go
+looking for a transcript that, in a real organisation, would not exist to
+find. The minutes are not a compressed copy of the meeting. For everyone
+who wasn't there, the minutes *are* the meeting, and a compressed meeting
+can still name a dissent without preserving what made it substantive.
 
 ## Why this is the week your own record gets made
 
@@ -44,16 +51,18 @@ actually did across the negotiation and the meeting — including anything
 that happened informally, off the record, or in a contact you didn't fully
 document — only the decision record you produce together will exist for
 anyone reading it afterwards, including your own future self writing the
-individual autopsy. If something mattered and it isn't in the record, it
-will be exactly as invisible to that later reading as Okoro's unanswered
-question is to a new hire in June.
+individual autopsy. If something mattered and it isn't in the record at
+all, it will be exactly as invisible to that later reading as Okoro's
+specific reasoning is to a new hire in June, who can see that he raised a
+question but not what grounded it or how it was actually handled.
 
 ## What "reveal and consequence test" means
 
 Today's session runs the reveal: each group's decision record is read
 against what the record does not show, and against the private information
-your role card held that never became public. The three consequence rule
-families on the [Alignment Lab](/alignment-lab/) page determine what changes for your
+your role card held that never became public. The consequence rules on the
+[Alignment Lab](/alignment-lab/) page — a cost-and-authority check and a
+per-role check — determine what changes for your
 group as a result — not a mark, at this stage, but a concrete change to the
 scenario you carry into your individual autopsy.
 

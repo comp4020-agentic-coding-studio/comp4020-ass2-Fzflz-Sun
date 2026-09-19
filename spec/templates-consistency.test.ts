@@ -212,6 +212,10 @@ describe("Continuity memo template covers what the Lab guide's ground rules prom
 describe("Alignment Lab individual autopsy template is distinct from the standalone Decision Autopsy template", () => {
   const labAutopsy = readTemplate("lab-decision-autopsy");
   const decisionAutopsy = readTemplate("decision-autopsy");
+  const assessmentBrief = readFileSync(
+    resolve("src/content/assessments/alignment-lab.md"),
+    "utf8",
+  );
 
   it("allows arguing the process held up with no significant distortion, not just naming one", () => {
     expect(labAutopsy).toMatch(/no significant distortion/i);
@@ -223,9 +227,35 @@ describe("Alignment Lab individual autopsy template is distinct from the standal
     expect(decisionAutopsy).not.toMatch(/group's decision record/i);
   });
 
+  it("allows all three conclusions — distortion, no significant distortion, indeterminate — same as the standalone template", () => {
+    expect(labAutopsy).toMatch(/\(a\) a specific distortion/i);
+    expect(labAutopsy).toMatch(/\(b\) the process held up/i);
+    expect(labAutopsy).toMatch(/\(c\) indeterminate/i);
+  });
+
+  it("indeterminate is not a bare fallback here either: missing evidence, an alternative, and what would change the judgement", () => {
+    expect(labAutopsy).toMatch(/alternative explanation you could not rule out/i);
+    expect(labAutopsy).toMatch(/what would change your judgement/i);
+  });
+
+  it("the assessment brief's spec names all three conclusions, matching the template", () => {
+    expect(assessmentBrief).toMatch(/naming a specific distortion/i);
+    expect(assessmentBrief).toMatch(/no significant distortion/i);
+    expect(assessmentBrief).toMatch(/indeterminate on what you have/i);
+  });
+
   it("[negative example] a template that only allows naming a distortion would not match", () => {
     const old = "What actually decided the outcome, and the distortion that caused it:";
     expect(old).not.toMatch(/no significant distortion/i);
+    expect(old).not.toMatch(/\(c\) indeterminate/i);
+  });
+
+  it("[negative example] a brief spec that only names two conclusions is caught", () => {
+    const oldSpec =
+      "reaching an evidenced conclusion about what shaped the outcome — naming a " +
+      "specific distortion where the record supports one, or arguing that the " +
+      "process held up and no significant distortion is evident";
+    expect(oldSpec).not.toMatch(/indeterminate on what you have/i);
   });
 });
 
