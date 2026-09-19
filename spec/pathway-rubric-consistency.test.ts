@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import { labScoring } from "../src/data/alignment-lab";
 
 // The Alignment Lab's live, async make-up and alternative/structured-async
 // pathways share one weighting (20/20/15/35/10) but submit evidence of
@@ -58,8 +59,8 @@ describe("Case (a)'s formal decision record criterion is a genuine audit task, n
     expect(labGuide).toMatch(/submit your own corrected or reconstructed decision record/i);
   });
 
-  it("is scored against the same eight fields and standard as a live record, not against matching the original", () => {
-    expect(labGuide).toMatch(/same eight fields and the same quality standard as a live record/i);
+  it("is scored against the same ten fields and standard as a live record, not against matching the original", () => {
+    expect(labGuide).toMatch(/same ten fields and the same quality standard as a live record/i);
     expect(labGuide).toMatch(/not\s*\n\s*against whether it matches the group's original/i);
   });
 });
@@ -181,5 +182,56 @@ describe("The assessment brief, Policies and Templates pages stay synchronized w
     const oldWording = "The one document the Alignment Lab group produces together.";
     expect(oldWording).not.toMatch(/async make-up/i);
     expect(oldWording).not.toMatch(/alternative-pathway/i);
+  });
+});
+
+describe("labScoring's per-pathway level matches the Lab guide's own prose, not a single flat claim", () => {
+  // src/data/alignment-lab.ts used to mark "Formal decision record" with a
+  // single flat `level: "group"` field — true only of the live pathway, and
+  // silently wrong for the async make-up and alternative pathways, which the
+  // guide's own table (line 691 above) has always correctly described as
+  // individually-produced. levelByPathway replaced that field; these tests
+  // check the replacement actually says what the table says, not just that
+  // it compiles.
+
+  function criterion(name: string) {
+    const found = labScoring.find((c) => c.name === name);
+    if (!found) throw new Error(`no labScoring criterion named "${name}"`);
+    return found;
+  }
+
+  it("Formal decision record is group only in the live pathway, individual in async make-up and alternative", () => {
+    const record = criterion("Formal decision record");
+    expect(record.levelByPathway).toEqual({
+      live: "group",
+      asyncMakeup: "individual",
+      alternative: "individual",
+    });
+  });
+
+  it("every other criterion is individual under all three pathways", () => {
+    for (const c of labScoring) {
+      if (c.name === "Formal decision record") continue;
+      expect(c.levelByPathway).toEqual({ live: "individual", asyncMakeup: "individual", alternative: "individual" });
+    }
+  });
+
+  it("the guide's table states the same live-group / otherwise-individual split for the decision record row", () => {
+    expect(labGuide).toMatch(
+      /Formal decision record \(15%, \*\*group\*\* in the live case; an\s*\n?\s*individually-produced equivalent otherwise\)/,
+    );
+  });
+
+  it("the guide never claims the decision record is group-produced in the async make-up or alternative pathway", () => {
+    expect(labGuide).not.toMatch(/async make-up.{0,80}\*\*group\*\*/is);
+    expect(labGuide).not.toMatch(/alternative[^|]{0,80}\*\*group\*\*/is);
+  });
+
+  it("[negative example] a flat level: 'group' field (the old, removed shape) would misdescribe two of the three pathways", () => {
+    const oldFlatLevel: "individual" | "group" = "group";
+    // Reproduces the bug: reading a single flat field back for the async
+    // make-up pathway would wrongly report "group" where the guide's own
+    // table says "individually-produced equivalent".
+    expect(oldFlatLevel).not.toBe(criterion("Formal decision record").levelByPathway.asyncMakeup);
   });
 });

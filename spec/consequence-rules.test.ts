@@ -124,6 +124,34 @@ describe("evaluateCostAndAuthority covers every authority/cost combination", () 
     }
   });
 
+  it("missingFigure present but with an empty name/owner/deadline -> revision, not a valid deferral", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        costFullyKnown: false,
+        missingFigure: { name: "", owner: "", deadline: "" },
+        dependentSpendWithheldUntilConfirmed: true,
+      }),
+    );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("vague-cost");
+    }
+  });
+
+  it("missingFigure present but missing only the owner -> still revision, not delayed", () => {
+    const outcome = evaluateCostAndAuthority(
+      baseCostInput({
+        costFullyKnown: false,
+        missingFigure: { name: "fit-out cost", owner: "   ", deadline: "one week" },
+        dependentSpendWithheldUntilConfirmed: true,
+      }),
+    );
+    expect(outcome.consequence).toBe("revision");
+    if (outcome.bucket === "revision") {
+      expect(outcome.cause).toBe("vague-cost");
+    }
+  });
+
   it("[negative example] a rule that only asked 'does the record name a missing figure' would wrongly accept a named-but-spent-through record", () => {
     const oldRuleAccepts = (hasNamedFigure: boolean) => hasNamedFigure;
     // The real rule rejects this record (spends through a named gap); the

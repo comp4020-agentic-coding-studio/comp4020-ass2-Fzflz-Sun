@@ -63,12 +63,31 @@
     height: auto !important;
   }
 
+  /* Reveal's `viewDistance: 10` (set in astromotion's Reveal init, which
+     this repo can't edit) preloads every slide within 10 of the current one
+     by setting an inline `display: grid` on each — see reveal.js's
+     SlideContent#load, which does `slide.style.display = configValue` for
+     any config string that doesn't itself contain "!important". In decks
+     this short that's effectively every slide. On desktop that inline style
+     is harmless: `.slides` stays `position: absolute`, so preloaded slides
+     stack invisibly under the `.present` one. Once `position: static` above
+     puts every section into normal flow for the phone layout, those
+     preloaded-but-not-current sections would still be `display: grid` from
+     their inline style and take up flow space too, pushing `.present` down
+     the page or off it. A plain CSS rule can't beat that inline style, so
+     `display: none !important` here (and the `.present` override below) is
+     required, not stylistic. */
   :where(.reveal .slides) section {
     position: static !important;
+    display: none !important;
     top: auto !important;
     width: 100% !important;
-    height: auto !important;
-    max-height: none;
+    /* Bound each slide to one viewport so a long slide scrolls inside its
+       own box via overflow-y, instead of the previous `height: auto`, which
+       just grew the (now-static) document with nothing to contain it. */
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh;
     box-sizing: border-box;
     overflow-y: auto;
 
@@ -89,6 +108,13 @@
       width: 220px;
       height: 220px;
     }
+  }
+
+  /* Reveal's own config sets `display: "grid"`, so this is the value the
+     .present slide would have anyway — restating it here (over the
+     `display: none !important` above) is what actually shows it. */
+  :where(.reveal .slides) section.present {
+    display: grid !important;
   }
 
   :where(.reveal .slides) section.impact :is(p, li) {

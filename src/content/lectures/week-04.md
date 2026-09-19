@@ -31,8 +31,13 @@ marks down, on either side of the argument.
 
 The Steering Committee confirmed the ClarityPulse implementation timeline on
 8 March. What happened in the week after is new material — two documents
-that were not part of Week 1's fact/inference exercise, because they did not
-exist yet: a calendar invite, sent 10 March, for a small working session
+that were not part of Week 1's fact/inference exercise, not because they
+hadn't happened yet (the whole pilot is a closed, years-old case; every
+document in it already existed before you read any of them), but because
+Week 1 released only the ten entries it needed for that week's exercise.
+These two were not previously released to students, and are newly added to
+this week's evidence packet: a calendar invite, sent 10 March, for a small
+working session
 between Tomas Herrera, Priya Nandakumar and ClarityPulse's delivery team,
 and the agenda for the 13 March LSS Rollout Working Group the invite refers
 to as "Saturday." Both documents are reproduced in full on the [session

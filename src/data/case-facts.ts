@@ -5,6 +5,24 @@
 // case cannot drift out of sync with itself across twelve weeks of material.
 // `spec/case-consistency.test.ts` greps the built pages for these exact
 // strings and fails if a page states a conflicting figure.
+//
+// The pilot is an archived case from 2021, already fully concluded by the
+// time this course's own 2027 teaching weeks begin (`course-config.ts`
+// starts the term 2027-02-22). Earlier drafts dated the case in 2027 itself,
+// which put Week 1's own fact/inference table a document or two *ahead* of
+// Week 1's own date (e.g. Sanjay Okoro's request landed 2027-02-24, two days
+// after a 2027-02-22 Week 1), and forced Week 4 to claim two later documents
+// "did not exist yet" relative to Week 1 — true of those two specifically,
+// but not of the case as a whole, since Week 1 had already used a
+// document from its own future. Dating the whole case in the past removes
+// the paradox outright: every document below already existed years before
+// any student reads it, so what a given week releases is a pacing choice
+// about the evidence packet, never a claim about when something happened.
+// 2021 was chosen, not just any earlier year, because it is a non-leap year
+// that starts on the same weekday as 2027 (both start on a Friday), so every
+// date below falls on the same day of the week as it did when the case was
+// dated 2027 — the "13 March, a Saturday" and "21 March, a Sunday" framing
+// in Week 4 and Week 5's material needed no rewriting to stay true.
 
 export const engagementSignalCase = {
   name: "The Engagement Signal Pilot",
@@ -66,70 +84,70 @@ export interface TimelineEntry {
 
 export const engagementSignalTimeline: TimelineEntry[] = [
   {
-    date: "2027-01-18",
+    date: "2021-01-18",
     label: "Finance & Risk signs off the ClarityPulse budget line",
     kind: "fact",
     source: "Finance & Risk sign-off memo, dated and initialled by Beatrix Oyelaran",
     note: "The document states the amount and the signature; it does not state who asked for the sign-off first.",
   },
   {
-    date: "2027-01-22",
+    date: "2021-01-22",
     label: "Tomas Herrera and ClarityPulse's sales lead meet",
     kind: "fact",
     source: "Calendar entry, both attendees named",
     note: "The meeting happened; no minutes exist, so what was discussed is not part of the public record.",
   },
   {
-    date: "2027-01-29",
+    date: "2021-01-29",
     label: "A implementation-timeline draft names LSS as the first rollout site",
     kind: "fact",
     source: "Draft project plan, version history shows Tomas Herrera as the only editor",
     note: "The document directly names LSS — that part is a fact. Why LSS was chosen over another unit is a separate question the document does not answer; reasoning toward an answer would be a step of inference, not this entry itself.",
   },
   {
-    date: "2027-02-01 to 2027-02-28",
+    date: "2021-02-01 to 2021-02-28",
     label: "Dr Femi Adisa's staff first hear the word 'ClarityPulse' at all",
     kind: "unknown",
     source: "No dated document exists confirming when LSS staff were first told",
     note: "Staff say informally it was 'sometime in February'; nothing in the public record fixes a date, so this entry takes the month as a range rather than inventing a single day no document supports.",
   },
   {
-    date: "2027-02-10",
+    date: "2021-02-10",
     label: "Priya Nandakumar emails the Vice-Chancellery an update naming a go-live term",
     kind: "fact",
     source: "Email, forwarded and time-stamped",
     note: "States the term; does not state whether the term was already fixed before this email or proposed for the first time in it.",
   },
   {
-    date: "2027-02-24",
+    date: "2021-02-24",
     label: "Sanjay Okoro requests a staff information session before rollout",
     kind: "fact",
     source: "Email from the Staff Association distribution list",
     note: "The request is dated and on the record; whether it was granted is a separate, later question.",
   },
   {
-    date: "2027-03-01",
+    date: "2021-03-01",
     label: "Wren Castellano drafts Item 4 as an open question (Draft B)",
     kind: "fact",
     source: "Draft agenda file, timestamped, never circulated",
     note: "The file's own metadata carries this date; it was found afterwards, not sent at the time.",
   },
   {
-    date: "2027-03-03",
+    date: "2021-03-03",
     label: "Wren Castellano sends Item 4 as a confirmation (Draft A)",
     kind: "fact",
     source: "Sent agenda, distribution list and read receipts",
     note: "This is the version the Steering Committee actually received.",
   },
   {
-    date: "2027-03-01 to 2027-03-03",
+    date: "2021-03-01 to 2021-03-03",
     label: "Between the two drafts, someone decided the item should read as settled",
     kind: "inference",
     source: "No document names who made this call or why",
     note: "This entry has no document of its own — it is a reading of the gap between Draft B and Draft A, so it gets the gap's date range rather than a false-precise single day. It is the course's central seam: a reasonable inference, not a proven fact. An equally reasonable reading is that the question was genuinely resolved in an earlier, undocumented conversation the drafts simply reflect.",
   },
   {
-    date: "2027-03-08",
+    date: "2021-03-08",
     label: "The Steering Committee meets and confirms the timeline",
     kind: "fact",
     source: "Meeting minutes, attendance list attached",
@@ -137,7 +155,7 @@ export const engagementSignalTimeline: TimelineEntry[] = [
   },
 ];
 
-// The Steering Committee invitation list for the 2027-03-08 meeting above.
+// The Steering Committee invitation list for the 2021-03-08 meeting above.
 // Week 2 asks students to read this list along three *independent* axes,
 // not one mixed classification:
 //

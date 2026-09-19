@@ -53,6 +53,17 @@ not procedurally fair merely because it happened — a hearing that cannot
 affect the outcome is closer to a procedural failure wearing the shape of
 one, not a clean case of "fair process, unfair result" either.
 
+That hypothetical is still incomplete, and deliberately so: "answers every
+question raised by every stakeholder present" only scores fairness among
+the people already in the room. Week 2's own invite list names two seats
+this test never reaches at all — Dr Femi Adisa and LSS's frontline staff,
+neither invited, both affected by what the Steering Committee confirms.
+A process can be flawless toward everyone it sat down with and still be
+procedurally unfair to someone it never sat down with in the first place;
+"was everyone present heard" and "was everyone affected present" are two
+different questions, and a working group can pass the first while the
+second was never even asked.
+
 The [Alignment Lab's hot-desking worked example](/alignment-lab/) makes the
 same split visible on paper: the Staff Representative's `constraint` field
 requires taking any agreement back to affected staff before it holds

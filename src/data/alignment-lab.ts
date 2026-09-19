@@ -7,25 +7,49 @@
 // checks its `marking.criteria` against `labScoring` below, so the numbers
 // on the page and the numbers here cannot silently drift apart.
 
+export type LabPathway = "live" | "asyncMakeup" | "alternative";
+export type LabLevel = "individual" | "group";
+
 export interface LabScoringCriterion {
   name: string;
   weight: number;
-  level: "individual" | "group";
+  /**
+   * Who produces the artefact this criterion marks, by pathway. A single
+   * flat `level` field used to sit here, permanently set to `"group"` for
+   * the decision record — true only of the live pathway. In the async
+   * make-up and alternative/structured-async pathways, the same criterion
+   * marks a record one student produces alone (auditing and correcting the
+   * group's record, or independently producing one from scratch). Every
+   * other criterion is individual work in all three pathways; only the
+   * decision record actually varies, which is why it's the one row with
+   * three different values below instead of one repeated three times.
+   */
+  levelByPathway: Record<LabPathway, LabLevel>;
 }
+
+const alwaysIndividual: Record<LabPathway, LabLevel> = {
+  live: "individual",
+  asyncMakeup: "individual",
+  alternative: "individual",
+};
 
 // Marked on evidence use, adaptation and ethical judgement — never on
 // negotiation win/loss, performance skill, talking frequency, or whether a
 // person's role-goal was achieved.
 export const labScoring: LabScoringCriterion[] = [
-  { name: "Initial judgment and strategy memo", weight: 20, level: "individual" },
+  { name: "Initial judgment and strategy memo", weight: 20, levelByPathway: alwaysIndividual },
   {
     name: "Pre-meeting negotiation: evidence, purpose and adaptation",
     weight: 20,
-    level: "individual",
+    levelByPathway: alwaysIndividual,
   },
-  { name: "Formal decision record", weight: 15, level: "group" },
-  { name: "Individual decision autopsy", weight: 35, level: "individual" },
-  { name: "Partial rerun and improvement explanation", weight: 10, level: "individual" },
+  {
+    name: "Formal decision record",
+    weight: 15,
+    levelByPathway: { live: "group", asyncMakeup: "individual", alternative: "individual" },
+  },
+  { name: "Individual decision autopsy", weight: 35, levelByPathway: alwaysIndividual },
+  { name: "Partial rerun and improvement explanation", weight: 10, levelByPathway: alwaysIndividual },
 ];
 
 export const MAX_SELF_INITIATED_CONTACTS = 2;

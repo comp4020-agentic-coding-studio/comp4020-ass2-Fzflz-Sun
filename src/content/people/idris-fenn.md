@@ -11,10 +11,13 @@ contact: Ask during sessions, or email when a question cannot wait until the nex
 
 Idris teaches the even-numbered weeks — sessions and lectures for Weeks 2,
 4, 6, 8, 10 and 12 — alternating across the semester with Marisol, who takes
-the odd-numbered weeks. He marks the Decision Autopsy.
+the odd-numbered weeks. He marks the Decision Autopsy, and runs Week 10's
+Alignment Lab reveal session — but the Lab itself is organized and marked by
+Marisol, who designed the case it runs on.
 
 If a question is about what a session activity is asking you to do, or about
 how the Decision Autopsy will be marked, ask Idris first: during a session,
-or by email when it can't wait until the next one. If his answer doesn't
-settle it, or the question is about the course's overall shape or weighting,
-that goes to [Marisol](/people/marisol-quaye/) instead.
+or by email when it can't wait until the next one. Anything about how the
+Alignment Lab is run or marked goes to [Marisol](/people/marisol-quaye/)
+directly, as does any question about the course's overall shape or
+weighting that Idris's answer doesn't settle.

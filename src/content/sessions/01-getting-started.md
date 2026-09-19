@@ -42,16 +42,16 @@ the three kinds you think it is, and one sentence why.
 
 | Date | Entry | Source |
 |---|---|---|
-| 2027-01-18 | Finance & Risk signs off the ClarityPulse budget line | Finance & Risk sign-off memo, dated and initialled |
-| 2027-01-22 | Tomas Herrera and ClarityPulse's sales lead meet | Calendar entry, both attendees named |
-| 2027-01-29 | An implementation-timeline draft names LSS as the first rollout site | Draft project plan, version history shows one editor |
-| 2027-02-01 to 2027-02-28 | Dr Femi Adisa's staff first hear the word "ClarityPulse" at all | No dated document confirms this |
-| 2027-02-10 | Priya Nandakumar emails the Vice-Chancellery an update naming a go-live term | Email, forwarded and time-stamped |
-| 2027-02-24 | Sanjay Okoro requests a staff information session before rollout | Email from the Staff Association distribution list |
-| 2027-03-01 | Wren Castellano drafts the Steering Committee's Item 4 as an open question | Draft agenda file, timestamped, never circulated |
-| 2027-03-03 | Wren Castellano sends Item 4 as a confirmation instead | Sent agenda, distribution list and read receipts |
-| 2027-03-01 to 2027-03-03 | Between the two drafts, someone decided the item should read as settled | No document names who, or why — this entry has no date of its own, only the gap between the two drafts around it |
-| 2027-03-08 | The Steering Committee meets and confirms the timeline | Meeting minutes, attendance list attached |
+| 2021-01-18 | Finance & Risk signs off the ClarityPulse budget line | Finance & Risk sign-off memo, dated and initialled |
+| 2021-01-22 | Tomas Herrera and ClarityPulse's sales lead meet | Calendar entry, both attendees named |
+| 2021-01-29 | An implementation-timeline draft names LSS as the first rollout site | Draft project plan, version history shows one editor |
+| 2021-02-01 to 2021-02-28 | Dr Femi Adisa's staff first hear the word "ClarityPulse" at all | No dated document confirms this |
+| 2021-02-10 | Priya Nandakumar emails the Vice-Chancellery an update naming a go-live term | Email, forwarded and time-stamped |
+| 2021-02-24 | Sanjay Okoro requests a staff information session before rollout | Email from the Staff Association distribution list |
+| 2021-03-01 | Wren Castellano drafts the Steering Committee's Item 4 as an open question | Draft agenda file, timestamped, never circulated |
+| 2021-03-03 | Wren Castellano sends Item 4 as a confirmation instead | Sent agenda, distribution list and read receipts |
+| 2021-03-01 to 2021-03-03 | Between the two drafts, someone decided the item should read as settled | No document names who, or why — this entry has no date of its own, only the gap between the two drafts around it |
+| 2021-03-08 | The Steering Committee meets and confirms the timeline | Meeting minutes, attendance list attached |
 
 This is deliberately not a real institution's leaked records — it is teaching
 fiction, invented for this course and reused across the semester so the case

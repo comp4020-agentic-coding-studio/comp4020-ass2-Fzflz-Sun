@@ -150,7 +150,7 @@ only in Week 11's material on the ethics of alignment.
     agree with a field, say so and cite what in the reveal pack supports it;
     where a field is incomplete or wrong against the full pack, name the
     specific correction and the evidence for it. This is scored against the
-    same eight fields and the same quality standard as a live record — not
+    same ten fields and the same quality standard as a live record — not
     against whether it matches the group's original, since a well-evidenced
     disagreement with the original record is not itself a mark against you.
     From your own negotiation log, the group's decision record and your
@@ -213,7 +213,9 @@ only in Week 11's material on the ethics of alignment.
 4. **The meeting.** Live or synchronous, one sitting of around 25 minutes, no
    extensions on the clock once it starts.
 5. **Decision record.** The group produces one record — the decision or a
-   reasoned deferral, who holds final authority over it, evidence versus
+   reasoned deferral, who holds final decision authority over it and
+   separately who holds spending and implementation authority (and whether
+   each has actually been granted, not just implied), evidence versus
    unverified assumption, unresolved dissent, who owns the resulting actions,
    and what would reopen it — using the
    [decision record template](/templates/). Consensus is not required.
@@ -319,7 +321,7 @@ recorded for every entry:
    *Judgment change:* Staff Representative's minimum acceptable outcome now
    looks achievable without a fight — a material change from the initial
    judgment above.
-2. **Finance and Risk Lead → Staff Representative** (reply to a request).
+2. **Finance and Risk Lead → Staff Representative** (self-initiated).
    *Purpose:* Finance asked what the accessibility fit-out would cost, to
    fold it into the same costed proposal as the software upgrade.
    *New information:* Staff Representative did not have a number, but named
@@ -342,7 +344,8 @@ agreement — dissent, conditional support and deferral are all legitimate
 outcomes, provided the record says so honestly:
 
 > **Decision:** proceed with a combined proposal — booking-software upgrade
-> and reserved accessibility desks — as one costed line item, phased in
+> and reserved accessibility desks — as one line item, with the
+> accessibility fit-out still awaiting full costing, phased in
 > over two terms with reserved desks guaranteed from day one, **on
 > condition that the phase-in timeline is taken back to the 12 affected
 > staff for comment before it is finalised.** That condition is not the
@@ -352,10 +355,11 @@ outcomes, provided the record says so honestly:
 >
 > **Who agreed:** Executive Sponsor, Delivery Lead and Finance and Risk
 > Lead agree to the proposal as drafted, including the consultation
-> condition above. The Staff Representative agrees **only on that
-> condition** — her sign-off is not full agreement to a settled plan, it is
-> agreement to a plan that does not yet exist as a final decision until the
-> consultation happens.
+> condition above. The Staff Representative's position is recorded as
+> **final agreement pending consultation**, not agreement to a settled
+> plan: she has not yet agreed to anything final, because her own
+> non-tradeable constraint makes the plan's status contingent on a
+> consultation that has not happened yet.
 >
 > **Evidence relied on:** the booking-software licence terms (Delivery
 > Lead); the accessibility equipment list (Staff Representative); the
@@ -369,11 +373,11 @@ outcomes, provided the record says so honestly:
 >
 > **Dissent:** Finance and Risk Lead supports the plan **conditionally** —
 > on record as not approving final spend until the fit-out figure is
-> confirmed in writing. The Staff Representative's conditional sign-off
-> above is recorded separately from dissent: she is not opposing the plan,
-> she is withholding final agreement until her non-tradeable constraint is
-> actually met, which this record treats as a different thing from
-> disagreeing with the plan's content.
+> confirmed in writing. The Staff Representative's final-agreement-pending-
+> consultation position above is recorded separately from dissent: she is
+> not opposing the plan, she is withholding final agreement until her
+> non-tradeable constraint is actually met, which this record treats as a
+> different thing from disagreeing with the plan's content.
 >
 > **Action owner:** Delivery Lead drafts the combined proposal; Staff
 > Representative confirms the fit-out figure within one week, and
@@ -384,30 +388,29 @@ outcomes, provided the record says so honestly:
 > **Final decision authority:** Executive Sponsor signs off the *proposal
 > going forward* once the fit-out figure lands **and** the staff
 > consultation above has actually happened — not the group by majority,
-> and not a completed decision on either point alone. That sign-off
-> authorises drafting and costing the combined line item; it does not
-> itself authorise spending. Any actual spend still requires the Finance
-> and Risk Lead's separate sign-off under their standing authority over
-> spend above the university's threshold, which this record does not and
-> cannot override.
+> and not a completed decision on either point alone. This sign-off is a
+> licence to keep drafting and costing the combined line item; it is not,
+> by itself, either of the two authorities below.
+>
+> **Spending authority:** Finance and Risk Lead, under their standing
+> authority over spend above the university's threshold — **not yet
+> granted**. The Executive Sponsor's final decision authority above does
+> not stand in for this; any actual spend still requires the Finance and
+> Risk Lead's own sign-off once the fit-out figure is confirmed, which this
+> record does not and cannot override.
+>
+> **Implementation authority:** Delivery Lead, for the software
+> configuration, and Facilities, for the physical fit-out — **not yet
+> granted**. Purchasing or installing the accessibility equipment,
+> physically reassigning or relabelling any of the 40 desks, and telling
+> the 12 affected staff a fixed go-live date are all implementation actions
+> that depend on spending authority above being granted first; none of them
+> may happen before then.
 >
 > **What would reopen this record:** a fit-out figure that exceeds the
 > software-upgrade saving, Facilities confirming the "no extra cost"
 > licence claim was wrong, or the staff consultation surfacing an objection
 > to the phase-in that the group has not addressed.
-
-**What this record does not yet authorise, in concrete terms:** purchasing
-or installing the accessibility fit-out equipment, physically reassigning
-or relabelling any of the 40 desks, and telling the 12 affected staff a
-fixed go-live date are all **implementation authority** actions that depend
-on money not yet confirmed — none of them may happen before the fit-out
-figure lands and the Finance and Risk Lead's own sign-off is given. What the
-Executive Sponsor's sign-off above does authorise now is drafting the
-combined proposal and costing it further under their **final decision
-authority**; it is a licence to keep working on the plan, not a licence to
-spend against it (**spending authority**, which the Executive Sponsor does
-not hold here) or to start building it (**implementation authority**,
-which no one has yet).
 
 ### 6. Consequences, from stated rules
 
@@ -419,6 +422,22 @@ are not only argued in prose: they are a small, typed, pure function —
 `src/data/consequence-rules.ts` — and the worked result below is that
 function's actual output on the record above, not a hand-written paraphrase
 of what it should say.
+
+Be precise about what that function does and does not do. It does not read
+the prose record above and parse it — no software here extracts "the fit-out
+cost is unconfirmed" from a paragraph of English. A human reads the record
+and codes its relevant facts into the typed inputs the function actually
+takes, `hotDeskingCostAuthorityInput` and `hotDeskingRoleRuleInputs` in
+`src/data/consequence-rules.ts` (for instance, `costFullyKnown: false` and
+`missingFigure: { name: "the accessibility fit-out cost", owner: "Staff
+Representative", deadline: "within one week" }`, coded from the record's own
+"Unverified assumption" and "Action owner" fields above). That coding step is
+a human judgement call, not a mechanical extraction, which is exactly why the
+walkthrough below cites the specific record text behind each field it uses —
+so the coding is auditable, not asserted. What the function then guarantees
+is only that its rules are applied to that coded input consistently and
+deterministically, every time, rather than being re-argued from scratch in
+prose on each page that needs the result.
 
 The rules turn on three kinds of authority a record can name, which are not
 the same thing and a record naming one does not establish the others:
@@ -467,7 +486,7 @@ both at the same time unless something decides which one governs:
    - **Specific cost explicitly deferred** — the record says exactly which
      number is missing, who owns getting it, and the deadline, **and
      explicitly prohibits any dependent spend until that figure is
-     confirmed and validly approved** → a two-week delay while that figure
+     confirmed and validly approved** → a one-week delay while that figure
      is confirmed, and any other commitment already made in the record (an
      accessibility guarantee, for instance) still holds regardless of the
      delay.
@@ -530,7 +549,7 @@ function actually returned, computed live from
   Finance and Risk Lead's own sign-off first — naming the gap alone would
   not be enough to land here; it is the combination of naming it *and* not
   spending through it that keeps this record out of the third branch. →
-  **Two-week delay**, accessibility commitment holds.
+  **One-week delay**, accessibility commitment holds.
 - **Rule 4 — each role's minimum outcome *and* constraint, checked
   together:**
   - *Delivery Lead* — minimum outcome ("a decision that does not commit to
@@ -585,14 +604,15 @@ function actually returned, computed live from
     record," not a guess in either direction.
 
 Final result, computed: cost-and-authority consequence
-**{hotDeskingCostAuthorityOutcome.consequence}** (rule 3 — two-week delay);
+**{hotDeskingCostAuthorityOutcome.consequence}** (rule 3 — one-week delay);
 role rule (rule 4) **clear** for the Delivery Lead and the Staff
 Representative (including her non-tradeable constraint, honoured rather
 than bypassed); **contested for the Finance and Risk Lead**
 ({hotDeskingRoleRuleOutcomes[2].reason}); and **undetermined** for the
-Executive Sponsor ({hotDeskingRoleRuleOutcomes[3].reason}) — five separate,
-individually traceable rule-4 outputs plus the rule-3 delay, not a single
-"two-week delay" headline that quietly drops the rest.
+Executive Sponsor ({hotDeskingRoleRuleOutcomes[3].reason}) — four separate,
+individually traceable rule-4 outputs, one per role, alongside the rule-3
+delay as a fifth, distinct result — never collapsed into a single
+"one-week delay" headline that quietly drops the other four.
 
 ### 7. An example retrospective and partial rerun
 
@@ -668,7 +688,7 @@ changes:
 |---|---|---|---|
 | Initial judgment & strategy memo (20%, individual) | Written before role cards / before contact opens | Same artefact, written on the same clock as everyone else, before you knew you'd miss the meeting — not rewritten afterwards | Written from this page's public worked example, before you touch the Contact Simulator or any frozen transcript |
 | Pre-meeting negotiation (20%, individual) | Your own logged contacts during the live window | Your own logged contacts from that same real window — you were present for it — not reconstructed afterwards from the group's shared materials | Your own contacts logged while playing the worked example through the Contact Simulator (or its frozen transcripts), under the same self-initiated-contact limit |
-| Formal decision record (15%, **group** in the live case; an individually-produced equivalent otherwise) | One record your live group produces together; marked once for everyone named in it | No group record to co-produce live — you audit the group's actual record against the full reveal pack and submit your own corrected or reconstructed record, scored against the same eight fields and standard as a live one | No group exists — you independently produce your own decision record from your own negotiation log and the worked example's fully revealed role cards |
+| Formal decision record (15%, **group** in the live case; an individually-produced equivalent otherwise) | One record your live group produces together; marked once for everyone named in it | No group record to co-produce live — you audit the group's actual record against the full reveal pack and submit your own corrected or reconstructed record, scored against the same ten fields and standard as a live one | No group exists — you independently produce your own decision record from your own negotiation log and the worked example's fully revealed role cards |
 | Individual decision autopsy (35%, individual) | Individually, after your group's own reveal | Individually, from the received record, full reveal pack and your own logged contacts | Individually, of the decision record you produced above |
 | Partial rerun (10%, individual) | One juncture from your live meeting | Same, reasoned from the written materials you received | One juncture from your own Contact Simulator run or frozen transcript |
 
@@ -694,11 +714,11 @@ one.
   on evidence — under a worked rather than live counterpart, not a smaller
   version of the task.
 - **Formal decision record.** In every pathway this is marked against the
-  same eight fields on the [decision record template](/templates/) (the
+  same ten fields on the [decision record template](/templates/) (the
   decision, evidence relied on, unverified assumptions, who agreed, who
-  dissented, action owners, final decision authority, and what would reopen
-  the record) to the same standard of evidence-use. What differs is only who
-  supplies the underlying
+  dissented, action owners, final decision authority, spending authority,
+  implementation authority, and what would reopen the record) to the same
+  standard of evidence-use. What differs is only who supplies the underlying
   negotiation the record is built from — a live group, an audited correction
   of one, or a record you produce yourself — never whether you personally sat
   in a room. A defensible, well-evidenced correction to the group's own

@@ -7,4 +7,10 @@ Who agreed:
 Who dissented, and on what grounds (including conditional or partial support):
 Action owner(s) — who carries out what follows from this:
 Final decision authority — who actually had the authority to make this call:
+Spending authority — who can actually authorise the money moving, and
+whether that authorisation has actually been obtained (a final decision
+authority's sign-off is not the same thing as this):
+Implementation authority — who can act on this decision in the world (build
+it, buy it, announce it), and whether that authorisation has actually been
+obtained:
 What would reopen this record:

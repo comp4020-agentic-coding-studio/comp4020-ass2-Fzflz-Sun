@@ -120,7 +120,9 @@ export function evaluateCostAndAuthority(input: CostAuthorityInput): CostAuthori
     };
   }
 
-  if (!input.missingFigure) {
+  const figure = input.missingFigure;
+
+  if (!figure || figure.name.trim() === "" || figure.owner.trim() === "" || figure.deadline.trim() === "") {
     return {
       bucket: "revision",
       consequence: "revision",
@@ -144,7 +146,7 @@ export function evaluateCostAndAuthority(input: CostAuthorityInput): CostAuthori
     consequence: "delayed",
     reason:
       "the record names the missing figure, its owner and a deadline, and explicitly withholds dependent spend until it is confirmed and validly approved",
-    missingFigure: input.missingFigure,
+    missingFigure: figure,
   };
 }
 

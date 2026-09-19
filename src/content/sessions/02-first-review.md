@@ -22,7 +22,7 @@ related:
 ## Before the session
 
 Bring your classified timeline from Week 1. It ends at a meeting: the
-2027-03-08 Steering Committee that confirmed the ClarityPulse rollout
+2021-03-08 Steering Committee that confirmed the ClarityPulse rollout
 timeline. This week's document is that meeting's invitation list.
 
 An invitation, a decision right, and when someone actually learns the
@@ -37,7 +37,20 @@ value doesn't appear here, though the taxonomy allows it), and their
 room — or after) — plus whatever reason the record gives, which is often
 none at all.
 
-### Case file: the 2027-03-08 Steering Committee invite list
+Two of these values are worth naming precisely because this list happens not
+to use them. **Observe**, held only by Castellano below, is a formal decision
+right in its own column — a documented ceiling on what a seat may do (attend
+and watch, never vote or advise) — not a loose way of saying "was in the
+room"; someone with a vote is also in the room, and someone with no right at
+all can still be present. **Not-informed** would describe a seat that never
+learns the outcome through any documented channel at all — no email, no
+minutes, nothing — which is a stronger and rarer claim than "after": everyone
+on this particular list who is not informed during the meeting is still
+informed **after** it, through some record or another, so nobody here is
+coded not-informed. The taxonomy carries the value anyway, for a seat this
+case simply doesn't have.
+
+### Case file: the 2021-03-08 Steering Committee invite list
 
 | Name | Title | Participation | Decision right | Informed | Reason given |
 |---|---|---|---|---|---|
