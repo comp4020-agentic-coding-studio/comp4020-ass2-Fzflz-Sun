@@ -31,7 +31,6 @@ introduced in [`5ade0a8`](https://github.com/comp4020-agentic-coding-studio/comp
 provide faster and more reliable feedback than repeatedly reading the whole
 website for missing fields or arithmetic drift.
 
-
 Some factors should be left to human judgement, say, the coherence of twelve 
 weeks content, the setting of different info, character, and dependencies can
 indeed make one's choice, and the weight of assessment.
@@ -43,5 +42,13 @@ Week 3. That early slice is visible in
 while the later twelve-week implementation is recorded in
 [`de71113`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-Fzflz-Sun/commit/de71113a11a7e91495b84ba11e0a4a3c1444eafb).
 
-After personally checking that the page listed Weeks 1–12 / Week 4 and Week 10
-contained distinct material.
+Completing the twelve weeks did not mean the content agreed with itself. 
+Going back through the site afterwards, I found specific claims that had drifted 
+from the canonical case data: the Finance & Risk memo had been overstated into 
+"signs off the budget" when the source only supports it recording the figure and 
+carrying a signature, the Alignment Lab's pathway scoring model disagreed with 
+the decision record it fed, and Week 3's "real agenda item" line risked being 
+misread as the fictional case rather than the student's own exercise. I fixed 
+each of these and added a corresponding test with a negative example, so a 
+future edit that reintroduces the same overclaim fails the build rather than 
+sitting unnoticed (5af0879, bec2d04, 05e8188).
