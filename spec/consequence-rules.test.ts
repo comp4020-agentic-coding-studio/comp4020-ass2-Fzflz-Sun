@@ -7,8 +7,10 @@ import {
   evaluateRoleRule,
   hotDeskingCostAuthorityInput,
   hotDeskingCostAuthorityOutcome,
+  hotDeskingRoleRuleInputs,
   hotDeskingRoleRuleOutcomes,
 } from "../src/data/consequence-rules";
+import { hotDeskingRoleCards } from "../src/data/case-facts";
 
 // The Alignment Lab worked example's "Consequences, from stated rules"
 // section used to be argued only in Markdown prose, checked here by
@@ -263,5 +265,61 @@ describe("The Alignment Lab guide's prose stays consistent with the evaluator's 
   it("[negative example] prose that only names 'a named final authority' without distinguishing spending authority reproduces the old conflation bug", () => {
     const oldRule = "Is there a named final authority? If no, send the record back for revision.";
     expect(oldRule).not.toMatch(/spending authority/i);
+  });
+});
+
+// The Delivery Lead's role card constraint used to read "...without a paid
+// upgrade nobody has budgeted for" while constraintMet was hardcoded true
+// and the page's prose argued "costed is not the same as funded... but
+// addressed rather than left open" — priced was quietly treated as good
+// enough to satisfy a constraint that named "budgeted for" specifically.
+// The corrected constraint is an explicit non-tradeable condition ("cannot
+// proceed until... approved budget and valid spending authority"), and
+// constraintMet: true is now justified by the record's own Implementation
+// authority field withholding implementation until that authority exists —
+// not by the upgrade being priced. These tests keep the role card's own
+// text, the typed input, and the page's rendered justification from
+// drifting apart again.
+describe("Delivery Lead's role-card constraint, typed input, and page justification agree with each other", () => {
+  const labGuide = readFileSync(resolve("src/pages/alignment-lab/index.mdx"), "utf8");
+  const deliveryLead = hotDeskingRoleCards.find((card) => card.archetype === "Delivery Lead");
+  const deliveryLeadInput = hotDeskingRoleRuleInputs.find((input) => input.role === "Delivery Lead");
+
+  it("the role card's constraint is an explicit non-tradeable condition, not a plain statement of an unbudgeted gap", () => {
+    expect(deliveryLead).toBeDefined();
+    expect(deliveryLead?.constraint).toMatch(
+      /cannot proceed until the paid software upgrade.*approved budget and valid spending authority/i,
+    );
+    expect(deliveryLead?.constraint).not.toMatch(/nobody has budgeted for/i);
+  });
+
+  it("the typed input marks the Delivery Lead's constraint as met", () => {
+    expect(deliveryLeadInput).toBeDefined();
+    expect(deliveryLeadInput?.constraintMet).toBe(true);
+  });
+
+  it("the computed outcome for Delivery Lead is clear, matching the typed input", () => {
+    const outcome = hotDeskingRoleRuleOutcomes.find((o) => o.role === "Delivery Lead");
+    expect(outcome?.status).toBe("clear");
+  });
+
+  it("the page justifies constraintMet: true via deferred implementation authority, not via 'priced counts as funded'", () => {
+    expect(labGuide).toMatch(
+      /honoured, not\s+bypassed[\s\S]*?Implementation authority field states plainly that the Delivery\s+Lead's software configuration work is "not yet granted"/i,
+    );
+    expect(labGuide).not.toMatch(/it is no longer an unbudgeted gap/i);
+    expect(labGuide).not.toMatch(/costed is not the\s+same as funded/i);
+  });
+
+  it("[negative example] a constraint literally requiring 'budgeted for' cannot be honestly marked met by a merely priced, not-yet-approved upgrade", () => {
+    const oldConstraint =
+      "The desk-booking software the university already owns cannot handle " +
+      "unassigned hot-desking without a paid upgrade nobody has budgeted for.";
+    const pricedButNotApproved = { priced: true, budgetApproved: false };
+    // Under the old wording, the constraint is literally about being
+    // "budgeted for" — a priced-but-unapproved upgrade does not satisfy it,
+    // which is exactly the gap the old constraintMet: true papered over.
+    expect(oldConstraint).toMatch(/nobody has budgeted for/i);
+    expect(pricedButNotApproved.budgetApproved).toBe(false);
   });
 });

@@ -235,3 +235,48 @@ describe("labScoring's per-pathway level matches the Lab guide's own prose, not 
     expect(oldFlatLevel).not.toBe(criterion("Formal decision record").levelByPathway.asyncMakeup);
   });
 });
+
+// "What you submit" (the Lab guide) and the parallel wording on the Templates
+// and assessment-brief pages used to summarise the decision record as "one
+// shared decision record" across all three pathways — true only of the live
+// pathway; the async make-up and alternative pathways each produce an
+// individual record (matching levelByPathway above). These tests protect the
+// pathway-qualified summary wording that replaced it.
+describe("The decision record summary sentence is pathway-qualified everywhere it appears, not a flat 'shared record' claim", () => {
+  it("the Lab guide's 'What you submit' sentence names the live/async-makeup/alternative split for the record", () => {
+    expect(labGuide).toMatch(
+      /a decision record — produced with your live group, or individually under the\s*\nasync make-up or alternative pathway/i,
+    );
+    expect(labGuide).not.toMatch(/one shared decision record/i);
+  });
+
+  it("Templates' decision record entry no longer calls it simply 'the one document a live Alignment Lab group produces'", () => {
+    expect(templatesPage).toMatch(/The one document a live Alignment Lab group produces together/i);
+  });
+
+  it("Templates' individual-autopsy section refers to 'your own decision record', not 'your own group's record'", () => {
+    expect(templatesPage).toMatch(
+      /about your own decision record \(your live group's,\s*\nan audited correction of it, or one you produced individually, depending on\s*\nyour pathway\)/i,
+    );
+    expect(templatesPage).not.toMatch(/about your own group's record, not the/i);
+  });
+
+  it("Templates' autopsy template prompt asks what 'the decision record' says, not 'the group's decision record'", () => {
+    expect(templatesPage).toMatch(/What the decision record says decided the outcome:/);
+    expect(templatesPage).not.toMatch(/What the group's decision record says decided the outcome:/);
+  });
+
+  it("the assessment brief's spec line and submit bullet name the live/async-makeup/alternative split, not 'produced by the group'", () => {
+    expect(assessmentBrief).toMatch(
+      /a decision record is produced — with your live group, or individually under the async make-up \/ alternative pathway/i,
+    );
+    expect(assessmentBrief).not.toMatch(/a single decision record is produced by the group/i);
+    expect(assessmentBrief).toMatch(/\*\*Decision record\*\* \(one per live group; produced individually under the/i);
+  });
+
+  it("[negative example] the old flat wording would have matched a 'shared/group record regardless of pathway' pattern", () => {
+    const oldWording =
+      "an initial judgment, a strategy memo, a negotiation log, one shared decision record, an individual decision autopsy";
+    expect(oldWording).toMatch(/one shared decision record/i);
+  });
+});

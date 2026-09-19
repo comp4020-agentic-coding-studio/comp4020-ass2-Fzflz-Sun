@@ -23,7 +23,7 @@ spec:
   - an individual initial judgment is submitted before role cards are distributed
   - a completed strategy memo is submitted before the pre-meeting contact window opens
   - the pre-meeting contact window is used or explicitly declined, on the record, with no more than the default number of self-initiated contacts
-  - a single decision record is produced by the group, naming who agreed, who dissented, and why
+  - a decision record is produced — with your live group, or individually under the async make-up / alternative pathway — naming who agreed, who dissented, and why
   - a decision autopsy is submitted individually, reaching one of three evidenced conclusions about what shaped the outcome — naming a specific distortion the record and log support, arguing that the process held up with no significant distortion evident, or arguing indeterminate on what you have, naming the specific missing evidence, the alternative explanation you could not rule out without it, and what would change your judgment if it turned up — provided whichever conclusion you reach is argued from the record
   - a partial rerun of one specific juncture is submitted, testing whether a named process change would have helped
 related:
@@ -54,8 +54,10 @@ one; this page marks the work, that page runs it.
   received — its purpose, any new information, any commitments, and whether
   your judgment changed — or a note that you chose not to make contact, and
   why.
-- **Decision record** (one per group): the outcome, in the format on the
-  [Templates](/templates/) page.
+- **Decision record** (one per live group; produced individually under the
+  async make-up or alternative pathway — see [The Alignment
+  Lab](/alignment-lab/) page's pathway breakdown): the outcome, in the format
+  on the [Templates](/templates/) page.
 - **Decision autopsy** (individual, after the reveal): 500–700 words reaching
   one of three conclusions about what actually decided the outcome, versus
   what the decision record says decided it — a specific distortion the

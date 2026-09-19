@@ -45,7 +45,11 @@ export const engagementSignalCase = {
     financeRisk: {
       name: "Beatrix Oyelaran",
       title: "Head of Finance & Risk",
-      note: "signed off the budget and holds the risk register",
+      note:
+        "her dated signature is on the Finance & Risk memo recording the " +
+        "ClarityPulse budget figure, and she holds the risk register — the " +
+        "memo alone does not by itself prove she held complete, validly " +
+        "delegated spending authority over that figure (see Week 9)",
     },
     staffRep: {
       name: "Sanjay Okoro",
@@ -85,10 +89,16 @@ export interface TimelineEntry {
 export const engagementSignalTimeline: TimelineEntry[] = [
   {
     date: "2021-01-18",
-    label: "Finance & Risk signs off the ClarityPulse budget line",
+    label: "A Finance & Risk memo records the ClarityPulse budget figure, dated and signed by Beatrix Oyelaran",
     kind: "fact",
     source: "Finance & Risk sign-off memo, dated and initialled by Beatrix Oyelaran",
-    note: "The document states the amount and the signature; it does not state who asked for the sign-off first.",
+    note:
+      "\"Sign-off memo\" is the document's own title, not this course's " +
+      "judgment about its legal or organizational effect. The document " +
+      "states the amount and carries the signature; it does not state who " +
+      "asked for the sign-off first, and it does not by itself prove " +
+      "complete, validly delegated spending authority or that no other " +
+      "approval step existed (Week 9 works through why).",
   },
   {
     date: "2021-01-22",
@@ -327,8 +337,8 @@ export const hotDeskingRoleCards: RoleCard[] = [
       "supports named, reserved desks at no extra cost; the paid upgrade is " +
       "only needed for genuine unassigned hot-desking.",
     constraint:
-      "The desk-booking software the university already owns cannot handle " +
-      "unassigned hot-desking without a paid upgrade nobody has budgeted for.",
+      "Unassigned hot-desking cannot proceed until the paid software upgrade " +
+      "it requires has an approved budget and valid spending authority behind it.",
     leverageOrDependency:
       "Is the only person in the room who has actually read the booking " +
       "software's licence terms.",

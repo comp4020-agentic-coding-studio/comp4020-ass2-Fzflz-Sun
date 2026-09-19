@@ -36,7 +36,7 @@ links:
 
 | Date | Entry | Kind | Why |
 |---|---|---|---|
-| 2021-01-18 | Finance & Risk signs off the ClarityPulse budget | Fact | The memo states the amount and carries a signature |
+| 2021-01-18 | A Finance & Risk memo records the ClarityPulse budget figure, signed by Oyelaran | Fact | The memo states the amount and carries a signature |
 | 2021-01-22 | Herrera meets ClarityPulse's sales lead | Fact | Calendar entry only proves the meeting happened, nothing said in it |
 | 2021-01-29 | Draft plan names LSS as first rollout site | Fact | The document directly names the site — that part is a fact. Why LSS was picked is a separate, unanswered question |
 | 2021-02-01 to 2021-02-28 | LSS staff first hear "ClarityPulse" | Unknown | No dated document fixes when; informal staff recollection is not a documentary source, so the entry takes the month as a range rather than a false-precise single day |

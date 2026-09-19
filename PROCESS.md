@@ -31,12 +31,6 @@ introduced in [`5ade0a8`](https://github.com/comp4020-agentic-coding-studio/comp
 provide faster and more reliable feedback than repeatedly reading the whole
 website for missing fields or arithmetic drift.
 
-**STUDENT INPUT REQUIRED:** In your own words, add two or three sentences
-explaining which qualities you deliberately left to human judgement. Address
-the coherence of the twelve-week progression, whether the role constraints
-create credible pressure, whether the alternative pathways are ethically fair,
-and whether the writing has a distinctive voice. Explain why a keyword or
-field-presence test could not establish those qualities.
 
 Some factors should be left to human judgement, say, the coherence of twelve 
 weeks content, the setting of different info, character, and dependencies can

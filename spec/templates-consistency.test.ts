@@ -223,8 +223,10 @@ describe("Alignment Lab individual autopsy template is distinct from the standal
 
   it("is not the same document as the standalone decision autopsy template", () => {
     expect(labAutopsy).not.toBe(decisionAutopsy);
-    expect(labAutopsy).toMatch(/group's decision record/i);
-    expect(decisionAutopsy).not.toMatch(/group's decision record/i);
+    expect(labAutopsy).toMatch(/ALIGNMENT LAB INDIVIDUAL AUTOPSY/i);
+    expect(labAutopsy).toMatch(/initial judgment, submitted before I held a\s+role/i);
+    expect(decisionAutopsy).not.toMatch(/ALIGNMENT LAB INDIVIDUAL AUTOPSY/i);
+    expect(decisionAutopsy).not.toMatch(/initial judgment, submitted before I held a role/i);
   });
 
   it("allows all three conclusions — distortion, no significant distortion, indeterminate — same as the standalone template", () => {
